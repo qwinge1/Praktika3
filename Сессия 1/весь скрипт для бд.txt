@@ -1,0 +1,1058 @@
+USE [master]
+GO
+/****** Object:  Database [AgroControlDB]    Script Date: 07.05.2026 13:48:29 ******/
+CREATE DATABASE [AgroControlDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'AgroControlDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\AgroControlDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'AgroControlDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\AgroControlDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [AgroControlDB] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [AgroControlDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [AgroControlDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [AgroControlDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [AgroControlDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [AgroControlDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [AgroControlDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [AgroControlDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [AgroControlDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [AgroControlDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [AgroControlDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [AgroControlDB] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [AgroControlDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [AgroControlDB]
+GO
+/****** Object:  Table [dbo].[ВыполнениеШаговПартии]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ВыполнениеШаговПартии](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NOT NULL,
+	[ШагТехКартыID] [int] NOT NULL,
+	[ВремяСтарта] [datetime] NULL,
+	[ВремяОкончания] [datetime] NULL,
+	[ФактТемпература] [decimal](10, 2) NULL,
+	[ФактДлительностьМинут] [int] NULL,
+	[ФактДавление] [decimal](10, 2) NULL,
+	[Отклонение] [bit] NULL,
+	[КомментарийОператора] [nvarchar](max) NULL,
+	[ОператорID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ЖурналСобытий]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ЖурналСобытий](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NULL,
+	[ТипСобытия] [nvarchar](50) NULL,
+	[ВремяСобытия] [datetime] NULL,
+	[Описание] [nvarchar](max) NULL,
+	[Важность] [nvarchar](20) NULL,
+	[СоздалID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ЛабораторныеИспытания]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ЛабораторныеИспытания](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NULL,
+	[ПартияСырьяID] [int] NULL,
+	[ДатаАнализа] [datetime] NULL,
+	[ТипОбразца] [nvarchar](50) NULL,
+	[НаименованиеПараметра] [nvarchar](100) NULL,
+	[ИзмеренноеЗначение] [nvarchar](50) NULL,
+	[НормативноеЗначение] [nvarchar](50) NULL,
+	[ЕдиницаИзмерения] [nvarchar](20) NULL,
+	[Результат] [nvarchar](20) NULL,
+	[Решение] [nvarchar](20) NULL,
+	[КомментарийАналитика] [nvarchar](max) NULL,
+	[АналитикID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Оборудование]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Оборудование](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[НомерЛинии] [nvarchar](20) NULL,
+	[Тип] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПартииСырья]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПартииСырья](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерПартии] [nvarchar](50) NOT NULL,
+	[СырьеID] [int] NOT NULL,
+	[Поставщик] [nvarchar](100) NULL,
+	[ДатаПоступления] [date] NULL,
+	[Количество_кг] [decimal](12, 2) NULL,
+	[ЛабораторныйСтатус] [nvarchar](30) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Пользователи]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Пользователи](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ИмяПользователя] [nvarchar](50) NOT NULL,
+	[ХэшПароля] [nvarchar](255) NOT NULL,
+	[ПолноеИмя] [nvarchar](100) NOT NULL,
+	[Роль] [nvarchar](30) NOT NULL,
+	[Email] [nvarchar](100) NULL,
+	[Телефон] [nvarchar](20) NULL,
+	[Активен] [bit] NULL,
+	[ПоследнийВход] [datetime] NULL,
+	[ДатаСоздания] [datetime] NULL,
+	[Отдел] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Продукция]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Продукция](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Код] [nvarchar](20) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[Тип] [nvarchar](50) NULL,
+	[ФормаВыпуска] [nvarchar](50) NULL,
+	[Статус] [nvarchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПроизводственныеЗаказы]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПроизводственныеЗаказы](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерЗаказа] [nvarchar](50) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[РецептID] [int] NOT NULL,
+	[ТехКартаID] [int] NOT NULL,
+	[ПланКоличество_кг] [decimal](12, 2) NOT NULL,
+	[Статус] [nvarchar](30) NULL,
+	[ПланДатаСтарта] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПроизводственныеПартии]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПроизводственныеПартии](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерПартии] [nvarchar](50) NOT NULL,
+	[ЗаказID] [int] NOT NULL,
+	[ВремяСтарта] [datetime] NULL,
+	[ВремяОкончания] [datetime] NULL,
+	[Статус] [nvarchar](30) NULL,
+	[ФактКоличество_кг] [decimal](12, 2) NULL,
+	[ТекущийШагID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Рецептуры]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Рецептуры](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[Версия] [int] NOT NULL,
+	[Статус] [nvarchar](20) NULL,
+	[ДатаСоздания] [datetime] NULL,
+	[СоздалID] [int] NULL,
+	[ДатаУтверждения] [datetime] NULL,
+	[УтвердилID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[СоставРецептуры]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[СоставРецептуры](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[РецептID] [int] NOT NULL,
+	[СырьеID] [int] NOT NULL,
+	[Процент] [decimal](10, 4) NOT NULL,
+	[ПорядокЗагрузки] [int] NOT NULL,
+	[ДопускОт] [decimal](10, 4) NULL,
+	[ДопускДо] [decimal](10, 4) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Сырье]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Сырье](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Код] [nvarchar](20) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[ЕдиницаИзмерения] [nvarchar](10) NULL,
+	[Категория] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ТехКарты]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ТехКарты](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[Версия] [int] NOT NULL,
+	[Статус] [nvarchar](20) NULL,
+	[ДатаСоздания] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ШагиТехКарты]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ШагиТехКарты](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ТехКартаID] [int] NOT NULL,
+	[НомерШага] [int] NOT NULL,
+	[НаименованиеШага] [nvarchar](100) NOT NULL,
+	[ПланТемпература] [decimal](10, 2) NULL,
+	[ПланДлительностьМинут] [int] NULL,
+	[ПланДавление] [decimal](10, 2) NULL,
+	[Обязательный] [bit] NULL,
+	[Инструкция] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[ВыполнениеШаговПартии] ON 
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (1, 1, 1, CAST(N'2025-03-01T08:00:00.000' AS DateTime), CAST(N'2025-03-01T08:32:00.000' AS DateTime), CAST(44.80 AS Decimal(10, 2)), 32, CAST(1.50 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (2, 1, 2, CAST(N'2025-03-01T08:32:00.000' AS DateTime), CAST(N'2025-03-01T10:30:00.000' AS DateTime), CAST(59.50 AS Decimal(10, 2)), 118, CAST(1.90 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (3, 1, 3, CAST(N'2025-03-01T10:30:00.000' AS DateTime), CAST(N'2025-03-01T11:17:00.000' AS DateTime), CAST(78.20 AS Decimal(10, 2)), 47, CAST(2.80 AS Decimal(10, 2)), 1, N'Температура ниже нормы', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (4, 1, 4, CAST(N'2025-03-01T11:17:00.000' AS DateTime), CAST(N'2025-03-01T12:15:00.000' AS DateTime), CAST(24.50 AS Decimal(10, 2)), 58, CAST(1.00 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (5, 2, 1, CAST(N'2025-03-02T08:15:00.000' AS DateTime), CAST(N'2025-03-02T08:45:00.000' AS DateTime), CAST(46.10 AS Decimal(10, 2)), 30, CAST(1.60 AS Decimal(10, 2)), 1, N'Температура выше', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (6, 3, 5, CAST(N'2025-03-03T09:00:00.000' AS DateTime), CAST(N'2025-03-03T09:25:00.000' AS DateTime), CAST(49.80 AS Decimal(10, 2)), 25, CAST(1.50 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (7, 4, 7, CAST(N'2025-03-04T10:00:00.000' AS DateTime), CAST(N'2025-03-04T10:35:00.000' AS DateTime), CAST(47.50 AS Decimal(10, 2)), 35, CAST(1.60 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+SET IDENTITY_INSERT [dbo].[ВыполнениеШаговПартии] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ЖурналСобытий] ON 
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (1, 1, N'запуск партии', CAST(N'2025-03-01T08:00:00.000' AS DateTime), N'Партия B-2401-01 запущена', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (2, 1, N'завершение партии', CAST(N'2025-03-01T14:30:00.000' AS DateTime), N'Партия B-2401-01 завершена', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (3, 2, N'запуск партии', CAST(N'2025-03-02T08:15:00.000' AS DateTime), N'Партия B-2401-02 запущена', N'инфо', 5)
+GO
+SET IDENTITY_INSERT [dbo].[ЖурналСобытий] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ЛабораторныеИспытания] ON 
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID]) VALUES (1, 1, NULL, CAST(N'2025-03-01T15:00:00.000' AS DateTime), N'готовая продукция', N'концентрация', N'98.2', N'97', N'%', N'pass', N'approved', N'Соответствует', 10)
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID]) VALUES (2, 2, NULL, CAST(N'2025-03-02T15:30:00.000' AS DateTime), N'готовая продукция', N'концентрация', N'96.5', N'97', N'%', N'fail', N'blocked', N'Низкая концентрация', 10)
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID]) VALUES (3, 5, NULL, CAST(N'2025-03-10T17:00:00.000' AS DateTime), N'готовая продукция', N'концентрация', N'97.8', N'97', N'%', N'pass', N'approved', N'OK', 10)
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID]) VALUES (5, 1, NULL, NULL, N'готовая продукция', N'концентрация', N'98.5', N'97', N'%', NULL, NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ЛабораторныеИспытания] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Оборудование] ON 
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (1, N'Экструдер Э-1', N'Линия 1', N'экструдер')
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (2, N'Смеситель С-2', N'Линия 1', N'смеситель')
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (3, N'Дозатор Д-3', N'Линия 2', N'дозатор')
+GO
+SET IDENTITY_INSERT [dbo].[Оборудование] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПартииСырья] ON 
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус]) VALUES (1, N'RAW-BATCH-001', 1, N'Поставщик А', CAST(N'2025-02-20' AS Date), CAST(5000.00 AS Decimal(12, 2)), N'одобрена')
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус]) VALUES (2, N'RAW-BATCH-002', 2, N'Поставщик Б', CAST(N'2025-02-25' AS Date), CAST(3000.00 AS Decimal(12, 2)), N'одобрена')
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус]) VALUES (3, N'RAW-BATCH-003', 3, N'Поставщик В', CAST(N'2025-03-01' AS Date), CAST(10000.00 AS Decimal(12, 2)), N'ожидает')
+GO
+SET IDENTITY_INSERT [dbo].[ПартииСырья] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Пользователи] ON 
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (1, N'tech.ivanov', N'$2a$11$jlcfERzvoW4NbReW71IQQ.7pNejg9YMbg3miYEPWAB6ktfq7Xg3am', N'Иванов Иван Петрович', N'technologist', N'ivan.ivanov@agrocontrol.ru', N'+7 (495) 123-45-01', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (2, N'tech.petrova', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Петрова Мария Сергеевна', N'technologist', N'maria.petrova@agrocontrol.ru', N'+7 (495) 123-45-02', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (3, N'tech.smirnov', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Смирнов Алексей Викторович', N'technologist', N'alexey.smirnov@agrocontrol.ru', N'+7 (495) 123-45-03', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (5, N'operator.zavodov', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Заводов Сергей Николаевич', N'operator', N'sergey.zavodov@agrocontrol.ru', N'+7 (495) 123-45-11', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Цех №1')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (10, N'lab.vasilieva', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Васильева Елена Андреевна', N'laboratory', N'elena.vasilieva@agrocontrol.ru', N'+7 (495) 123-45-21', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Лаборатория контроля качества')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (13, N'admin.sidorov', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Сидоров Константин Петрович', N'admin', N'admin@agrocontrol.ru', N'+7 (495) 123-45-00', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'IT-отдел')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (14, N'test.user', N'$2a$11$jlcfERzvoW4NbReW71IQQ.7pNejg9YMbg3miYEPWAB6ktfq7Xg3am', N'Тестовый Пользователь', N'operator', N'test@agro.ru', NULL, 1, CAST(N'2026-05-07T10:29:31.093' AS DateTime), CAST(N'2026-05-07T09:43:02.333' AS DateTime), N'Цех №1')
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел]) VALUES (15, N'string', N'$2a$11$Es1Jo1eHBXLVmRhOiWCize7mjtnFFl6..SeFREqBsUAVH/.CZgdHu', N'string', N'string', N'string', NULL, 1, CAST(N'2026-05-07T10:15:08.900' AS DateTime), CAST(N'2026-05-07T09:48:48.257' AS DateTime), N'string')
+GO
+SET IDENTITY_INSERT [dbo].[Пользователи] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Продукция] ON 
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (1, N'HERB-A', N'Гербицид А', N'гербицид', N'жидкость', N'активен')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (2, N'INS-B', N'Инсектицид Б', N'инсектицид', N'гранулы', N'архив')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (3, N'FUNG-C', N'Фунгицид В', N'фунгицид', N'порошок', N'черновик')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (4, N'HERB-A-V2', N'Гербицид А версия 2', N'гербицид', N'жидкость', N'активен')
+GO
+SET IDENTITY_INSERT [dbo].[Продукция] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеЗаказы] ON 
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (1, N'PO-2401', 1, 1, 1, CAST(1000.00 AS Decimal(12, 2)), N'завершен', CAST(N'2025-03-01' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (2, N'PO-2402', 2, 2, 2, CAST(500.00 AS Decimal(12, 2)), N'выполняется', CAST(N'2025-03-03' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (3, N'PO-2403', 4, 4, 3, CAST(800.00 AS Decimal(12, 2)), N'выполняется', CAST(N'2025-03-04' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (4, N'PO-2404', 1, 1, 1, CAST(2000.00 AS Decimal(12, 2)), N'запланирован', CAST(N'2025-03-10' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеЗаказы] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеПартии] ON 
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID]) VALUES (1, N'B-2401-01', 1, CAST(N'2026-05-07T10:37:57.290' AS DateTime), CAST(N'2025-03-01T14:30:00.000' AS DateTime), N'выполняется', CAST(998.00 AS Decimal(12, 2)), NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID]) VALUES (2, N'B-2401-02', 1, CAST(N'2025-03-02T08:15:00.000' AS DateTime), CAST(N'2025-03-02T15:00:00.000' AS DateTime), N'завершена', CAST(1002.00 AS Decimal(12, 2)), NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID]) VALUES (3, N'B-2402-01', 2, CAST(N'2025-03-03T09:00:00.000' AS DateTime), NULL, N'выполняется', CAST(250.00 AS Decimal(12, 2)), NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID]) VALUES (4, N'B-2403-01', 3, CAST(N'2025-03-04T10:00:00.000' AS DateTime), NULL, N'выполняется', CAST(400.00 AS Decimal(12, 2)), NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID]) VALUES (5, N'B-2404-01', 4, CAST(N'2025-03-10T12:00:00.000' AS DateTime), CAST(N'2025-03-10T16:45:00.000' AS DateTime), N'завершена', CAST(1995.00 AS Decimal(12, 2)), NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеПартии] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Рецептуры] ON 
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (1, 1, 1, N'активна', CAST(N'2025-01-10T09:00:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (2, 2, 1, N'активна', CAST(N'2025-01-12T10:30:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (3, 3, 1, N'черновик', CAST(N'2025-01-15T14:00:00.000' AS DateTime), 2, NULL, NULL)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (4, 4, 1, N'активна', CAST(N'2025-01-18T11:15:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+SET IDENTITY_INSERT [dbo].[Рецептуры] OFF
+GO
+SET IDENTITY_INSERT [dbo].[СоставРецептуры] ON 
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (1, 1, 1, CAST(60.5000 AS Decimal(10, 4)), 1, CAST(59.5000 AS Decimal(10, 4)), CAST(61.5000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (2, 1, 3, CAST(30.0000 AS Decimal(10, 4)), 2, CAST(29.0000 AS Decimal(10, 4)), CAST(31.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (3, 1, 4, CAST(9.5000 AS Decimal(10, 4)), 3, CAST(9.0000 AS Decimal(10, 4)), CAST(10.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (4, 2, 2, CAST(45.0000 AS Decimal(10, 4)), 1, CAST(44.0000 AS Decimal(10, 4)), CAST(46.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (5, 2, 3, CAST(45.0000 AS Decimal(10, 4)), 2, CAST(44.0000 AS Decimal(10, 4)), CAST(46.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (6, 2, 5, CAST(10.0000 AS Decimal(10, 4)), 3, CAST(9.5000 AS Decimal(10, 4)), CAST(10.5000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (7, 3, 1, CAST(50.0000 AS Decimal(10, 4)), 1, CAST(49.0000 AS Decimal(10, 4)), CAST(51.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (8, 3, 3, CAST(30.0000 AS Decimal(10, 4)), 2, CAST(29.0000 AS Decimal(10, 4)), CAST(31.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (9, 3, 6, CAST(20.0000 AS Decimal(10, 4)), 3, CAST(19.0000 AS Decimal(10, 4)), CAST(21.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (10, 4, 1, CAST(55.0000 AS Decimal(10, 4)), 1, CAST(54.0000 AS Decimal(10, 4)), CAST(56.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (11, 4, 3, CAST(35.0000 AS Decimal(10, 4)), 2, CAST(34.0000 AS Decimal(10, 4)), CAST(36.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (12, 4, 4, CAST(10.0000 AS Decimal(10, 4)), 3, CAST(9.5000 AS Decimal(10, 4)), CAST(10.5000 AS Decimal(10, 4)))
+GO
+SET IDENTITY_INSERT [dbo].[СоставРецептуры] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Сырье] ON 
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (1, N'RAW-001', N'Активное вещество А', N'кг', N'активный компонент')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (2, N'RAW-002', N'Активное вещество Б', N'кг', N'активный компонент')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (3, N'RAW-003', N'Наполнитель', N'кг', N'вспомогательное')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (4, N'RAW-004', N'Эмульгатор', N'л', N'добавка')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (5, N'RAW-005', N'Стабилизатор', N'кг', N'добавка')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (6, N'RAW-006', N'Растворитель', N'л', N'вспомогательное')
+GO
+SET IDENTITY_INSERT [dbo].[Сырье] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ТехКарты] ON 
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (1, 1, 1, N'активна', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (2, 2, 1, N'активна', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (3, 4, 1, N'активна', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[ТехКарты] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ШагиТехКарты] ON 
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (1, 1, 1, N'Смешивание', CAST(45.00 AS Decimal(10, 2)), 30, CAST(1.50 AS Decimal(10, 2)), 1, N'Смешать до однородности')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (2, 1, 2, N'Выдержка', CAST(60.00 AS Decimal(10, 2)), 120, CAST(2.00 AS Decimal(10, 2)), 1, N'Выдержать при температуре')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (3, 1, 3, N'Экструзия', CAST(80.00 AS Decimal(10, 2)), 45, CAST(3.00 AS Decimal(10, 2)), 1, N'Подать на экструдер')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (4, 1, 4, N'Охлаждение', CAST(25.00 AS Decimal(10, 2)), 60, CAST(1.00 AS Decimal(10, 2)), 1, N'Охладить до комнатной температуры')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (5, 2, 1, N'Смешивание', CAST(50.00 AS Decimal(10, 2)), 25, CAST(1.50 AS Decimal(10, 2)), 1, N'Смешать компоненты')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (6, 2, 2, N'Экструзия', CAST(85.00 AS Decimal(10, 2)), 40, CAST(3.50 AS Decimal(10, 2)), 1, N'Экструдировать смесь')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (7, 3, 1, N'Смешивание', CAST(48.00 AS Decimal(10, 2)), 35, CAST(1.60 AS Decimal(10, 2)), 1, N'Смешать по рецептуре')
+GO
+SET IDENTITY_INSERT [dbo].[ШагиТехКарты] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__ПартииСы__43AC6D0207753973]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[ПартииСырья] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерПартии] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Пользова__D1986CE7727621E5]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[Пользователи] ADD UNIQUE NONCLUSTERED 
+(
+	[ИмяПользователя] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Продукци__AE76132F87AC2457]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[Продукция] ADD UNIQUE NONCLUSTERED 
+(
+	[Код] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Производ__33C9BE620BA81F83]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерЗаказа] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Производ__43AC6D02FA3CC0DB]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[ПроизводственныеПартии] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерПартии] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_Рецептура_ПродуктВерсия]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[Рецептуры] ADD  CONSTRAINT [UQ_Рецептура_ПродуктВерсия] UNIQUE NONCLUSTERED 
+(
+	[ПродуктID] ASC,
+	[Версия] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Сырье__AE76132F05D28A85]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[Сырье] ADD UNIQUE NONCLUSTERED 
+(
+	[Код] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_ТехКарта_ПродуктВерсия]    Script Date: 07.05.2026 13:48:29 ******/
+ALTER TABLE [dbo].[ТехКарты] ADD  CONSTRAINT [UQ_ТехКарта_ПродуктВерсия] UNIQUE NONCLUSTERED 
+(
+	[ПродуктID] ASC,
+	[Версия] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] ADD  DEFAULT ((0)) FOR [Отклонение]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] ADD  DEFAULT (getdate()) FOR [ВремяСобытия]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] ADD  DEFAULT ('инфо') FOR [Важность]
+GO
+ALTER TABLE [dbo].[ПартииСырья] ADD  DEFAULT ('ожидает') FOR [ЛабораторныйСтатус]
+GO
+ALTER TABLE [dbo].[Пользователи] ADD  DEFAULT ((1)) FOR [Активен]
+GO
+ALTER TABLE [dbo].[Пользователи] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[Продукция] ADD  DEFAULT ('активен') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] ADD  DEFAULT ('запланирован') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] ADD  DEFAULT ('запланирована') FOR [Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры] ADD  DEFAULT ('черновик') FOR [Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[ТехКарты] ADD  DEFAULT ('черновик') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ТехКарты] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[ШагиТехКарты] ADD  DEFAULT ((1)) FOR [Обязательный]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Оператор] FOREIGN KEY([ОператорID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Оператор]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Партия] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Партия]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Шаг] FOREIGN KEY([ШагТехКартыID])
+REFERENCES [dbo].[ШагиТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Шаг]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий]  WITH CHECK ADD  CONSTRAINT [FK_Событие_Партия] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] CHECK CONSTRAINT [FK_Событие_Партия]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий]  WITH CHECK ADD  CONSTRAINT [FK_Событие_Создал] FOREIGN KEY([СоздалID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] CHECK CONSTRAINT [FK_Событие_Создал]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_Аналитик] FOREIGN KEY([АналитикID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_Аналитик]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_ПартияПроизводства] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_ПартияПроизводства]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_ПартияСырья] FOREIGN KEY([ПартияСырьяID])
+REFERENCES [dbo].[ПартииСырья] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_ПартияСырья]
+GO
+ALTER TABLE [dbo].[ПартииСырья]  WITH CHECK ADD  CONSTRAINT [FK_ПартияСырья_Сырье] FOREIGN KEY([СырьеID])
+REFERENCES [dbo].[Сырье] ([ID])
+GO
+ALTER TABLE [dbo].[ПартииСырья] CHECK CONSTRAINT [FK_ПартияСырья_Сырье]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_Продукт]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_Рецепт] FOREIGN KEY([РецептID])
+REFERENCES [dbo].[Рецептуры] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_Рецепт]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_ТехКарта] FOREIGN KEY([ТехКартаID])
+REFERENCES [dbo].[ТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_ТехКарта]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [FK_Партия_Заказ] FOREIGN KEY([ЗаказID])
+REFERENCES [dbo].[ПроизводственныеЗаказы] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [FK_Партия_Заказ]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [FK_Партия_ТекущийШаг] FOREIGN KEY([ТекущийШагID])
+REFERENCES [dbo].[ШагиТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [FK_Партия_ТекущийШаг]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Продукт]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Создал] FOREIGN KEY([СоздалID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Создал]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Утвердил] FOREIGN KEY([УтвердилID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Утвердил]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Состав_Рецепт] FOREIGN KEY([РецептID])
+REFERENCES [dbo].[Рецептуры] ([ID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[СоставРецептуры] CHECK CONSTRAINT [FK_Состав_Рецепт]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Состав_Сырье] FOREIGN KEY([СырьеID])
+REFERENCES [dbo].[Сырье] ([ID])
+GO
+ALTER TABLE [dbo].[СоставРецептуры] CHECK CONSTRAINT [FK_Состав_Сырье]
+GO
+ALTER TABLE [dbo].[ТехКарты]  WITH CHECK ADD  CONSTRAINT [FK_ТехКарта_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[ТехКарты] CHECK CONSTRAINT [FK_ТехКарта_Продукт]
+GO
+ALTER TABLE [dbo].[ШагиТехКарты]  WITH CHECK ADD  CONSTRAINT [FK_Шаг_ТехКарта] FOREIGN KEY([ТехКартаID])
+REFERENCES [dbo].[ТехКарты] ([ID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ШагиТехКарты] CHECK CONSTRAINT [FK_Шаг_ТехКарта]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [CHK_Либо_Партия_Либо_Сырье] CHECK  (([ПартияПроизводстваID] IS NOT NULL AND [ПартияСырьяID] IS NULL OR [ПартияПроизводстваID] IS NULL AND [ПартияСырьяID] IS NOT NULL))
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [CHK_Либо_Партия_Либо_Сырье]
+GO
+ALTER TABLE [dbo].[ПартииСырья]  WITH CHECK ADD  CONSTRAINT [CHK_ЛабораторныйСтатус] CHECK  (([ЛабораторныйСтатус]='заблокирована' OR [ЛабораторныйСтатус]='одобрена' OR [ЛабораторныйСтатус]='в работе' OR [ЛабораторныйСтатус]='ожидает'))
+GO
+ALTER TABLE [dbo].[ПартииСырья] CHECK CONSTRAINT [CHK_ЛабораторныйСтатус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [CHK_Заказ_Статус] CHECK  (([Статус]='отменен' OR [Статус]='завершен' OR [Статус]='выполняется' OR [Статус]='запланирован'))
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [CHK_Заказ_Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [CHK_Партия_Статус] CHECK  (([Статус]='заблокирована' OR [Статус]='отменена' OR [Статус]='завершена' OR [Статус]='выполняется' OR [Статус]='запланирована'))
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [CHK_Партия_Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [CHK_Рецептура_Статус] CHECK  (([Статус]='архив' OR [Статус]='активна' OR [Статус]='черновик'))
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [CHK_Рецептура_Статус]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD CHECK  (([Процент]>(0)))
+GO
+ALTER TABLE [dbo].[ТехКарты]  WITH CHECK ADD  CONSTRAINT [CHK_ТехКарта_Статус] CHECK  (([Статус]='архив' OR [Статус]='активна' OR [Статус]='черновик'))
+GO
+ALTER TABLE [dbo].[ТехКарты] CHECK CONSTRAINT [CHK_ТехКарта_Статус]
+GO
+/****** Object:  StoredProcedure [dbo].[АктивныеПартии]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 3: Получение активных партий для аппаратчика
+-- =====================================================
+CREATE   PROCEDURE [dbo].[АктивныеПартии]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пп.ID,
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пз.НомерЗаказа,
+        пп.ВремяСтарта,
+        пп.Статус,
+        шт.НаименованиеШага AS ТекущийШаг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ВыполнениеШаговПартии] WHERE ПартияПроизводстваID = пп.ID AND Отклонение = 1)
+            THEN 1
+            ELSE 0
+        END AS ЕстьОтклонения
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[ШагиТехКарты] шт ON пп.ТекущийШагID = шт.ID
+    WHERE пп.Статус IN ('выполняется', 'запланирована')
+    ORDER BY пп.ВремяСтарта;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ИспользованиеРецептур]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 9: Отчет по использованию рецептур
+-- =====================================================
+CREATE   PROCEDURE [dbo].[Отчет_ИспользованиеРецептур]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        р.ID AS РецептID,
+        прод.Наименование AS Продукт,
+        р.Версия,
+        COUNT(пп.ID) AS КоличествоПартий,
+        SUM(ISNULL(пп.ФактКоличество_кг, 0)) AS ОбъемПроизводства_кг,
+        AVG(ISNULL(пп.ФактКоличество_кг, 0)) AS СреднийОбъем_кг
+    FROM [dbo].[Рецептуры] р
+    INNER JOIN [dbo].[Продукция] прод ON р.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[ПроизводственныеЗаказы] пз ON р.ID = пз.РецептID
+    LEFT JOIN [dbo].[ПроизводственныеПартии] пп ON пз.ID = пп.ЗаказID
+    WHERE (пп.ВремяСтарта IS NULL OR CAST(пп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания)
+    GROUP BY р.ID, прод.Наименование, р.Версия
+    ORDER BY ОбъемПроизводства_кг DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ЛабораторныеБлокировки]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 10: Отчет по лабораторным блокировкам
+-- =====================================================
+CREATE   PROCEDURE [dbo].[Отчет_ЛабораторныеБлокировки]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        ли.ID AS ИспытаниеID,
+        ISNULL(пп.НомерПартии, пс.НомерПартии) AS НомерПартии,
+        ISNULL(прод.Наименование, сырье.Наименование) AS Наименование,
+        ли.ДатаАнализа AS ДатаБлокировки,
+        ли.Решение,
+        ли.КомментарийАналитика AS Причина,
+        пол.ПолноеИмя AS Ответственный
+    FROM [dbo].[ЛабораторныеИспытания] ли
+    LEFT JOIN [dbo].[ПроизводственныеПартии] пп ON ли.ПартияПроизводстваID = пп.ID
+    LEFT JOIN [dbo].[ПартииСырья] пс ON ли.ПартияСырьяID = пс.ID
+    LEFT JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    LEFT JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[Сырье] ON пс.СырьеID = [dbo].[Сырье].ID
+    LEFT JOIN [dbo].[Пользователи] пол ON ли.АналитикID = пол.ID
+    WHERE ли.Решение = 'blocked'
+        AND CAST(ли.ДатаАнализа AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY ли.ДатаАнализа DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ОтклоненияЗаПериод]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Отчет по отклонениям
+CREATE   PROCEDURE [dbo].[Отчет_ОтклоненияЗаПериод]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SELECT 
+        пп.НомерПартии,
+        шт.НаименованиеШага,
+        вп.ВремяСтарта,
+        вп.ФактТемпература,
+        шт.ПланТемпература AS ПланТемпература,
+        вп.ФактДлительностьМинут,
+        шт.ПланДлительностьМинут AS ПланДлительность,
+        вп.КомментарийОператора
+    FROM [dbo].[ВыполнениеШаговПартии] вп
+    INNER JOIN [dbo].[ПроизводственныеПартии] пп ON вп.ПартияПроизводстваID = пп.ID
+    INNER JOIN [dbo].[ШагиТехКарты] шт ON вп.ШагТехКартыID = шт.ID
+    WHERE вп.Отклонение = 1
+        AND CAST(вп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY пп.НомерПартии, вп.ВремяСтарта;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ПартииЗаПериод]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ХРАНИМЫЕ ПРОЦЕДУРЫ ДЛЯ ОТЧЕТОВ
+-- =====================================================
+
+-- Отчет по партиям за период
+CREATE   PROCEDURE [dbo].[Отчет_ПартииЗаПериод]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SELECT 
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пп.ВремяСтарта AS ДатаСтарта,
+        пп.ВремяОкончания AS ДатаОкончания,
+        пп.Статус,
+        пп.ФактКоличество_кг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ЛабораторныеИспытания] ли 
+                         WHERE ли.ПартияПроизводстваID = пп.ID AND ли.Результат = 'fail')
+            THEN 'Есть отклонения'
+            ELSE 'Нет отклонений'
+        END AS НаличиеОтклонений,
+        ISNULL((
+            SELECT TOP 1 Решение 
+            FROM [dbo].[ЛабораторныеИспытания] 
+            WHERE ПартияПроизводстваID = пп.ID 
+            ORDER BY ДатаАнализа DESC
+        ), 'не проверено') AS ЛабораторноеРешение
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    WHERE CAST(пп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY пп.ВремяСтарта DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ПартииОжидающиеКонтроля]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 11: Получение партий, ожидающих лабораторного контроля
+-- =====================================================
+CREATE   PROCEDURE [dbo].[ПартииОжидающиеКонтроля]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пп.ID,
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пп.ВремяОкончания,
+        пп.ФактКоличество_кг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ЛабораторныеИспытания] WHERE ПартияПроизводстваID = пп.ID) 
+            THEN 'Испытание назначено'
+            ELSE 'Ожидает назначения'
+        END AS СтатусКонтроля
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    WHERE пп.Статус = 'завершена'
+        AND NOT EXISTS (
+            SELECT 1 FROM [dbo].[ЛабораторныеИспытания] 
+            WHERE ПартияПроизводстваID = пп.ID AND Решение IS NOT NULL
+        )
+    ORDER BY пп.ВремяОкончания;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ПартииСырьяОжидающиеКонтроля]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 12: Получение партий сырья, ожидающих контроля
+-- =====================================================
+CREATE   PROCEDURE [dbo].[ПартииСырьяОжидающиеКонтроля]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пс.ID,
+        пс.НомерПартии,
+        сырье.Наименование AS Материал,
+        пс.Поставщик,
+        пс.ДатаПоступления,
+        пс.Количество_кг,
+        пс.ЛабораторныйСтатус
+    FROM [dbo].[ПартииСырья] пс
+    INNER JOIN [dbo].[Сырье] ON пс.СырьеID = [dbo].[Сырье].ID
+    WHERE пс.ЛабораторныйСтатус IN ('ожидает', 'в работе')
+    ORDER BY пс.ДатаПоступления;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[СтатистикаОтклонений]    Script Date: 07.05.2026 13:48:29 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 13: Статистика по отклонениям
+-- =====================================================
+CREATE   PROCEDURE [dbo].[СтатистикаОтклонений]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        шт.НаименованиеШага,
+        COUNT(*) AS КоличествоОтклонений,
+        COUNT(DISTINCT пп.НомерПартии) AS КоличествоПартий,
+        AVG(ABS(ISNULL(вп.ФактТемпература - шт.ПланТемпература, 0))) AS СреднееОтклонениеТемпературы
+    FROM [dbo].[ВыполнениеШаговПартии] вп
+    INNER JOIN [dbo].[ПроизводственныеПартии] пп ON вп.ПартияПроизводстваID = пп.ID
+    INNER JOIN [dbo].[ШагиТехКарты] шт ON вп.ШагТехКартыID = шт.ID
+    WHERE вп.Отклонение = 1
+        AND CAST(вп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    GROUP BY шт.НаименованиеШага
+    ORDER BY КоличествоОтклонений DESC;
+END;
+GO
+USE [master]
+GO
+ALTER DATABASE [AgroControlDB] SET  READ_WRITE 
+GO
