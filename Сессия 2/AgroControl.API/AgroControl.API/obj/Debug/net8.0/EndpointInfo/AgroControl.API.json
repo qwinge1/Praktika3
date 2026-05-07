@@ -1,0 +1,1477 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AgroControl API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches": {
+      "get": {
+        "tags": [
+          "Batches"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches/active": {
+      "get": {
+        "tags": [
+          "Batches"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches/{id}/start": {
+      "post": {
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches/steps/{stepId}/actuals": {
+      "put": {
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "stepId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchStepActualsDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchStepActualsDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchStepActualsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches/steps/{stepId}/start": {
+      "post": {
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "stepId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Batches/steps/{stepId}/complete": {
+      "post": {
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "stepId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Equipment": {
+      "get": {
+        "tags": [
+          "Equipment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Equipment/{id}": {
+      "get": {
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Materials": {
+      "get": {
+        "tags": [
+          "Materials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Materials/{id}": {
+      "get": {
+        "tags": [
+          "Materials"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductionOrders": {
+      "get": {
+        "tags": [
+          "ProductionOrders"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductionOrders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductionOrders/{id}": {
+      "get": {
+        "tags": [
+          "ProductionOrders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductionOrders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Products/{id}/archive": {
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/QualityControl": {
+      "post": {
+        "tags": [
+          "QualityControl"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LabTest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LabTest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LabTest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/QualityControl/{batchId}/decision": {
+      "put": {
+        "tags": [
+          "QualityControl"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/{id}/status": {
+      "put": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reports/batches": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reports/deviations": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reports/recipe-usage": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards": {
+      "get": {
+        "tags": [
+          "TechCards"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TechCards"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards/{id}": {
+      "get": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCard"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards/{id}/status": {
+      "put": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards/{id}/steps": {
+      "post": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCardStep"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCardStep"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TechCardStep"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards/{id}/steps/{stepId}": {
+      "delete": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "stepId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TechCards/{id}/program": {
+      "get": {
+        "tags": [
+          "TechCards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchStepActualsDto": {
+        "type": "object",
+        "properties": {
+          "ActualTemp": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ActualDuration": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ActualPressure": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecisionDto": {
+        "type": "object",
+        "properties": {
+          "Decision": {
+            "type": "string",
+            "nullable": true
+          },
+          "Comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LabTest": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ПартияПроизводстваID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ПартияСырьяID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ДатаАнализа": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ТипОбразца": {
+            "type": "string",
+            "nullable": true
+          },
+          "НаименованиеПараметра": {
+            "type": "string",
+            "nullable": true
+          },
+          "ИзмеренноеЗначение": {
+            "type": "string",
+            "nullable": true
+          },
+          "НормативноеЗначение": {
+            "type": "string",
+            "nullable": true
+          },
+          "ЕдиницаИзмерения": {
+            "type": "string",
+            "nullable": true
+          },
+          "Результат": {
+            "type": "string",
+            "nullable": true
+          },
+          "Решение": {
+            "type": "string",
+            "nullable": true
+          },
+          "КомментарийАналитика": {
+            "type": "string",
+            "nullable": true
+          },
+          "АналитикID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "Username": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Код": {
+            "type": "string",
+            "nullable": true
+          },
+          "Наименование": {
+            "type": "string",
+            "nullable": true
+          },
+          "Тип": {
+            "type": "string",
+            "nullable": true
+          },
+          "ФормаВыпуска": {
+            "type": "string",
+            "nullable": true
+          },
+          "Статус": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductionOrder": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "НомерЗаказа": {
+            "type": "string",
+            "nullable": true
+          },
+          "ПродуктID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "РецептID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ТехКартаID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ПланКоличество_кг": {
+            "type": "number",
+            "format": "double"
+          },
+          "Статус": {
+            "type": "string",
+            "nullable": true
+          },
+          "ПланДатаСтарта": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RawMaterial": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Код": {
+            "type": "string",
+            "nullable": true
+          },
+          "Наименование": {
+            "type": "string",
+            "nullable": true
+          },
+          "ЕдиницаИзмерения": {
+            "type": "string",
+            "nullable": true
+          },
+          "Категория": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ПродуктID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Продукт": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "Версия": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Статус": {
+            "type": "string",
+            "nullable": true
+          },
+          "ДатаСоздания": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "СоздалID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ДатаУтверждения": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "УтвердилID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Состав": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipeComponent"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecipeComponent": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "РецептID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Рецептура": {
+            "$ref": "#/components/schemas/Recipe"
+          },
+          "СырьеID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Сырье": {
+            "$ref": "#/components/schemas/RawMaterial"
+          },
+          "Процент": {
+            "type": "number",
+            "format": "double"
+          },
+          "ПорядокЗагрузки": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ДопускОт": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ДопускДо": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "Username": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "FullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Role": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "Department": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TechCard": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ПродуктID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Версия": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Статус": {
+            "type": "string",
+            "nullable": true
+          },
+          "ДатаСоздания": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Шаги": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TechCardStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TechCardStep": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ТехКартаID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ТехКарта": {
+            "$ref": "#/components/schemas/TechCard"
+          },
+          "НомерШага": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "НаименованиеШага": {
+            "type": "string",
+            "nullable": true
+          },
+          "ПланТемпература": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ПланДлительностьМинут": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ПланДавление": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Обязательный": {
+            "type": "boolean"
+          },
+          "Инструкция": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "type": "string",
+            "format": "date"
+          },
+          "TemperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TemperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "Summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header. Example: \"Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
