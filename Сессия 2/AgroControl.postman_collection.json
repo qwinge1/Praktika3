@@ -1,0 +1,518 @@
+{
+  "info": {
+    "name": "AgroControl API – полная",
+    "description": "Коллекция для тестирования API системы управления производством СЗР.\n\nПеред использованием:\n1. Выполните Login.\n2. Токен автоматически сохранится в переменную {{token}}.\n3. Защищённые запросы используют Bearer-аутентификацию.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5173/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json && json.token) {",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Auth/login",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Username\": \"test.user\", \"Password\": \"Test123!\"}"
+            }
+          }
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Auth/register",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Username\": \"new.operator\", \"Password\": \"Test123!\", \"FullName\": \"Новый Оператор\", \"Role\": \"operator\", \"Email\": \"newop@agrocontrol.ru\", \"Department\": \"Цех №2\"}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Справочники",
+      "item": [
+        {
+          "name": "Products – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Products"
+          }
+        },
+        {
+          "name": "Products – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Products/1"
+          }
+        },
+        {
+          "name": "Products – архивировать",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Products/2/archive"
+          }
+        },
+        {
+          "name": "Materials – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Materials"
+          }
+        },
+        {
+          "name": "Materials – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Materials/1"
+          }
+        },
+        {
+          "name": "Equipment – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Equipment"
+          }
+        },
+        {
+          "name": "Equipment – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Equipment/1"
+          }
+        },
+        {
+          "name": "Users – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Users"
+          }
+        },
+        {
+          "name": "Users – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Users/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Производственные заказы",
+      "item": [
+        {
+          "name": "Заказы – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/ProductionOrders"
+          }
+        },
+        {
+          "name": "Заказ – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/ProductionOrders/1"
+          }
+        },
+        {
+          "name": "Создать заказ",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/ProductionOrders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"НомерЗаказа\": \"PO-2421\", \"ПродуктID\": 1, \"РецептID\": 1, \"ТехКартаID\": 1, \"ПланКоличество_кг\": 1500, \"Статус\": \"черновик\", \"ПланДатаСтарта\": \"2026-05-10\"}"
+            }
+          }
+        },
+        {
+          "name": "Обновить заказ",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/ProductionOrders/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"НомерЗаказа\": \"PO-2401-upd\", \"ПродуктID\": 1, \"РецептID\": 1, \"ТехКартаID\": 1, \"ПланКоличество_кг\": 1200, \"Статус\": \"запланирован\", \"ПланДатаСтарта\": \"2026-05-15\"}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Рецептуры",
+      "item": [
+        {
+          "name": "Рецептуры – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Recipes"
+          }
+        },
+        {
+          "name": "Рецептура – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Recipes/1"
+          }
+        },
+        {
+          "name": "Создать рецептуру",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Recipes",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ПродуктID\": 1, \"Версия\": 3, \"Статус\": \"черновик\"}"
+            }
+          }
+        },
+        {
+          "name": "Изменить статус рецептуры",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Recipes/1/status",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"активна\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Технологические карты",
+      "item": [
+        {
+          "name": "Техкарты – список",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/TechCards"
+          }
+        },
+        {
+          "name": "Техкарта – по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/TechCards/1"
+          }
+        },
+        {
+          "name": "Создать техкарту",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/TechCards",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ПродуктID\": 1, \"Версия\": 2, \"Статус\": \"черновик\"}"
+            }
+          }
+        },
+        {
+          "name": "Обновить техкарту",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/TechCards/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ПродуктID\": 1, \"Версия\": 1, \"Статус\": \"активна\"}"
+            }
+          }
+        },
+        {
+          "name": "Изменить статус техкарты",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/TechCards/1/status",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\"активна\""
+            }
+          }
+        },
+        {
+          "name": "Добавить шаг",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/TechCards/1/steps",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"НомерШага\": 5, \"НаименованиеШага\": \"Фасовка\", \"ПланТемпература\": 20, \"ПланДлительностьМинут\": 10, \"ПланДавление\": 1, \"Обязательный\": true, \"Инструкция\": \"Расфасовать в тару\"}"
+            }
+          }
+        },
+        {
+          "name": "Удалить шаг",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/TechCards/1/steps/5"
+          }
+        },
+        {
+          "name": "Программа техкарты",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/TechCards/1/program"
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Производственные партии",
+      "item": [
+        {
+          "name": "Все партии",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Batches",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Активные партии",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Batches/active",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Запустить партию",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Batches/1/start",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Начать шаг",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Batches/steps/1/start",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Завершить шаг",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Batches/steps/1/complete",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Ввести фактические данные шага",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Batches/steps/1/actuals",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ActualTemp\": 45.5, \"ActualDuration\": 32, \"ActualPressure\": 1.6, \"Comment\": \"OK\"}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Лабораторный контроль",
+      "item": [
+        {
+          "name": "Создать испытание",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/QualityControl",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ПартияПроизводстваID\": 1, \"ТипОбразца\": \"готовая продукция\", \"НаименованиеПараметра\": \"концентрация\", \"ИзмеренноеЗначение\": \"98.5\", \"НормативноеЗначение\": \"97\", \"ЕдиницаИзмерения\": \"%\"}"
+            }
+          }
+        },
+        {
+          "name": "Принять решение",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/QualityControl/1/decision",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Decision\": \"одобрено\", \"Comment\": \"Соответствует норме\"}"
+            }
+          }
+        },
+        {
+          "name": "Партии сырья (ожидающие контроля)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/RawMaterialBatches/pending"
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Отчёты",
+      "item": [
+        {
+          "name": "Отчёт по партиям",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Reports/batches?startDate=2025-03-01&endDate=2025-03-31"
+          }
+        },
+        {
+          "name": "Отчёт по отклонениям",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Reports/deviations?startDate=2025-03-01&endDate=2025-03-31"
+          }
+        },
+        {
+          "name": "Отчёт по использованию рецептур",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Reports/recipe-usage?startDate=2025-03-01&endDate=2025-03-31"
+          }
+        }
+      ]
+    }
+  ]
+}
