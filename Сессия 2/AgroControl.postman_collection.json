@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "AgroControl API – полная",
-    "description": "Коллекция для тестирования API системы управления производством СЗР.\n\nПеред использованием:\n1. Выполните Login.\n2. Токен автоматически сохранится в переменную {{token}}.\n3. Защищённые запросы используют Bearer-аутентификацию.",
+    "name": "AgroControl API – полная коллекция",
+    "description": "Все методы API системы управления производством СЗР.\n\nПеред использованием:\n1. Выполните Login.\n2. Токен автоматически сохранится в переменную {{token}}.\n3. Защищённые методы используют Bearer-аутентификацию.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -86,6 +86,47 @@
           }
         },
         {
+          "name": "Products – создать",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Products",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Код\": \"TEST-001\", \"Наименование\": \"Тестовый продукт\", \"Тип\": \"гербицид\", \"ФормаВыпуска\": \"жидкость\", \"Статус\": \"черновик\"}"
+            }
+          }
+        },
+        {
+          "name": "Products – обновить",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Products/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Код\": \"HERB-A\", \"Наименование\": \"Гербицид А обновлён\", \"Тип\": \"гербицид\", \"ФормаВыпуска\": \"жидкость\", \"Статус\": \"активен\"}"
+            }
+          }
+        },
+        {
+          "name": "Products – удалить",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Products/2"
+          }
+        },
+        {
           "name": "Products – архивировать",
           "request": {
             "method": "PUT",
@@ -107,6 +148,47 @@
           }
         },
         {
+          "name": "Materials – создать",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Materials",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Код\": \"RAW-007\", \"Наименование\": \"Новый материал\", \"ЕдиницаИзмерения\": \"кг\", \"Категория\": \"активный\"}"
+            }
+          }
+        },
+        {
+          "name": "Materials – обновить",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Materials/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Код\": \"RAW-001\", \"Наименование\": \"Активное вещество А (обн)\", \"ЕдиницаИзмерения\": \"кг\", \"Категория\": \"активный компонент\"}"
+            }
+          }
+        },
+        {
+          "name": "Materials – удалить",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Materials/2"
+          }
+        },
+        {
           "name": "Equipment – список",
           "request": {
             "method": "GET",
@@ -121,6 +203,47 @@
           }
         },
         {
+          "name": "Equipment – создать",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Equipment",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Наименование\": \"Новый смеситель\", \"НомерЛинии\": \"Линия 3\", \"Тип\": \"смеситель\"}"
+            }
+          }
+        },
+        {
+          "name": "Equipment – обновить",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Equipment/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Наименование\": \"Экструдер Э-1 (обн)\", \"НомерЛинии\": \"Линия 1\", \"Тип\": \"экструдер\"}"
+            }
+          }
+        },
+        {
+          "name": "Equipment – удалить",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Equipment/2"
+          }
+        },
+        {
           "name": "Users – список",
           "request": {
             "method": "GET",
@@ -132,6 +255,47 @@
           "request": {
             "method": "GET",
             "url": "{{base_url}}/Users/1"
+          }
+        },
+        {
+          "name": "Users – создать",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Users",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ИмяПользователя\": \"newuser\", \"ХэшПароля\": \"...\", \"ПолноеИмя\": \"Новый Пользователь\", \"Роль\": \"operator\"}"
+            }
+          }
+        },
+        {
+          "name": "Users – обновить",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Users/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ИмяПользователя\": \"tech.ivanov\", \"ПолноеИмя\": \"Иванов И.П. (обн)\", \"Роль\": \"technologist\", \"Отдел\": \"Технологический отдел\"}"
+            }
+          }
+        },
+        {
+          "name": "Users – удалить",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Users/15"
           }
         }
       ]
@@ -186,6 +350,13 @@
               "raw": "{\"НомерЗаказа\": \"PO-2401-upd\", \"ПродуктID\": 1, \"РецептID\": 1, \"ТехКартаID\": 1, \"ПланКоличество_кг\": 1200, \"Статус\": \"запланирован\", \"ПланДатаСтарта\": \"2026-05-15\"}"
             }
           }
+        },
+        {
+          "name": "Удалить заказ",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/ProductionOrders/1"
+          }
         }
       ]
     },
@@ -224,6 +395,30 @@
           }
         },
         {
+          "name": "Обновить рецептуру",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Recipes/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"ПродуктID\": 1, \"Версия\": 1, \"Статус\": \"активна\"}"
+            }
+          }
+        },
+        {
+          "name": "Удалить рецептуру",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Recipes/2"
+          }
+        },
+        {
           "name": "Изменить статус рецептуры",
           "request": {
             "method": "PUT",
@@ -238,6 +433,30 @@
               "mode": "raw",
               "raw": "\"активна\""
             }
+          }
+        },
+        {
+          "name": "Добавить компонент",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/Recipes/1/components",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"СырьеID\": 1, \"Процент\": 50, \"ПорядокЗагрузки\": 1}"
+            }
+          }
+        },
+        {
+          "name": "Удалить компонент",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Recipes/1/components/1"
           }
         }
       ]
@@ -294,6 +513,13 @@
           }
         },
         {
+          "name": "Удалить техкарту",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/TechCards/2"
+          }
+        },
+        {
           "name": "Изменить статус техкарты",
           "request": {
             "method": "PUT",
@@ -344,13 +570,26 @@
       ]
     },
     {
-      "name": "6. Производственные партии",
+      "name": "6. Производственные партии (токен обязателен)",
       "item": [
         {
           "name": "Все партии",
           "request": {
             "method": "GET",
             "url": "{{base_url}}/Batches",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Партия по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/Batches/1",
             "header": [
               {
                 "key": "Authorization",
@@ -377,6 +616,40 @@
           "request": {
             "method": "POST",
             "url": "{{base_url}}/Batches/1/start",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Обновить партию",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/Batches/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"StartTime\": \"2025-03-01T08:00:00\", \"EndTime\": \"2025-03-01T14:30:00\", \"Status\": \"завершена\", \"FactQuantity\": 998}"
+            }
+          }
+        },
+        {
+          "name": "Удалить партию",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/Batches/2",
             "header": [
               {
                 "key": "Authorization",
@@ -428,7 +701,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"ActualTemp\": 45.5, \"ActualDuration\": 32, \"ActualPressure\": 1.6, \"Comment\": \"OK\"}"
+              "raw": "{\"ActualTemp\": 44.8, \"ActualDuration\": 32, \"ActualPressure\": 1.5, \"Comment\": \"Незначительное отклонение\"}"
             }
           }
         }
@@ -437,6 +710,32 @@
     {
       "name": "7. Лабораторный контроль",
       "item": [
+        {
+          "name": "Все испытания",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/QualityControl",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Испытание по ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/QualityControl/1",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
         {
           "name": "Создать испытание",
           "request": {
@@ -459,7 +758,41 @@
           }
         },
         {
-          "name": "Принять решение",
+          "name": "Обновить испытание",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/QualityControl/5",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Результат\": \"пройден\", \"Решение\": \"одобрено\"}"
+            }
+          }
+        },
+        {
+          "name": "Удалить испытание",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/QualityControl/5",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Принять решение по партии",
           "request": {
             "method": "PUT",
             "url": "{{base_url}}/QualityControl/1/decision",
@@ -480,10 +813,17 @@
           }
         },
         {
-          "name": "Партии сырья (ожидающие контроля)",
+          "name": "Партии сырья (ожидающие)",
           "request": {
             "method": "GET",
             "url": "{{base_url}}/RawMaterialBatches/pending"
+          }
+        },
+        {
+          "name": "Партии сырья (все)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/RawMaterialBatches"
           }
         }
       ]
@@ -510,6 +850,59 @@
           "request": {
             "method": "GET",
             "url": "{{base_url}}/Reports/recipe-usage?startDate=2025-03-01&endDate=2025-03-31"
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. WeatherForecast (тестовый)",
+      "item": [
+        {
+          "name": "GET прогнозы",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/WeatherForecast"
+          }
+        },
+        {
+          "name": "POST прогноз",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/WeatherForecast",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Date\": \"2026-05-09\", \"TemperatureC\": 20, \"Summary\": \"Warm\"}"
+            }
+          }
+        },
+        {
+          "name": "PUT прогноз (по дате)",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/WeatherForecast/2026-05-09",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Date\": \"2026-05-09\", \"TemperatureC\": 22, \"Summary\": \"Warmer\"}"
+            }
+          }
+        },
+        {
+          "name": "DELETE прогноз (по дате)",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/WeatherForecast/2026-05-09"
           }
         }
       ]
