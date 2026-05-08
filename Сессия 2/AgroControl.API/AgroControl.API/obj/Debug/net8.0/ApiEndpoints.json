@@ -25,7 +25,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "AgroControl.API.Controllers.AuthController\u002BRegisterDto",
+        "Type": "AgroControl.API.Controllers.RegisterDto",
         "IsRequired": true
       }
     ],
@@ -39,6 +39,59 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.BatchesController",
+    "Method": "GetById",
+    "RelativePath": "api/Batches/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.BatchesController",
+    "Method": "UpdateBatch",
+    "RelativePath": "api/Batches/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "AgroControl.API.Controllers.BatchUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.BatchesController",
+    "Method": "Delete",
+    "RelativePath": "api/Batches/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -82,7 +135,7 @@
       },
       {
         "Name": "dto",
-        "Type": "AgroControl.API.Controllers.BatchesController\u002BBatchStepActualsDto",
+        "Type": "AgroControl.API.Controllers.BatchStepActualsDto",
         "IsRequired": true
       }
     ],
@@ -132,9 +185,62 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.EquipmentController",
+    "Method": "Create",
+    "RelativePath": "api/Equipment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "equipment",
+        "Type": "AgroControl.API.Models.Equipment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.EquipmentController",
     "Method": "Get",
     "RelativePath": "api/Equipment/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.EquipmentController",
+    "Method": "Update",
+    "RelativePath": "api/Equipment/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "equipment",
+        "Type": "AgroControl.API.Models.Equipment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.EquipmentController",
+    "Method": "Delete",
+    "RelativePath": "api/Equipment/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -158,6 +264,22 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.MaterialsController",
+    "Method": "Create",
+    "RelativePath": "api/Materials",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "material",
+        "Type": "AgroControl.API.Models.RawMaterial",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.MaterialsController",
     "Method": "Get",
     "RelativePath": "api/Materials/{id}",
     "HttpMethod": "GET",
@@ -173,7 +295,44 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProductionOrdersController",
+    "ContainingType": "AgroControl.API.Controllers.MaterialsController",
+    "Method": "Update",
+    "RelativePath": "api/Materials/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "material",
+        "Type": "AgroControl.API.Models.RawMaterial",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.MaterialsController",
+    "Method": "Delete",
+    "RelativePath": "api/Materials/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.ProductionOrdersController",
     "Method": "GetAll",
     "RelativePath": "api/ProductionOrders",
     "HttpMethod": "GET",
@@ -183,7 +342,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProductionOrdersController",
+    "ContainingType": "AgroControl.API.Controllers.ProductionOrdersController",
     "Method": "Create",
     "RelativePath": "api/ProductionOrders",
     "HttpMethod": "POST",
@@ -199,7 +358,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProductionOrdersController",
+    "ContainingType": "AgroControl.API.Controllers.ProductionOrdersController",
     "Method": "GetById",
     "RelativePath": "api/ProductionOrders/{id}",
     "HttpMethod": "GET",
@@ -215,7 +374,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProductionOrdersController",
+    "ContainingType": "AgroControl.API.Controllers.ProductionOrdersController",
     "Method": "Update",
     "RelativePath": "api/ProductionOrders/{id}",
     "HttpMethod": "PUT",
@@ -236,6 +395,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AgroControl.API.Controllers.ProductionOrdersController",
+    "Method": "Delete",
+    "RelativePath": "api/ProductionOrders/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AgroControl.API.Controllers.ProductsController",
     "Method": "GetAll",
     "RelativePath": "api/Products",
@@ -247,9 +422,62 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.ProductsController",
+    "Method": "Create",
+    "RelativePath": "api/Products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "AgroControl.API.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.ProductsController",
     "Method": "Get",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.ProductsController",
+    "Method": "Update",
+    "RelativePath": "api/Products/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "product",
+        "Type": "AgroControl.API.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.ProductsController",
+    "Method": "Delete",
+    "RelativePath": "api/Products/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -275,6 +503,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.QualityControlController",
+    "Method": "GetAll",
+    "RelativePath": "api/QualityControl",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -315,6 +553,148 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AgroControl.API.Controllers.QualityControlController",
+    "Method": "GetById",
+    "RelativePath": "api/QualityControl/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.QualityControlController",
+    "Method": "Update",
+    "RelativePath": "api/QualityControl/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "test",
+        "Type": "AgroControl.API.Models.LabTest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.QualityControlController",
+    "Method": "Delete",
+    "RelativePath": "api/QualityControl/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "GetAll",
+    "RelativePath": "api/RawMaterialBatches",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "Create",
+    "RelativePath": "api/RawMaterialBatches",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "batch",
+        "Type": "AgroControl.API.Models.RawMaterialBatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "GetById",
+    "RelativePath": "api/RawMaterialBatches/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "Update",
+    "RelativePath": "api/RawMaterialBatches/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "AgroControl.API.Models.RawMaterialBatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "Delete",
+    "RelativePath": "api/RawMaterialBatches/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.RawMaterialBatchesController",
+    "Method": "GetPending",
+    "RelativePath": "api/RawMaterialBatches/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RecipesController",
     "Method": "GetAll",
     "RelativePath": "api/Recipes",
@@ -350,6 +730,69 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RecipesController",
+    "Method": "Update",
+    "RelativePath": "api/Recipes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "AgroControl.API.Models.Recipe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RecipesController",
+    "Method": "AddComponent",
+    "RelativePath": "api/Recipes/{id}/components",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "comp",
+        "Type": "AgroControl.API.Models.RecipeComponent",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RecipesController",
+    "Method": "DeleteComponent",
+    "RelativePath": "api/Recipes/{id}/components/{componentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "componentId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -421,7 +864,7 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.ReportsController",
-    "Method": "RecipeUsageReport",
+    "Method": "RecipeUsage",
     "RelativePath": "api/Reports/recipe-usage",
     "HttpMethod": "GET",
     "IsController": true,
@@ -498,6 +941,22 @@
       {
         "Name": "updated",
         "Type": "AgroControl.API.Models.TechCard",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.TechCardsController",
+    "Method": "Delete",
+    "RelativePath": "api/TechCards/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -594,9 +1053,62 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.UsersController",
+    "Method": "Create",
+    "RelativePath": "api/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "AgroControl.API.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.UsersController",
     "Method": "Get",
     "RelativePath": "api/Users/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.UsersController",
+    "Method": "Update",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "AgroControl.API.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.UsersController",
+    "Method": "Delete",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -626,7 +1138,59 @@
         ],
         "StatusCode": 200
       }
+    ]
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.WeatherForecastController",
+    "Method": "Post",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forecast",
+        "Type": "AgroControl.API.WeatherForecast",
+        "IsRequired": true
+      }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.WeatherForecastController",
+    "Method": "Put",
+    "RelativePath": "WeatherForecast/{date}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "AgroControl.API.WeatherForecast",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.WeatherForecastController",
+    "Method": "Delete",
+    "RelativePath": "WeatherForecast/{date}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

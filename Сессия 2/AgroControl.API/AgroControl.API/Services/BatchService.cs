@@ -17,6 +17,9 @@ namespace AgroControl.API.Services
                 .Include(b => b.ВыполнениеШагов)
                 .ToListAsync();
 
+        public async Task<ProductionBatch?> GetByIdAsync(int id) =>
+            await _context.ProductionBatches.Include(b => b.ВыполнениеШагов).FirstOrDefaultAsync(b => b.ID == id);
+
         public async Task<ProductionBatch?> StartAsync(int id)
         {
             var batch = await _context.ProductionBatches.FindAsync(id);
@@ -35,27 +38,7 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
             return step;
         }
-        public async Task<BatchStepExecution?> UpdateActualsAsync(int stepId, decimal? actualTemp, int? actualDuration, decimal? actualPressure, string? comment)
-        {
-            var step = await _context.BatchStepExecutions.FindAsync(stepId);
-            if (step == null) return null;
 
-            // Загружаем соответствующий шаг техкарты, чтобы получить плановые значения
-            var techStep = await _context.TechCardSteps.FindAsync(step.ШагТехКартыID);
-
-            step.ФактТемпература = actualTemp;
-            step.ФактДлительностьМинут = actualDuration;
-            step.ФактДавление = actualPressure;
-            step.КомментарийОператора = comment;
-
-            // Рассчитываем отклонения, если есть плановые значения
-            step.Отклонение = (actualTemp != null && techStep?.ПланТемпература != null && Math.Abs(actualTemp.Value - techStep.ПланТемпература.Value) > 1.0m)
-                             || (actualDuration != null && techStep?.ПланДлительностьМинут != null && Math.Abs(actualDuration.Value - techStep.ПланДлительностьМинут.Value) > 5)
-                             || (actualPressure != null && techStep?.ПланДавление != null && Math.Abs(actualPressure.Value - techStep.ПланДавление.Value) > 0.2m);
-
-            await _context.SaveChangesAsync();
-            return step;
-        }
         public async Task<BatchStepExecution?> CompleteStepAsync(int stepId)
         {
             var step = await _context.BatchStepExecutions.FindAsync(stepId);
@@ -63,6 +46,40 @@ namespace AgroControl.API.Services
             step.ВремяОкончания = DateTime.UtcNow;
             await _context.SaveChangesAsync();
             return step;
+        }
+
+        public async Task<BatchStepExecution?> UpdateActualsAsync(int stepId, decimal? actualTemp, int? actualDuration, decimal? actualPressure, string? comment)
+        {
+            var step = await _context.BatchStepExecutions
+                .Include(s => s.ШагТехКарты)            // подгружаем плановые параметры
+                .FirstOrDefaultAsync(s => s.ID == stepId);
+            if (step == null) return null;
+
+            step.ФактТемпература = actualTemp;
+            step.ФактДлительностьМинут = actualDuration;
+            step.ФактДавление = actualPressure;
+            step.КомментарийОператора = comment;
+
+            // Расчёт отклонения с учётом плановых значений
+            var plan = step.ШагТехКарты;
+            step.Отклонение = (actualTemp != null && plan?.ПланТемпература != null && Math.Abs(actualTemp.Value - plan.ПланТемпература.Value) > 1.0m)
+                             || (actualDuration != null && plan?.ПланДлительностьМинут != null && Math.Abs(actualDuration.Value - plan.ПланДлительностьМинут.Value) > 5)
+                             || (actualPressure != null && plan?.ПланДавление != null && Math.Abs(actualPressure.Value - plan.ПланДавление.Value) > 0.2m);
+
+            await _context.SaveChangesAsync();
+            return step;
+        }
+
+        public async Task<bool> UpdateBatchAsync(int id, DateTime? start, DateTime? end, string? status, decimal? factQty)
+        {
+            var batch = await _context.ProductionBatches.FindAsync(id);
+            if (batch == null) return false;
+            if (start.HasValue) batch.ВремяСтарта = start;
+            if (end.HasValue) batch.ВремяОкончания = end;
+            if (!string.IsNullOrEmpty(status)) batch.Статус = status;
+            if (factQty.HasValue) batch.ФактКоличество_кг = factQty;
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -12,6 +12,10 @@ namespace AgroControl.API.Models
         [ForeignKey("ПартияПроизводстваID")]
         public ProductionBatch? Партия { get; set; }
         public int ШагТехКартыID { get; set; }
+
+        [ForeignKey("ШагТехКартыID")]
+
+        public TechCardStep? ШагТехКарты { get; set; }
         public DateTime? ВремяСтарта { get; set; }
         public DateTime? ВремяОкончания { get; set; }
         public decimal? ФактТемпература { get; set; }

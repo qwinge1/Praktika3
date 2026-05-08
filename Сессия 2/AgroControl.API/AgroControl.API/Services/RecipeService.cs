@@ -21,11 +21,36 @@ namespace AgroControl.API.Services
             return recipe;
         }
 
+        public async Task<bool> UpdateAsync(Recipe updated)
+        {
+            _context.Entry(updated).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<bool> UpdateStatusAsync(int id, string status)
         {
             var r = await _context.Recipes.FindAsync(id);
             if (r == null) return false;
             r.Статус = status;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<RecipeComponent> AddComponentAsync(int recipeId, RecipeComponent comp)
+        {
+            comp.РецептID = recipeId;
+            _context.RecipeComponents.Add(comp);
+            await _context.SaveChangesAsync();
+            return comp;
+        }
+
+        public async Task<bool> DeleteComponentAsync(int recipeId, int componentId)
+        {
+            var c = await _context.RecipeComponents
+                .FirstOrDefaultAsync(x => x.ID == componentId && x.РецептID == recipeId);
+            if (c == null) return false;
+            _context.RecipeComponents.Remove(c);
             await _context.SaveChangesAsync();
             return true;
         }

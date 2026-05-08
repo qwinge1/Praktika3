@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Дима\\Desktop\\Praktika3\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj": {}
+    "C:\\Users\\Дима\\Desktop\\Praktika3\\Praktika3\\Сессия 2\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Дима\\Desktop\\Praktika3\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj": {
+    "C:\\Users\\Дима\\Desktop\\Praktika3\\Praktika3\\Сессия 2\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Дима\\Desktop\\Praktika3\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj",
+        "projectUniqueName": "C:\\Users\\Дима\\Desktop\\Praktika3\\Praktika3\\Сессия 2\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj",
         "projectName": "AgroControl.API",
-        "projectPath": "C:\\Users\\Дима\\Desktop\\Praktika3\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj",
+        "projectPath": "C:\\Users\\Дима\\Desktop\\Praktika3\\Praktika3\\Сессия 2\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj",
         "packagesPath": "C:\\Users\\Дима\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Дима\\Desktop\\Praktika3\\AgroControl.API\\AgroControl.API\\obj\\",
+        "outputPath": "C:\\Users\\Дима\\Desktop\\Praktika3\\Praktika3\\Сессия 2\\AgroControl.API\\AgroControl.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
