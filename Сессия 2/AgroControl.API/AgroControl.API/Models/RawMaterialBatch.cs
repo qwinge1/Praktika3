@@ -14,5 +14,17 @@ namespace AgroControl.API.Models
         public DateTime? ДатаПоступления { get; set; }
         public decimal? Количество_кг { get; set; }
         public string ЛабораторныйСтатус { get; set; } = "ожидает";
+
+        // Поле не хранится в БД – используется только в клиенте
+        [NotMapped]
+        public bool HasTest { get; set; }
+
+        // Навигационное свойство – связь с таблицей Сырье
+        [ForeignKey("СырьеID")]
+        public virtual RawMaterial Сырье { get; set; }
+
+        // Вычисляемое поле для отображения (не хранится в БД)
+        [NotMapped]
+        public string НаименованиеСырья => Сырье?.Наименование ?? "—";
     }
 }

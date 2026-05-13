@@ -10,7 +10,6 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Отчёты" FontSize="20" FontWeight="Bold" Foreground="#1F2937" Margin="0,0,0,16"/>
 
-        <!-- Кнопки запросов отчётов -->
         <StackPanel Grid.Row="0">
             <Button Content="Отчёт по партиям" Click="BatchesReport_Click" Width="300" Margin="0,0,0,8"
                     Style="{StaticResource PrimaryButton}"/>
@@ -20,10 +19,11 @@
                     Style="{StaticResource PrimaryButton}"/>
         </StackPanel>
 
-        <!-- Кнопки действий -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
             <Button Content="Экспорт в CSV" Click="ExportToCsv_Click" Width="120" Margin="0,0,8,0"
                     Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Экспорт в Excel" Click="ExportToExcel_Click" Width="130" Margin="0,0,8,0"
+                    Style="{StaticResource PrimaryButton}" Background="#10B981"/>
             <Button Content="Очистить таблицу" Click="ClearTable_Click" Width="140"
                     Style="{StaticResource PrimaryButton}"/>
         </StackPanel>

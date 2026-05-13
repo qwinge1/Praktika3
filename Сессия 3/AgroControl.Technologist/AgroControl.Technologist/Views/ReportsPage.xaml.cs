@@ -1,12 +1,14 @@
-﻿using System;
+﻿using AgroControl.Technologist.Services;
+using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
+using OfficeOpenXml;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json.Linq;
-using AgroControl.Technologist.Services;
 
 namespace AgroControl.Technologist.Views
 {
@@ -19,6 +21,7 @@ namespace AgroControl.Technologist.Views
         {
             InitializeComponent();
             this.api = api;
+            //ExcelPackage.License.SetNonCommercialLicense();   // ← исправлено
         }
 
         private async void BatchesReport_Click(object sender, RoutedEventArgs e)
@@ -39,32 +42,24 @@ namespace AgroControl.Technologist.Views
             DisplayData(dt);
         }
 
-        /// <summary>
-        /// Запрашивает отчёт у API и возвращает DataTable.
-        /// Если API возвращает массив – парсим его. Если строку – создаём таблицу с одним сообщением.
-        /// </summary>
         private async Task<DataTable> FetchReportData(string endpoint)
         {
             try
             {
-                // Используем новый метод GetStringAsync из ApiService
                 string json = await api.GetStringAsync(endpoint);
                 var dt = new DataTable();
 
-                // Пытаемся обработать JSON как массив объектов
                 try
                 {
                     var array = JArray.Parse(json);
                     if (array.Count > 0)
                     {
-                        // Строим столбцы по первому объекту
                         var first = array[0] as JObject;
                         if (first != null)
                         {
                             foreach (var prop in first.Properties())
                                 dt.Columns.Add(prop.Name);
                         }
-                        // Заполняем строки
                         foreach (JObject obj in array)
                         {
                             var row = dt.NewRow();
@@ -77,7 +72,6 @@ namespace AgroControl.Technologist.Views
                 }
                 catch (Newtonsoft.Json.JsonReaderException)
                 {
-                    // Если ответ не является JSON-массивом (например, простая строка с сообщением)
                     dt.Columns.Add("Сообщение");
                     dt.Rows.Add(json);
                     return dt;
@@ -104,7 +98,7 @@ namespace AgroControl.Technologist.Views
                 return;
             }
 
-            var dlg = new Microsoft.Win32.SaveFileDialog
+            var dlg = new SaveFileDialog
             {
                 Filter = "CSV files (*.csv)|*.csv|All files|*.*",
                 FileName = "report.csv"
@@ -113,18 +107,59 @@ namespace AgroControl.Technologist.Views
             if (dlg.ShowDialog() == true)
             {
                 var sb = new StringBuilder();
-                // Заголовки
                 sb.AppendLine(string.Join(",", currentData.Columns.Cast<DataColumn>().Select(c => c.ColumnName)));
-                // Данные
                 foreach (DataRow row in currentData.Rows)
                 {
-                    var values = row.ItemArray.Select(f =>
-                        $"\"{f?.ToString()?.Replace("\"", "\"\"")}\"");
+                    var values = row.ItemArray.Select(f => $"\"{f?.ToString()?.Replace("\"", "\"\"")}\"");
                     sb.AppendLine(string.Join(",", values));
                 }
-
                 File.WriteAllText(dlg.FileName, sb.ToString(), Encoding.UTF8);
-                MessageBox.Show("Файл сохранён");
+                MessageBox.Show("CSV файл сохранён");
+            }
+        }
+
+        private void ExportToExcel_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentData == null || currentData.Rows.Count == 0)
+            {
+                MessageBox.Show("Нет данных для экспорта");
+                return;
+            }
+
+            var dlg = new SaveFileDialog
+            {
+                Filter = "Excel files (*.xlsx)|*.xlsx|All files|*.*",
+                FileName = "report.xlsx"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                try
+                {
+                    using (var package = new ExcelPackage())
+                    {
+                        var worksheet = package.Workbook.Worksheets.Add("Report");
+                        for (int i = 0; i < currentData.Columns.Count; i++)
+                        {
+                            worksheet.Cells[1, i + 1].Value = currentData.Columns[i].ColumnName;
+                            worksheet.Cells[1, i + 1].Style.Font.Bold = true;
+                        }
+                        for (int row = 0; row < currentData.Rows.Count; row++)
+                        {
+                            for (int col = 0; col < currentData.Columns.Count; col++)
+                            {
+                                worksheet.Cells[row + 2, col + 1].Value = currentData.Rows[row][col]?.ToString();
+                            }
+                        }
+                        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                        package.SaveAs(new FileInfo(dlg.FileName));
+                    }
+                    MessageBox.Show("Excel файл сохранён");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при экспорте в Excel: {ex.Message}");
+                }
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using AgroControl.API.Models;   
 
 namespace AgroControl.Technologist.Services
 {
@@ -28,12 +29,14 @@ namespace AgroControl.Technologist.Services
             var json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(json);
         }
+
         public async Task<string> GetStringAsync(string endpoint)
         {
             var response = await _client.GetAsync(endpoint);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
+
         public async Task<T> PostAsync<T>(string endpoint, object data)
         {
             var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
@@ -61,27 +64,7 @@ namespace AgroControl.Technologist.Services
         public async Task<LoginResponse> LoginAsync(string username, string password)
         {
             var result = await PostAsync<LoginResponse>("api/Auth/login", new { Username = username, Password = password });
-            //if (result?.Token != null) SetToken(result.Token);
             return result;
         }
-    }
-
-    public class LoginResponse
-    {
-        public bool Success { get; set; }
-        public string Token { get; set; }
-        public string Message { get; set; }
-    }
-
-    public class ApiResponse<T>
-    {
-        public bool Success { get; set; }
-        public T Data { get; set; }
-        public string Message { get; set; }
-    }
-
-    public class ApiError
-    {
-        public string Message { get; set; }
     }
 }
