@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AgroControl.API.Services;
 using AgroControl.API.Models;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgroControl.API.Controllers
 {
@@ -8,39 +9,67 @@ namespace AgroControl.API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly ReferenceService _refs;
-        public ProductsController(ReferenceService refs) => _refs = refs;
+        private readonly AppDbContext _context;
+
+        public ProductsController(AppDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() =>
-            Ok(new { success = true, data = await _refs.GetProductsAsync() });
+        public IActionResult GetAll() =>
+            Ok(new { success = true, data = _context.Products.ToList() });
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public IActionResult GetById(int id)
         {
-            var product = await _refs.GetProductAsync(id);
-            return product == null
-                ? NotFound(new { success = false, message = "Продукт не найден" })
-                : Ok(new { success = true, data = product });
+            var product = _context.Products.Find(id);
+            if (product == null) return NotFound(new { success = false, message = "Продукт не найден" });
+            return Ok(new { success = true, data = product });
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Product product) =>
-            Ok(new { success = true, message = "Продукт создан (заглушка)" });
+        public IActionResult Create([FromBody] Product product)
+        {
+            if (_context.Products.Any(p => p.Код == product.Код))
+                return BadRequest(new { success = false, message = "Продукт с таким кодом уже существует" });
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return Ok(new { success = true, data = product });
+        }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Product product) =>
-            Ok(new { success = true, message = "Продукт обновлён (заглушка)" });
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id) =>
-            Ok(new { success = true, message = "Продукт удалён (заглушка)" });
+        public IActionResult Update(int id, [FromBody] Product updated)
+        {
+            var existing = _context.Products.Find(id);
+            if (existing == null) return NotFound(new { success = false, message = "Продукт не найден" });
+            existing.Код = updated.Код;
+            existing.Наименование = updated.Наименование;
+            existing.Тип = updated.Тип;
+            existing.ФормаВыпуска = updated.ФормаВыпуска;
+            existing.Статус = updated.Статус;
+            _context.SaveChanges();
+            return Ok(new { success = true, data = existing });
+        }
 
         [HttpPut("{id}/archive")]
-        public async Task<IActionResult> Archive(int id)
+        public IActionResult Archive(int id)
         {
-            var ok = await _refs.ArchiveProductAsync(id);
-            return ok ? Ok(new { success = true }) : NotFound(new { success = false, message = "Продукт не найден" });
+            var existing = _context.Products.Find(id);
+            if (existing == null) return NotFound(new { success = false, message = "Продукт не найден" });
+            existing.Статус = "архив";
+            _context.SaveChanges();
+            return Ok(new { success = true, data = existing });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null) return NotFound(new { success = false, message = "Продукт не найден" });
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return Ok(new { success = true, message = "Продукт удалён" });
         }
     }
 }

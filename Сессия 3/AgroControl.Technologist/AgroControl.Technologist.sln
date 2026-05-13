@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37216.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroControl.Technologist", "AgroControl.Technologist\AgroControl.Technologist.csproj", "{ABD2068B-D79B-46E4-B825-865F34416124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroControl.API", "..\..\Сессия 2\AgroControl.API\AgroControl.API\AgroControl.API.csproj", "{F1D7738A-6A2A-29C9-57ED-EBF8179719CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABD2068B-D79B-46E4-B825-865F34416124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD2068B-D79B-46E4-B825-865F34416124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD2068B-D79B-46E4-B825-865F34416124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD2068B-D79B-46E4-B825-865F34416124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D7738A-6A2A-29C9-57ED-EBF8179719CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D7738A-6A2A-29C9-57ED-EBF8179719CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D7738A-6A2A-29C9-57ED-EBF8179719CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D7738A-6A2A-29C9-57ED-EBF8179719CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39F31801-CAB1-49AB-BED1-D067C1382F76}
+	EndGlobalSection
+EndGlobal

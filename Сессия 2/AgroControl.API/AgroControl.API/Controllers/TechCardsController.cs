@@ -93,12 +93,12 @@ namespace AgroControl.API.Controllers
 
 
         [HttpDelete("{id}")]
-
-        public async Task<IActionResult> Delete(int id) =>
-
-            Ok(new { success = true, message = "Техкарта удалена (заглушка)" });
-
-
+        public async Task<IActionResult> Delete(int id)
+        {
+            var ok = await _service.DeleteAsync(id);
+            if (!ok) return NotFound(new { success = false, message = "Техкарта не найдена" });
+            return Ok(new { success = true, message = "Техкарта удалена" });
+        }
 
         [HttpPut("{id}/status")]
 

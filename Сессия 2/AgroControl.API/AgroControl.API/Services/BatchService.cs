@@ -69,7 +69,34 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
             return step;
         }
+        public async Task<ProductionBatch> CreateAsync(ProductionBatch batch)
+        {
+            if (string.IsNullOrEmpty(batch.Статус))
+                batch.Статус = "запланирована";
 
+            batch.ВремяСтарта = null;
+            batch.ВремяОкончания = null;
+            batch.ФактКоличество_кг = null;
+            batch.ТекущийШагID = null;
+
+            // Проверка: существует ли заказ с таким ID
+            var orderExists = await _context.ProductionOrders.AnyAsync(o => o.ID == batch.ЗаказID);
+            if (!orderExists)
+                throw new ArgumentException($"Заказ с ID {batch.ЗаказID} не найден в БД");
+
+            _context.ProductionBatches.Add(batch);
+            await _context.SaveChangesAsync();
+            return batch;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var batch = await _context.ProductionBatches.FindAsync(id);
+            if (batch == null) return false;
+            _context.ProductionBatches.Remove(batch);
+            await _context.SaveChangesAsync();
+            return true;
+        }
         public async Task<bool> UpdateBatchAsync(int id, DateTime? start, DateTime? end, string? status, decimal? factQty)
         {
             var batch = await _context.ProductionBatches.FindAsync(id);

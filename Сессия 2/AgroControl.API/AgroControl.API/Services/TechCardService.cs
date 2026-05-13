@@ -45,7 +45,14 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
             return step;
         }
-
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var card = await _context.TechCards.FindAsync(id);
+            if (card == null) return false;
+            _context.TechCards.Remove(card);
+            await _context.SaveChangesAsync();
+            return true;
+        }
         // Удалить шаг
         public async Task<bool> DeleteStepAsync(int techCardId, int stepId)
         {

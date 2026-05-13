@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-using Microsoft.AspNetCore.Mvc;
-
+﻿using AgroControl.API.Models;
 using AgroControl.API.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -14,7 +14,7 @@ namespace AgroControl.API.Controllers
 
     [Route("api/[controller]")]
 
-    [Authorize]
+    //[Authorize]
 
     public class BatchesController : ControllerBase
 
@@ -32,7 +32,12 @@ namespace AgroControl.API.Controllers
 
             Ok(new { success = true, data = await _batchService.GetAllAsync() });
 
-
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] ProductionBatch batch)
+        {
+            var created = await _batchService.CreateAsync(batch);
+            return Ok(new { success = true, data = created });
+        }
 
         [HttpGet("active")]
 
@@ -137,10 +142,12 @@ namespace AgroControl.API.Controllers
 
 
         [HttpDelete("{id}")]
-
-        public async Task<IActionResult> Delete(int id) =>
-
-            Ok(new { success = true, message = "Удаление партии (заглушка)" });
+        public async Task<IActionResult> Delete(int id)
+        {
+            var ok = await _batchService.DeleteAsync(id);
+            if (!ok) return NotFound(new { success = false, message = "Партия не найдена" });
+            return Ok(new { success = true, message = "Партия удалена" });
+        }
 
     }
 

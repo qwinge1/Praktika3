@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AgroControl.API.Models;
+﻿using AgroControl.API.Models;
 using AgroControl.API.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
 public class RecipesController : ControllerBase
 {
     private readonly RecipeService _service;
+
     public RecipesController(RecipeService service) => _service = service;
 
     [HttpGet]
@@ -24,6 +26,14 @@ public class RecipesController : ControllerBase
     {
         var created = await _service.CreateAsync(recipe);
         return Ok(new { success = true, data = created });
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var ok = await _service.DeleteAsync(id);
+        if (!ok) return NotFound(new { success = false, message = "Рецепт не найден" });
+        return Ok(new { success = true, message = "Рецепт удалён" });
     }
 
     [HttpPut("{id}")]

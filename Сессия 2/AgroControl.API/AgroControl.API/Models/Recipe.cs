@@ -13,7 +13,10 @@ namespace AgroControl.API.Models
         public Product? Продукт { get; set; }
         public int Версия { get; set; }
         public string? Статус { get; set; }
+
+        [Column(TypeName = "datetime")]      // ← добавлено
         public DateTime ДатаСоздания { get; set; }
+
         public int? СоздалID { get; set; }
         public DateTime? ДатаУтверждения { get; set; }
         public int? УтвердилID { get; set; }

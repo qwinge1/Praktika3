@@ -16,22 +16,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AgroControl.API.Controllers.AuthController",
-    "Method": "Register",
-    "RelativePath": "api/Auth/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "AgroControl.API.Controllers.RegisterDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "AgroControl.API.Controllers.BatchesController",
     "Method": "GetAll",
     "RelativePath": "api/Batches",
@@ -39,6 +23,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.BatchesController",
+    "Method": "Create",
+    "RelativePath": "api/Batches",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "batch",
+        "Type": "AgroControl.API.Models.ProductionBatch",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -438,7 +438,7 @@
   },
   {
     "ContainingType": "AgroControl.API.Controllers.ProductsController",
-    "Method": "Get",
+    "Method": "GetById",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -466,7 +466,7 @@
         "IsRequired": true
       },
       {
-        "Name": "product",
+        "Name": "updated",
         "Type": "AgroControl.API.Models.Product",
         "IsRequired": true
       }
@@ -725,6 +725,22 @@
     "Method": "Get",
     "RelativePath": "api/Recipes/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RecipesController",
+    "Method": "Delete",
+    "RelativePath": "api/Recipes/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [

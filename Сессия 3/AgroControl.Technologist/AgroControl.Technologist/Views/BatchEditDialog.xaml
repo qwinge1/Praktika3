@@ -1,0 +1,41 @@
+﻿<Window x:Class="AgroControl.Technologist.Views.BatchEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Партия" Height="250" Width="400"
+        WindowStartupLocation="CenterOwner"
+        >
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Заказ:" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <ComboBox Grid.Column="1" x:Name="orderCombo" DisplayMemberPath="НомерЗаказа" SelectedValuePath="ID"/>
+
+        <TextBlock Grid.Row="1" Text="Количество (кг):" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="quantityBox"/>
+
+        <TextBlock Grid.Row="2" Text="Статус:" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="statusCombo">
+            <ComboBoxItem Content="запланирована"/>
+            <ComboBoxItem Content="выполняется"/>
+            <ComboBoxItem Content="завершена"/>
+        </ComboBox>
+
+        <TextBlock Grid.Row="3" Text="План. дата старта:" VerticalAlignment="Center" Margin="0,0,0,5"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" x:Name="plannedDatePicker"/>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="OK" Click="Save_Click" Width="75" Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Отмена" Click="Cancel_Click" Width="75" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

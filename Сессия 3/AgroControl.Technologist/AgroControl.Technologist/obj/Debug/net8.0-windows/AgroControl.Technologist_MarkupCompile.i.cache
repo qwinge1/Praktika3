@@ -1,0 +1,20 @@
+﻿AgroControl.Technologist
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 3\AgroControl.Technologist\AgroControl.Technologist\obj\Debug\net8.0-windows\
+AgroControl.Technologist
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 3\AgroControl.Technologist\AgroControl.Technologist\App.xaml
+18-241861536
+1-214240918
+25-1438483643
+363-220840147
+MainWindow.xaml;Views\BatchEditDialog.xaml;Views\BatchesPage.xaml;Views\ComponentsWindow.xaml;Views\DashboardPage.xaml;Views\DeviationsPage.xaml;Views\ExtruderProgramsPage.xaml;Views\LoginWindow.xaml;Views\OrderEditDialog.xaml;Views\OrdersPage.xaml;Views\ProductEditDialog.xaml;Views\ProductsPage.xaml;Views\RecipeEditDialog.xaml;Views\RecipesPage.xaml;Views\ReportsPage.xaml;Views\StepsWindow.xaml;Views\TechCardEditDialog.xaml;Views\TechCardsPage.xaml;
+
+False
+

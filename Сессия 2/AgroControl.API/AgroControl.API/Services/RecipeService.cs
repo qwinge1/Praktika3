@@ -44,7 +44,14 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
             return comp;
         }
-
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var recipe = await _context.Recipes.FindAsync(id);
+            if (recipe == null) return false;
+            _context.Recipes.Remove(recipe);
+            await _context.SaveChangesAsync();
+            return true;
+        }
         public async Task<bool> DeleteComponentAsync(int recipeId, int componentId)
         {
             var c = await _context.RecipeComponents

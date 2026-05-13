@@ -17,6 +17,7 @@ namespace AgroControl.API.Models
         public string? Статус { get; set; }
         public decimal? ФактКоличество_кг { get; set; }
         public int? ТекущийШагID { get; set; }
+        public DateTime? ПланДатаСтарта { get; set; }   // ← Добавлено
         public ICollection<BatchStepExecution> ВыполнениеШагов { get; set; } = new List<BatchStepExecution>();
     }
 }

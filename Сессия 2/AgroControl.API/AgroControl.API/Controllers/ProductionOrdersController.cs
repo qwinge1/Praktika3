@@ -97,21 +97,15 @@ namespace AgroControl.API.Controllers
 
 
         [HttpDelete("{id}")]
-
         public async Task<IActionResult> Delete(int id)
-
         {
-
             var order = await _context.ProductionOrders.FindAsync(id);
-
-            if (order == null) return NotFound();
+            if (order == null)
+                return NotFound(new { success = false, message = "Заказ не найден" });
 
             _context.ProductionOrders.Remove(order);
-
             await _context.SaveChangesAsync();
-
             return Ok(new { success = true, message = "Заказ удалён" });
-
         }
 
     }

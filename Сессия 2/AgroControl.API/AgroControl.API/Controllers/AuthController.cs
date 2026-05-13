@@ -1,91 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-using AgroControl.API.Services;
-
-
+using AgroControl.API.Models;
+using System.Linq;
 
 namespace AgroControl.API.Controllers
-
 {
-
     [ApiController]
-
     [Route("api/[controller]")]
-
     public class AuthController : ControllerBase
-
     {
+        private readonly AppDbContext _context;
 
-        private readonly AuthService _authService;
-
-        public AuthController(AuthService authService) => _authService = authService;
-
-
+        public AuthController(AppDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpPost("login")]
-
         public IActionResult Login([FromBody] LoginDto dto)
-
         {
-
-            var token = _authService.Login(dto.Username, dto.Password);
-
-            if (token == null)
-
+            var user = _context.Users.FirstOrDefault(u => u.ИмяПользователя == dto.Username);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.ХэшПароля))
                 return Unauthorized(new { success = false, message = "Неверный логин или пароль" });
-
-            return Ok(new { success = true, token });
-
+            return Ok(new { success = true, message = "Вход выполнен" });
         }
-
-
-
-        [HttpPost("register")]
-
-        public IActionResult Register([FromBody] RegisterDto dto)
-
-        {
-
-            var ok = _authService.Register(dto.Username, dto.Password, dto.FullName, dto.Role, dto.Email, dto.Department);
-
-            if (!ok) return BadRequest("Пользователь уже существует");
-
-            return Ok(new { success = true });
-
-        }
-
     }
-
-
 
     public class LoginDto
-
     {
-
-        public string Username { get; set; } = "";
-
-        public string Password { get; set; } = "";
-
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
-
-
-
-    public class RegisterDto
-
-    {
-
-        public string Username { get; set; } = "";
-
-        public string Password { get; set; } = "";
-
-        public string FullName { get; set; } = "";
-
-        public string Role { get; set; } = "operator";
-
-        public string Email { get; set; } = "";
-
-        public string Department { get; set; } = "";
-
-    }
-
 }

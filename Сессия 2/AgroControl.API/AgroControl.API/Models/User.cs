@@ -18,5 +18,6 @@ namespace AgroControl.API.Models
         public DateTime? ПоследнийВход { get; set; }
         public DateTime ДатаСоздания { get; set; } = DateTime.UtcNow;
         public string? Отдел { get; set; }
+        public byte[]? Фото { get; set; }
     }
 }

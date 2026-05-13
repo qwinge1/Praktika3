@@ -1,0 +1,65 @@
+﻿<Window x:Class="AgroControl.Technologist.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Модуль технолога" Height="700" Width="1200"
+        >
+    <DockPanel>
+        <!-- Левое меню -->
+        <Border DockPanel.Dock="Left" Width="240" Background="#1E293B">
+            <StackPanel>
+                <TextBlock Text="АСУ ТП" Foreground="White" FontSize="18" FontWeight="Bold"
+                           Margin="16,16,16,8"/>
+                <TextBlock Text="Модуль технолога" Foreground="#94A3B8" FontSize="12"
+                           Margin="16,0,16,16"/>
+
+                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged"
+                         Background="Transparent" BorderThickness="0">
+                    <ListBoxItem Content="Главная" Tag="Dashboard"/>
+                    <ListBoxItem Content="Продукция" Tag="Products"/>
+                    <ListBoxItem Content="Рецептуры" Tag="Recipes"/>
+                    <ListBoxItem Content="Тех. карты" Tag="TechCards"/>
+                    <ListBoxItem Content="Заказы" Tag="Orders"/>
+                    <ListBoxItem Content="Партии" Tag="Batches"/>
+                    <ListBoxItem Content="Программы экструдера" Tag="ExtruderPrograms"/>
+                    <ListBoxItem Content="Отклонения" Tag="Deviations"/>
+                    <ListBoxItem Content="Отчёты" Tag="Reports"/>
+                </ListBox>
+            </StackPanel>
+        </Border>
+
+        <!-- Основная область -->
+        <DockPanel Background="#F9FAFB">
+            <Border DockPanel.Dock="Top" Background="White" Padding="16,10" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Grid Width="40" Height="40" Margin="0,0,12,0"
+                              MouseLeftButtonDown="Avatar_MouseLeftButtonDown">
+                            <Image x:Name="userPhoto" Stretch="UniformToFill" Visibility="Collapsed"/>
+                            <Border x:Name="userPhotoPlaceholder" Width="40" Height="40" CornerRadius="20" Background="#2563EB"
+                                    Visibility="Visible">
+                                <TextBlock x:Name="userPhotoPlaceholderText" Text="??" Foreground="White" FontSize="18" FontWeight="Bold"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Профиль" Click="UserMenuItem_Click"/>
+                                    <MenuItem Header="Сменить пароль" Click="ChangePasswordMenuItem_Click"/>
+                                    <Separator/>
+                                    <MenuItem Header="Выход" Click="Logout_Click"/>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                        </Grid>
+                        <StackPanel>
+                            <TextBlock x:Name="userFullName" Text="Технолог" FontWeight="SemiBold" Foreground="#1F2937"/>
+                            <TextBlock x:Name="userRole" Text="technologist" FontSize="12" Foreground="#6B7280"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Content="Выход" HorizontalAlignment="Right" Click="Logout_Click"
+                            Style="{StaticResource PrimaryButton}" Background="#EF4444" Width="80"/>
+                </Grid>
+            </Border>
+
+            <ContentControl x:Name="MainContent" Margin="24"/>
+        </DockPanel>
+    </DockPanel>
+</Window>

@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "AgroControl API",
-    "version": "v1"
+    "title": "AgroControl.API",
+    "version": "1.0"
   },
   "paths": {
     "/api/Auth/login": {
@@ -36,42 +36,40 @@
         }
       }
     },
-    "/api/Auth/register": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Batches": {
       "get": {
         "tags": [
           "Batches"
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Batches"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionBatch"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionBatch"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductionBatch"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1176,6 +1174,27 @@
           }
         }
       },
+      "delete": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Recipes"
@@ -1968,6 +1987,67 @@
         },
         "additionalProperties": false
       },
+      "BatchStepExecution": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ПартияПроизводстваID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Партия": {
+            "$ref": "#/components/schemas/ProductionBatch"
+          },
+          "ШагТехКартыID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ШагТехКарты": {
+            "$ref": "#/components/schemas/TechCardStep"
+          },
+          "ВремяСтарта": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ВремяОкончания": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ФактТемпература": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ФактДлительностьМинут": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ФактДавление": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Отклонение": {
+            "type": "boolean"
+          },
+          "КомментарийОператора": {
+            "type": "string",
+            "nullable": true
+          },
+          "ОператорID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BatchUpdateDto": {
         "type": "object",
         "properties": {
@@ -2130,6 +2210,63 @@
           },
           "Статус": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductionBatch": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "НомерПартии": {
+            "type": "string",
+            "nullable": true
+          },
+          "ЗаказID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Заказ": {
+            "$ref": "#/components/schemas/ProductionOrder"
+          },
+          "ВремяСтарта": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ВремяОкончания": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "Статус": {
+            "type": "string",
+            "nullable": true
+          },
+          "ФактКоличество_кг": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ТекущийШагID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ПланДатаСтарта": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ВыполнениеШагов": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchStepExecution"
+            },
             "nullable": true
           }
         },
@@ -2329,36 +2466,6 @@
         },
         "additionalProperties": false
       },
-      "RegisterDto": {
-        "type": "object",
-        "properties": {
-          "Username": {
-            "type": "string",
-            "nullable": true
-          },
-          "Password": {
-            "type": "string",
-            "nullable": true
-          },
-          "FullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "Role": {
-            "type": "string",
-            "nullable": true
-          },
-          "Email": {
-            "type": "string",
-            "nullable": true
-          },
-          "Department": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "TechCard": {
         "type": "object",
         "properties": {
@@ -2485,6 +2592,11 @@
           "Отдел": {
             "type": "string",
             "nullable": true
+          },
+          "Фото": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2512,19 +2624,6 @@
         },
         "additionalProperties": false
       }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "apiKey",
-        "description": "JWT Authorization header. Example: \"Bearer {token}\"",
-        "name": "Authorization",
-        "in": "header"
-      }
     }
-  },
-  "security": [
-    {
-      "Bearer": [ ]
-    }
-  ]
+  }
 }

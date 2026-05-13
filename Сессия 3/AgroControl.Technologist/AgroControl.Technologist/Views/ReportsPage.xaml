@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="AgroControl.Technologist.Views.ReportsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F9FAFB">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Отчёты" FontSize="20" FontWeight="Bold" Foreground="#1F2937" Margin="0,0,0,16"/>
+
+        <!-- Кнопки запросов отчётов -->
+        <StackPanel Grid.Row="0">
+            <Button Content="Отчёт по партиям" Click="BatchesReport_Click" Width="300" Margin="0,0,0,8"
+                    Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Отчёт по отклонениям" Click="DeviationsReport_Click" Width="300" Margin="0,0,0,8"
+                    Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Отчёт по использованию рецептур" Click="RecipeUsage_Click" Width="300" Margin="0,0,0,16"
+                    Style="{StaticResource PrimaryButton}"/>
+        </StackPanel>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Экспорт в CSV" Click="ExportToCsv_Click" Width="120" Margin="0,0,8,0"
+                    Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Очистить таблицу" Click="ClearTable_Click" Width="140"
+                    Style="{StaticResource PrimaryButton}"/>
+        </StackPanel>
+
+        <DataGrid x:Name="reportGrid" Grid.Row="2" AutoGenerateColumns="True" IsReadOnly="True"/>
+    </Grid>
+</UserControl>
