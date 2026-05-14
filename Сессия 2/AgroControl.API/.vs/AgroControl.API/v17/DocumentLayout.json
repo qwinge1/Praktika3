@@ -197,7 +197,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -213,8 +213,7 @@
               "RelativeToolTip": "AgroControl.API\\Controllers\\QualityControlController.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAQwE0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T09:14:46.359Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T09:14:46.359Z"
             },
             {
               "$type": "Document",
@@ -226,8 +225,7 @@
               "RelativeToolTip": "AgroControl.API\\Models\\AppDbContext.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAA5wD0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T07:52:04.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T07:52:04.451Z"
             },
             {
               "$type": "Document",
@@ -239,7 +237,19 @@
               "RelativeToolTip": "AgroControl.API\\Controllers\\BatchesController.cs",
               "ViewState": "AgIAAFgAAAAAAAAAAAA5wGwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T09:14:35.003Z",
+              "WhenOpened": "2026-05-07T09:14:35.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LabTest.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\LabTest.cs",
+              "RelativeDocumentMoniker": "AgroControl.API\\Models\\LabTest.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\LabTest.cs",
+              "RelativeToolTip": "AgroControl.API\\Models\\LabTest.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAxwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T09:25:48.979Z",
               "EditorCaption": ""
             },
             {
@@ -252,21 +262,7 @@
               "RelativeToolTip": "AgroControl.API\\Models\\ProductionBatch.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T09:25:17.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LabTest.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\LabTest.cs",
-              "RelativeDocumentMoniker": "AgroControl.API\\Models\\LabTest.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\LabTest.cs",
-              "RelativeToolTip": "AgroControl.API\\Models\\LabTest.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA1wBkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T09:25:48.979Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T09:25:17.727Z"
             },
             {
               "$type": "Document",
@@ -278,8 +274,7 @@
               "RelativeToolTip": "AgroControl.API\\Controllers\\RawMaterialBatchesController.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAowCkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T05:25:30.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-08T05:25:30.313Z"
             },
             {
               "$type": "Document",
@@ -291,8 +286,7 @@
               "RelativeToolTip": "AgroControl.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T07:53:45.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T07:53:45.364Z"
             },
             {
               "$type": "Document",
@@ -304,8 +298,7 @@
               "RelativeToolTip": "AgroControl.API\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-07T07:58:08.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T07:58:08.585Z"
             },
             {
               "$type": "Document",
