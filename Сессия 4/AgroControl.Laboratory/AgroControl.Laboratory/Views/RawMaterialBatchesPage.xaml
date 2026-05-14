@@ -4,7 +4,7 @@
              xmlns:conv="clr-namespace:AgroControl.Laboratory.Converters"
              Background="#F9FAFB">
     <UserControl.Resources>
-        <conv:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <conv:StatusToTextColorConverter x:Key="StatusToTextColorConverter"/>
     </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -39,22 +39,20 @@
         </WrapPanel>
         <DataGrid x:Name="batchesGrid" Grid.Row="3" AutoGenerateColumns="False" IsReadOnly="True"
                   SelectionChanged="BatchesGrid_SelectionChanged"
-                  RowBackground="{Binding ЛабораторныйСтатус, Converter={StaticResource StatusToColorConverter}}"
-                  AlternatingRowBackground="#F9FAFB"
-                  Width="Auto" ColumnWidth="Auto" HorizontalScrollBarVisibility="Auto">
+                  AlternatingRowBackground="#F9FAFB">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
                 <DataGridTextColumn Header="Номер партии" Binding="{Binding НомерПартии}" Width="Auto"/>
-                <DataGridTextColumn Header="Номер партии поставщика" Binding="{Binding НомерПартииПоставщика}" Width="Auto"/>
-                <DataGridTextColumn Header="Материал" Binding="{Binding Сырье.Наименование}" Width="Auto"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding Сырье.Категория}" Width="Auto"/>
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding Поставщик}" Width="Auto"/>
                 <DataGridTextColumn Header="Дата поступления" Binding="{Binding ДатаПоступления, StringFormat=dd.MM.yyyy}" Width="Auto"/>
                 <DataGridTextColumn Header="Кол-во, кг" Binding="{Binding Количество_кг}" Width="Auto"/>
-                <DataGridTextColumn Header="Ед. изм." Binding="{Binding Сырье.ЕдиницаИзмерения}" Width="Auto"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding ЛабораторныйСтатус}" Width="Auto"/>
-                <DataGridTextColumn Header="Есть испытание" Binding="{Binding HasTest}" Width="Auto"/>
-                <DataGridTextColumn Header="Дата последнего испытания" Binding="{Binding LastTestDate, StringFormat=dd.MM.yyyy}" Width="Auto"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding ЛабораторныйСтатус}" Width="Auto" FontWeight="Bold">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{Binding ЛабораторныйСтатус, Converter={StaticResource StatusToTextColorConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

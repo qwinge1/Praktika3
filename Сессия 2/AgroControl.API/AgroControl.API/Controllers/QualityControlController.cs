@@ -33,8 +33,18 @@ namespace AgroControl.API.Controllers
         {
             try
             {
+                // Ручная проверка обязательных полей
                 if (test.ПартияСырьяID == null && test.ПартияПроизводстваID == null)
-                    return BadRequest(new { success = false, message = "Не указана партия" });
+                    return BadRequest(new { success = false, message = "Не указана партия сырья или готовой продукции" });
+                if (string.IsNullOrWhiteSpace(test.НаименованиеПараметра))
+                    return BadRequest(new { success = false, message = "Не указано наименование параметра" });
+
+                // Устанавливаем дату анализа, если не задана
+                if (test.ДатаАнализа == null)
+                    test.ДатаАнализа = DateTime.Now;
+                if (string.IsNullOrEmpty(test.Статус))
+                    test.Статус = "завершено";
+
                 _context.LabTests.Add(test);
                 await _context.SaveChangesAsync();
                 return Ok(new { success = true, data = test });

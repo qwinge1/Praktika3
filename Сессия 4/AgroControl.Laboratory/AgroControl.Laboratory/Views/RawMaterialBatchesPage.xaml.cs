@@ -27,17 +27,18 @@ namespace AgroControl.Laboratory.Views
             try
             {
                 var response = await api.GetAsync<ApiResponse<List<RawMaterialBatch>>>("api/RawMaterialBatches");
+                MessageBox.Show($"Получено записей: {response.Data?.Count ?? 0}");
                 allBatches = response.Data ?? new List<RawMaterialBatch>();
-                foreach (var batch in allBatches)
-                {
-                    try
-                    {
-                        var tests = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={batch.ID}");
-                        batch.HasTest = tests.Data?.Any() == true;
-                        batch.LastTestDate = tests.Data?.OrderByDescending(t => t.ДатаАнализа).FirstOrDefault()?.ДатаАнализа;
-                    }
-                    catch { /* игнорируем ошибки отдельных партий */ }
-                }
+                //foreach (var batch in allBatches)
+                //{
+                //    try
+                //    {
+                //        var tests = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={batch.ID}");
+                //        batch.HasTest = tests.Data?.Any() == true;
+                //        batch.LastTestDate = tests.Data?.OrderByDescending(t => t.ДатаАнализа).FirstOrDefault()?.ДатаАнализа;
+                //    }
+                //    catch { /* игнорируем ошибки отдельных партий */ }
+                //}
                 LoadSuppliers();
                 ApplyFilters();
             }

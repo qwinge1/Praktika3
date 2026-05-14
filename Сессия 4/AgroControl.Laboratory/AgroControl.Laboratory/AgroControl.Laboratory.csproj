@@ -8,6 +8,9 @@
 		<ApplicationIcon>5926.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="7f81ed43b3fd67f2533f71d17c6275d0.jpg" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Include="5926.ico" />
 	</ItemGroup>
 	<ItemGroup>
@@ -15,5 +18,10 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Сессия 2\AgroControl.API\AgroControl.API\AgroControl.API.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="7f81ed43b3fd67f2533f71d17c6275d0.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 </Project>

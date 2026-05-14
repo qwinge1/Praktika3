@@ -620,7 +620,7 @@
     "Parameters": [
       {
         "Name": "test",
-        "Type": "LabTest",
+        "Type": "AgroControl.API.Models.LabTest",
         "IsRequired": true
       }
     ],
@@ -641,7 +641,7 @@
       },
       {
         "Name": "updated",
-        "Type": "LabTest",
+        "Type": "AgroControl.API.Models.LabTest",
         "IsRequired": true
       }
     ],

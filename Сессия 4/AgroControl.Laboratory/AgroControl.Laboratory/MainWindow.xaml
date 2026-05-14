@@ -3,21 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Лаборатория АСУ ТП" Height="700" Width="1200">
     <DockPanel>
-        <Border DockPanel.Dock="Left" Width="240" Background="#1E293B">
+        <Border DockPanel.Dock="Left" Width="260" Background="#1E293B">
             <StackPanel>
                 <StackPanel Margin="16,16,16,8" Orientation="Horizontal">
-                    <Image Source="/7f81ed43b3fd67f2533f71d17c6275d0.jpg" Width="32" Height="32" Margin="0,0,8,0"/>
+                    <Image Source="pack://application:,,,/7f81ed43b3fd67f2533f71d17c6275d0.jpg" 
+                   Width="32" Height="32" Margin="0,0,12,0" 
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
                     <TextBlock Text="АСУ ТП" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
-                <TextBlock Text="Модуль лаборатории" Foreground="#94A3B8" FontSize="12" Margin="16,0,16,16"/>
-                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged" Background="Transparent" BorderThickness="0">
+                <TextBlock Text="Модуль лаборатории" Foreground="#94A3B8" FontSize="13" Margin="16,0,16,20"/>
+
+                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged"
+                 Background="Transparent" BorderThickness="0"
+                 FontSize="15" FontWeight="SemiBold">
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="16,12"/>
+                            <Setter Property="Margin" Value="8,2"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#334155"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#3B82F6"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Resources>
                     <ListBoxItem Content="Партии сырья" Tag="RawMaterialBatches"/>
                     <ListBoxItem Content="Готовая продукция" Tag="ProductBatches"/>
                     <ListBoxItem Content="Испытания" Tag="Tests"/>
                 </ListBox>
             </StackPanel>
         </Border>
-        
+
 
         <DockPanel Background="#F9FAFB">
             <!-- Верхняя панель с профилем (такая же как ранее) -->
