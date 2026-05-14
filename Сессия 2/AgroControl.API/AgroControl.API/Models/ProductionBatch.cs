@@ -15,17 +15,15 @@ namespace AgroControl.API.Models
         public string? Статус { get; set; }
         public decimal? ФактКоличество_кг { get; set; }
         public int? ТекущийШагID { get; set; }
-
-        // Новые поля для лабораторного контроля
-        public string? ЛабораторныйСтатус { get; set; }      // "ожидает", "одобрена", "заблокирована"
+        public string? ЛабораторныйСтатус { get; set; }
         public string? КомментарийРешения { get; set; }
         public string? РешениеПринял { get; set; }
         public DateTime? ДатаРешения { get; set; }
-        [NotMapped]
-        public bool HasTest { get; set; }
 
-        [NotMapped]
-        public DateTime? LastTestDate { get; set; }
-        public ICollection<BatchStepExecution> ВыполнениеШагов { get; set; } = new List<BatchStepExecution>();
+        // Навигационные свойства
+        [ForeignKey(nameof(ЗаказID))]
+        public virtual ProductionOrder? Заказ { get; set; }
+
+        public virtual ICollection<BatchStepExecution> ВыполнениеШагов { get; set; } = new List<BatchStepExecution>();
     }
 }

@@ -22,16 +22,9 @@ namespace AgroControl.API.Controllers
         public async Task<IActionResult> GetAll() =>
             Ok(new { success = true, data = await _batchService.GetAllAsync() });
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ProductionBatch batch)
-        {
-            var created = await _batchService.CreateAsync(batch);
-            return Ok(new { success = true, data = created });
-        }
-
         [HttpGet("active")]
         public async Task<IActionResult> GetActive() =>
-            Ok(new { success = true, data = await _batchService.GetActiveAsync() });
+            Ok(new { success = true, data = await _batchService.GetActiveBatchesWithDetailsAsync() });
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -72,40 +65,34 @@ namespace AgroControl.API.Controllers
             return Ok(new { success = true, data = step });
         }
 
-        // ИСПРАВЛЕННЫЙ метод для редактирования партии (принимает ProductionBatch)
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBatch(int id, [FromBody] ProductionBatch updated)
+        [HttpGet("{batchId}/program")]
+        public async Task<IActionResult> GetProgram(int batchId)
         {
-            var existing = await _context.ProductionBatches.FindAsync(id);
-            if (existing == null) return NotFound(new { success = false, message = "Партия не найдена" });
-            existing.НомерПартии = updated.НомерПартии;
-            existing.Статус = updated.Статус;
-            existing.ФактКоличество_кг = updated.ФактКоличество_кг;
-            await _context.SaveChangesAsync();
-            return Ok(new { success = true, message = "Партия обновлена" });
+            var program = await _batchService.GetProgramAsync(batchId);
+            if (program == null) return NotFound(new { success = false, message = "Партия не найдена" });
+            return Ok(new { success = true, data = program });
         }
 
-        [HttpPut("{id}/status")]
-        public async Task<IActionResult> UpdateStatus(int id, [FromBody] string status)
+        [HttpGet("{batchId}/events")]
+        public async Task<IActionResult> GetEvents(int batchId)
         {
-            var batch = await _context.ProductionBatches.FindAsync(id);
-            if (batch == null) return NotFound();
-            batch.Статус = status;
-            await _context.SaveChangesAsync();
-            return Ok(new { success = true });
+            var events = await _batchService.GetEventsAsync(batchId);
+            return Ok(new { success = true, data = events });
         }
 
-        [HttpPut("{id}/lab-status")]
-        public async Task<IActionResult> UpdateLabStatus(int id, [FromBody] ProductionBatch updated)
+        [HttpPost("{batchId}/report-issue")]
+        public async Task<IActionResult> ReportIssue(int batchId, [FromBody] ReportIssueDto dto)
         {
-            var existing = await _context.ProductionBatches.FindAsync(id);
-            if (existing == null) return NotFound();
-            existing.ЛабораторныйСтатус = updated.ЛабораторныйСтатус;
-            existing.КомментарийРешения = updated.КомментарийРешения;
-            existing.РешениеПринял = updated.РешениеПринял;
-            existing.ДатаРешения = DateTime.Now;
-            await _context.SaveChangesAsync();
-            return Ok(new { success = true });
+            var result = await _batchService.ReportIssueAsync(batchId, dto.Message, dto.OperatorId);
+            if (!result) return NotFound(new { success = false, message = "Партия не найдена" });
+            return Ok(new { success = true, message = "Проблема зарегистрирована" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] ProductionBatch batch)
+        {
+            var created = await _batchService.CreateAsync(batch);
+            return Ok(new { success = true, data = created });
         }
 
         [HttpDelete("{id}")]
@@ -117,19 +104,17 @@ namespace AgroControl.API.Controllers
         }
     }
 
-    public class BatchUpdateDto
-    {
-        public DateTime? StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
-        public string? Status { get; set; }
-        public decimal? FactQuantity { get; set; }
-    }
-
     public class BatchStepActualsDto
     {
         public decimal? ActualTemp { get; set; }
         public int? ActualDuration { get; set; }
         public decimal? ActualPressure { get; set; }
         public string? Comment { get; set; }
+    }
+
+    public class ReportIssueDto
+    {
+        public string Message { get; set; } = string.Empty;
+        public int OperatorId { get; set; }
     }
 }

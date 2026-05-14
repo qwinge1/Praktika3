@@ -15,5 +15,9 @@ namespace AgroControl.API.Models
         public decimal ПланКоличество_кг { get; set; }
         public string? Статус { get; set; }
         public DateTime? ПланДатаСтарта { get; set; }
+
+        // Навигационное свойство к техкарте
+        [ForeignKey(nameof(ТехКартаID))]
+        public virtual TechCard? ТехКарта { get; set; }
     }
 }
