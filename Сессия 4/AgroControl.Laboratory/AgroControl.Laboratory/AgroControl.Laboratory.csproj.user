@@ -11,13 +11,22 @@
     <Compile Update="Views\ProductBatchCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ProductBatchEditDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ProductBatchesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RawMaterialBatchCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\RawMaterialBatchEditDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RawMaterialBatchesPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TestsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

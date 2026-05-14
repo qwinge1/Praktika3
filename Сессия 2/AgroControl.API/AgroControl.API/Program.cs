@@ -1,6 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using AgroControl.API.Models;
 using AgroControl.API.Services;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,13 @@ builder.Services.AddScoped<ReferenceService>();
 builder.Services.AddScoped<RecipeService>();
 builder.Services.AddScoped<TechCardService>();
 
+
+
 builder.Services.AddControllers()
-    .AddJsonOptions(opts =>
+    .AddJsonOptions(options =>
     {
-        opts.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-        opts.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null; // отключает camelCase
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 
 builder.Services.AddEndpointsApiExplorer();

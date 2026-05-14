@@ -71,8 +71,8 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "AgroControl.API.Controllers.BatchUpdateDto",
+        "Name": "updated",
+        "Type": "AgroControl.API.Models.ProductionBatch",
         "IsRequired": true
       }
     ],
@@ -89,6 +89,27 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.BatchesController",
+    "Method": "UpdateLabStatus",
+    "RelativePath": "api/Batches/{id}/lab-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "AgroControl.API.Models.ProductionBatch",
         "IsRequired": true
       }
     ],
@@ -599,7 +620,7 @@
     "Parameters": [
       {
         "Name": "test",
-        "Type": "AgroControl.API.Models.LabTest",
+        "Type": "LabTest",
         "IsRequired": true
       }
     ],
@@ -620,7 +641,23 @@
       },
       {
         "Name": "updated",
-        "Type": "AgroControl.API.Models.LabTest",
+        "Type": "LabTest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AgroControl.API.Controllers.QualityControlController",
+    "Method": "Delete",
+    "RelativePath": "api/QualityControl/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

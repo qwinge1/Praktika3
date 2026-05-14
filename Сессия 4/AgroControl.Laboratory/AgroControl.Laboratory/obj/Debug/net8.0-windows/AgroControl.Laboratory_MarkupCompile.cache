@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\App.xaml
-61540890627
-1-214240918
-12-1945198108
-363-220840147
-MainWindow.xaml;Views\LabTestEditWindow.xaml;Views\LoginWindow.xaml;Views\ProductBatchesPage.xaml;Views\RawMaterialBatchCard.xaml;Views\RawMaterialBatchesPage.xaml;
+102035781225
+1-1988741234
+16-2045909563
+366588763818
+MainWindow.xaml;Views\LabTestEditWindow.xaml;Views\LoginWindow.xaml;Views\ProductBatchCard.xaml;Views\ProductBatchEditDialog.xaml;Views\ProductBatchesPage.xaml;Views\RawMaterialBatchCard.xaml;Views\RawMaterialBatchEditDialog.xaml;Views\RawMaterialBatchesPage.xaml;Views\TestsPage.xaml;
 
 False
 

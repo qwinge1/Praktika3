@@ -10,29 +10,16 @@ namespace AgroControl.Laboratory.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string status = value as string;
-            if (status == null) return Brushes.White;
-
+            if (string.IsNullOrEmpty(status)) return Brushes.White;
             switch (status.ToLower())
             {
-                case "ожидает":
-                case "создано":
-                    return Brushes.LightGray;
-                case "в работе":
-                    return Brushes.LightYellow;
-                case "одобрена":
-                case "approved":
-                    return Brushes.LightGreen;
-                case "заблокирована":
-                case "blocked":
-                    return Brushes.LightCoral;
-                default:
-                    return Brushes.White;
+                case "ожидает": return Brushes.LightGray;
+                case "в работе": return Brushes.LightYellow;
+                case "одобрена": return Brushes.LightGreen;
+                case "заблокирована": return Brushes.LightCoral;
+                default: return Brushes.White;
             }
         }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

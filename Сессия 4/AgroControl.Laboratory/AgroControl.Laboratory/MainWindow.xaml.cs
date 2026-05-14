@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -20,14 +21,11 @@ namespace AgroControl.Laboratory
             InitializeComponent();
             this.api = api;
             currentUser = userName;
-            Loaded += async (s, e) =>
-            {
-                await LoadUserProfile(userName);
-                MainContent.Content = new RawMaterialBatchesPage(api);
-            };
+            Loaded += async (s, e) => await LoadUserProfile(userName);
+            MenuList.SelectedIndex = 0;
         }
 
-        private async System.Threading.Tasks.Task LoadUserProfile(string username)
+        private async Task LoadUserProfile(string username)
         {
             try
             {
@@ -66,8 +64,7 @@ namespace AgroControl.Laboratory
         {
             if (string.IsNullOrWhiteSpace(fullName)) return "??";
             var parts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length >= 2) return $"{parts[0][0]}{parts[1][0]}".ToUpper();
-            return parts[0][0].ToString().ToUpper();
+            return parts.Length >= 2 ? $"{parts[0][0]}{parts[1][0]}".ToUpper() : parts[0][0].ToString().ToUpper();
         }
 
         private BitmapImage ByteArrayToBitmapImage(byte[] imageData)
@@ -95,24 +92,18 @@ namespace AgroControl.Laboratory
         {
             if (MenuList.SelectedItem is ListBoxItem item)
             {
-                var tag = item.Tag?.ToString();
-                switch (tag)
+                switch (item.Tag?.ToString())
                 {
-                    case "RawMaterialBatches":
-                        MainContent.Content = new RawMaterialBatchesPage(api);
-                        break;
+                    case "RawMaterialBatches": MainContent.Content = new RawMaterialBatchesPage(api, currentUser); break;
+                    case "ProductBatches": MainContent.Content = new ProductBatchesPage(api, currentUser); break;
+                    case "Tests": MainContent.Content = new TestsPage(api, currentUser); break;
                 }
             }
         }
 
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            new LoginWindow().Show();
-            Close();
-        }
-
+        private void Logout_Click(object sender, RoutedEventArgs e) { new LoginWindow().Show(); Close(); }
         private void Avatar_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) { }
-        private void UserMenuItem_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Профиль пользователя (заглушка)");
-        private void ChangePasswordMenuItem_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Смена пароля (заглушка)");
+        private void UserMenuItem_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Профиль пользователя");
+        private void ChangePasswordMenuItem_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Смена пароля");
     }
 }

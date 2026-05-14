@@ -8,25 +8,44 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
             <Button Content="Обновить" Click="Refresh_Click" Width="100" Style="{StaticResource PrimaryButton}"/>
-            <Button Content="Создать испытание" Click="CreateTest_Click" Width="150" Background="#10B981" Style="{StaticResource PrimaryButton}" Margin="6,0,0,0"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
-            <TextBlock Text="Поиск:" VerticalAlignment="Center"/>
-            <TextBox x:Name="searchBox" Width="200" Margin="6,0,6,0"/>
-            <Button Content="Искать" Click="Search_Click" Width="80" Style="{StaticResource PrimaryButton}"/>
-            <Button Content="Сброс" Click="ClearSearch_Click" Width="80" Style="{StaticResource PrimaryButton}" Margin="6,0,0,0"/>
-        </StackPanel>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Text="Поиск по номеру:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <TextBox x:Name="searchBox" Width="200" Margin="0,0,10,0"/>
+            <TextBlock Text="Статус производства:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <ComboBox x:Name="statusFilter" Width="140" Margin="0,0,10,0">
+                <ComboBoxItem Content="Все"/>
+                <ComboBoxItem Content="запланирована"/>
+                <ComboBoxItem Content="выполняется"/>
+                <ComboBoxItem Content="завершена"/>
+                <ComboBoxItem Content="заблокирована"/>
+            </ComboBox>
+            <TextBlock Text="Лаб. статус:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <ComboBox x:Name="labStatusFilter" Width="120" Margin="0,0,10,0">
+                <ComboBoxItem Content="Все"/>
+                <ComboBoxItem Content="ожидает"/>
+                <ComboBoxItem Content="одобрена"/>
+                <ComboBoxItem Content="заблокирована"/>
+            </ComboBox>
+            <Button Content="Применить" Click="ApplyFilters_Click" Width="100" Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Сброс" Click="ClearFilters_Click" Width="80" Style="{StaticResource PrimaryButton}" Margin="6,0,0,0"/>
+        </WrapPanel>
+
         <DataGrid x:Name="batchesGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True"
                   SelectionChanged="BatchesGrid_SelectionChanged"
-                  AlternatingRowBackground="#F9FAFB">
+                  AlternatingRowBackground="#F9FAFB"
+                  Width="Auto" ColumnWidth="Auto" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
-                <DataGridTextColumn Header="Номер партии" Binding="{Binding НомерПартии}" Width="150"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Статус}" Width="120"/>
-                <DataGridTextColumn Header="Дата старта" Binding="{Binding ВремяСтарта, StringFormat=dd.MM.yyyy}" Width="120"/>
-                <DataGridTextColumn Header="Кол-во, кг" Binding="{Binding ФактКоличество_кг}" Width="100"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
+                <DataGridTextColumn Header="Номер партии" Binding="{Binding НомерПартии}" Width="Auto"/>
+                <DataGridTextColumn Header="Статус производства" Binding="{Binding Статус}" Width="Auto"/>
+                <DataGridTextColumn Header="Лаб. статус" Binding="{Binding ЛабораторныйСтатус}" Width="Auto"/>
+                <DataGridTextColumn Header="Дата старта" Binding="{Binding ВремяСтарта, StringFormat=dd.MM.yyyy}" Width="Auto"/>
+                <DataGridTextColumn Header="Кол-во, кг" Binding="{Binding ФактКоличество_кг}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

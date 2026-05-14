@@ -13,12 +13,14 @@ namespace AgroControl.Laboratory.Views
         private int batchId;
         private RawMaterialBatch batch;
         private List<LabTest> tests;
+        private string currentUser;
 
-        public RawMaterialBatchCard(ApiService api, int batchId)
+        public RawMaterialBatchCard(ApiService api, int batchId, string user)
         {
             InitializeComponent();
             this.api = api;
             this.batchId = batchId;
+            currentUser = user;
             Loaded += async (s, e) => await LoadData();
         }
 
@@ -29,44 +31,98 @@ namespace AgroControl.Laboratory.Views
                 var batchResp = await api.GetAsync<ApiResponse<RawMaterialBatch>>($"api/RawMaterialBatches/{batchId}");
                 batch = batchResp.Data;
                 DataContext = batch;
-
-                var testsResp = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={batchId}");
-                tests = testsResp.Data ?? new List<LabTest>();
-                testsGrid.ItemsSource = tests;
+                await LoadTests();
+                LoadHistory();
             }
             catch (Exception ex) { MessageBox.Show("Ошибка загрузки: " + ex.Message); }
         }
 
-        private void TestsGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private async Task LoadTests()
+        {
+            var testsResp = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={batchId}");
+            tests = testsResp.Data ?? new List<LabTest>();
+            testsGrid.ItemsSource = tests;
+        }
+
+        private void LoadHistory()
+        {
+            // Имитация истории (можно хранить в БД, здесь просто пример)
+            var history = new List<string>();
+            if (!string.IsNullOrEmpty(batch.РешениеПринял))
+                history.Add($"{batch.ДатаРешения:dd.MM.yyyy HH:mm} - {batch.РешениеПринял}: {batch.ЛабораторныйСтатус}. Комментарий: {batch.КомментарийРешения}");
+            historyItems.ItemsSource = history;
+        }
+
+        private async void AddTest_Click(object sender, RoutedEventArgs e)
+        {
+            // Проверка на незавершённое испытание
+            if (tests.Any(t => t.Статус != "завершено"))
+            {
+                MessageBox.Show("Для этой партии уже есть незавершённое испытание. Завершите его перед созданием нового.");
+                return;
+            }
+            var dialog = new LabTestEditWindow(api, batch, currentUser);
+            if (dialog.ShowDialog() == true) await LoadTests();
+        }
+
+        private void EditTest_Click(object sender, RoutedEventArgs e)
         {
             if (testsGrid.SelectedItem is LabTest selected)
             {
-                var editWindow = new LabTestEditWindow(api, selected);
-                editWindow.Owner = this;
-                if (editWindow.ShowDialog() == true) _ = LoadData();
+                var dialog = new LabTestEditWindow(api, selected, currentUser);
+                if (dialog.ShowDialog() == true) LoadTests();
             }
+            else MessageBox.Show("Выберите испытание");
         }
+
+        private async void DeleteTest_Click(object sender, RoutedEventArgs e)
+        {
+            if (testsGrid.SelectedItem is LabTest selected)
+            {
+                if (MessageBox.Show("Удалить испытание?", "Подтверждение", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+                try
+                {
+                    await api.DeleteAsync($"api/QualityControl/{selected.ID}");
+                    MessageBox.Show("Испытание удалено");
+                    await LoadTests();
+                }
+                catch (Exception ex) { MessageBox.Show("Ошибка: " + ex.Message); }
+            }
+            else MessageBox.Show("Выберите испытание");
+        }
+
+        private async void RefreshTests_Click(object sender, RoutedEventArgs e) => await LoadTests();
+
+        private void TestsGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
 
         private async void MakeDecision_Click(object sender, RoutedEventArgs e)
         {
-            if (!tests.Any(t => !string.IsNullOrEmpty(t.Результат)))
+            // Проверки по ТЗ
+            if (!tests.Any())
             {
-                decisionError.Text = "Невозможно принять решение: нет завершённых испытаний.";
+                decisionError.Text = "Невозможно принять решение: нет ни одного испытания.";
                 return;
             }
-
+            if (tests.Any(t => t.Статус != "завершено" || string.IsNullOrEmpty(t.Результат)))
+            {
+                decisionError.Text = "Невозможно принять решение: есть незавершённые испытания.";
+                return;
+            }
+            if (tests.All(t => t.Результат != "pass"))
+            {
+                decisionError.Text = "Невозможно принять решение: ни одно испытание не пройдено.";
+                return;
+            }
             string decision = approveRadio.IsChecked == true ? "одобрена" : "заблокирована";
             string comment = commentBox.Text.Trim();
-
             if (decision == "заблокирована" && string.IsNullOrEmpty(comment))
             {
                 decisionError.Text = "При блокировке партии комментарий обязателен.";
                 return;
             }
-
             try
             {
-                var updateDto = new { ЛабораторныйСтатус = decision };
+                var updateDto = new { ЛабораторныйСтатус = decision, КомментарийРешения = comment, РешениеПринял = currentUser, ДатаРешения = DateTime.Now };
                 await api.PutAsync<ApiResponse<object>>($"api/RawMaterialBatches/{batchId}", updateDto);
                 MessageBox.Show($"Партия {decision}.");
                 DialogResult = true;

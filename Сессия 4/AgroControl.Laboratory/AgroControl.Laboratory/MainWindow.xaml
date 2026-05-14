@@ -3,54 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Лаборатория АСУ ТП" Height="700" Width="1200">
     <DockPanel>
-        <!-- Левое меню -->
         <Border DockPanel.Dock="Left" Width="240" Background="#1E293B">
             <StackPanel>
-                <TextBlock Text="АСУ ТП" Foreground="White" FontSize="18" FontWeight="Bold"
-                           Margin="16,16,16,8"/>
-                <TextBlock Text="Модуль лаборатории" Foreground="#94A3B8" FontSize="12"
-                           Margin="16,0,16,16"/>
-                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged"
-                         Background="Transparent" BorderThickness="0">
+                <TextBlock Text="АСУ ТП" Foreground="White" FontSize="18" FontWeight="Bold" Margin="16,16,16,8"/>
+                <TextBlock Text="Модуль лаборатории" Foreground="#94A3B8" FontSize="12" Margin="16,0,16,16"/>
+                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged" Background="Transparent" BorderThickness="0">
                     <ListBoxItem Content="Партии сырья" Tag="RawMaterialBatches"/>
                     <ListBoxItem Content="Готовая продукция" Tag="ProductBatches"/>
+                    <ListBoxItem Content="Испытания" Tag="Tests"/>
                 </ListBox>
             </StackPanel>
         </Border>
+        
 
-        <!-- Основная область -->
         <DockPanel Background="#F9FAFB">
-            <!-- Верхняя панель с профилем -->
+            <!-- Верхняя панель с профилем (такая же как ранее) -->
             <Border DockPanel.Dock="Top" Background="White" Padding="16,10" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1">
                 <Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Grid Width="40" Height="40" Margin="0,0,12,0" 
-                              MouseLeftButtonDown="Avatar_MouseLeftButtonDown">
+                        <Grid Width="40" Height="40" Margin="0,0,12,0" MouseLeftButtonDown="Avatar_MouseLeftButtonDown">
                             <Image x:Name="userPhoto" Stretch="UniformToFill" Visibility="Collapsed"/>
-                            <Border x:Name="userPhotoPlaceholder" Width="40" Height="40" CornerRadius="20" Background="#2563EB"
-                                    Visibility="Visible">
-                                <TextBlock x:Name="userPhotoPlaceholderText" Text="??" Foreground="White" FontSize="18" FontWeight="Bold"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border x:Name="userPhotoPlaceholder" Width="40" Height="40" CornerRadius="20" Background="#2563EB" Visibility="Visible">
+                                <TextBlock x:Name="userPhotoPlaceholderText" Text="??" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
-                            <Grid.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Профиль" Click="UserMenuItem_Click"/>
-                                    <MenuItem Header="Сменить пароль" Click="ChangePasswordMenuItem_Click"/>
-                                    <Separator/>
-                                    <MenuItem Header="Выход" Click="Logout_Click"/>
-                                </ContextMenu>
-                            </Grid.ContextMenu>
                         </Grid>
                         <StackPanel>
                             <TextBlock x:Name="userFullName" Text="Лаборант" FontWeight="SemiBold" Foreground="#1F2937"/>
                             <TextBlock x:Name="userRole" Text="laboratory" FontSize="12" Foreground="#6B7280"/>
                         </StackPanel>
                     </StackPanel>
-                    <Button Content="Выход" HorizontalAlignment="Right" Click="Logout_Click"
-                            Style="{StaticResource PrimaryButton}" Background="#EF4444" Width="80"/>
+                    <Button Content="Выход" HorizontalAlignment="Right" Click="Logout_Click" Style="{StaticResource PrimaryButton}" Background="#EF4444" Width="80"/>
                 </Grid>
             </Border>
-
             <ContentControl x:Name="MainContent" Margin="24"/>
         </DockPanel>
     </DockPanel>

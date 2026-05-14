@@ -10,7 +10,7 @@ namespace AgroControl.API.Controllers
     public class BatchesController : ControllerBase
     {
         private readonly BatchService _batchService;
-        private readonly AppDbContext _context;  // добавлено для прямого доступа
+        private readonly AppDbContext _context;
 
         public BatchesController(BatchService batchService, AppDbContext context)
         {
@@ -72,21 +72,38 @@ namespace AgroControl.API.Controllers
             return Ok(new { success = true, data = step });
         }
 
+        // ИСПРАВЛЕННЫЙ метод для редактирования партии (принимает ProductionBatch)
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBatch(int id, [FromBody] BatchUpdateDto dto)
+        public async Task<IActionResult> UpdateBatch(int id, [FromBody] ProductionBatch updated)
         {
-            var ok = await _batchService.UpdateBatchAsync(id, dto.StartTime, dto.EndTime, dto.Status, dto.FactQuantity);
-            if (!ok) return NotFound(new { success = false, message = "Партия не найдена" });
+            var existing = await _context.ProductionBatches.FindAsync(id);
+            if (existing == null) return NotFound(new { success = false, message = "Партия не найдена" });
+            existing.НомерПартии = updated.НомерПартии;
+            existing.Статус = updated.Статус;
+            existing.ФактКоличество_кг = updated.ФактКоличество_кг;
+            await _context.SaveChangesAsync();
             return Ok(new { success = true, message = "Партия обновлена" });
         }
 
-        // Метод для обновления статуса готовой продукции (лабораторное решение)
         [HttpPut("{id}/status")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] string status)
         {
             var batch = await _context.ProductionBatches.FindAsync(id);
             if (batch == null) return NotFound();
             batch.Статус = status;
+            await _context.SaveChangesAsync();
+            return Ok(new { success = true });
+        }
+
+        [HttpPut("{id}/lab-status")]
+        public async Task<IActionResult> UpdateLabStatus(int id, [FromBody] ProductionBatch updated)
+        {
+            var existing = await _context.ProductionBatches.FindAsync(id);
+            if (existing == null) return NotFound();
+            existing.ЛабораторныйСтатус = updated.ЛабораторныйСтатус;
+            existing.КомментарийРешения = updated.КомментарийРешения;
+            existing.РешениеПринял = updated.РешениеПринял;
+            existing.ДатаРешения = DateTime.Now;
             await _context.SaveChangesAsync();
             return Ok(new { success = true });
         }

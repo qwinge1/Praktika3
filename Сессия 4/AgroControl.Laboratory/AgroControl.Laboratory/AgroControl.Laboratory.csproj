@@ -5,10 +5,13 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
-		<ApplicationIcon>7f81ed43b3fd67f2533f71d17c6275d0.ico</ApplicationIcon>
+		<ApplicationIcon>5926.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Content Include="7f81ed43b3fd67f2533f71d17c6275d0.ico" />
+	  <Content Include="5926.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="EPPlus" Version="8.5.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Сессия 2\AgroControl.API\AgroControl.API\AgroControl.API.csproj" />

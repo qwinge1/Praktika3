@@ -12,11 +12,13 @@ namespace AgroControl.Laboratory.Views
     {
         private ApiService api;
         private List<ProductionBatch> allBatches = new();
+        private string currentUser;
 
-        public ProductBatchesPage(ApiService api)
+        public ProductBatchesPage(ApiService api, string user)
         {
             InitializeComponent();
             this.api = api;
+            currentUser = user;
             Loaded += async (s, e) => await LoadBatches();
         }
 
@@ -27,51 +29,49 @@ namespace AgroControl.Laboratory.Views
                 var response = await api.GetAsync<ApiResponse<List<ProductionBatch>>>("api/Batches");
                 allBatches = response.Data ?? new List<ProductionBatch>();
                 batchesGrid.ItemsSource = allBatches;
+                ApplyFilters();
             }
             catch (Exception ex) { MessageBox.Show("Ошибка загрузки: " + ex.Message); }
         }
 
         private async void Refresh_Click(object sender, RoutedEventArgs e) => await LoadBatches();
 
-        private async void CreateTest_Click(object sender, RoutedEventArgs e)
-        {
-            if (batchesGrid.SelectedItem is ProductionBatch selected)
-            {
-                // Проверяем, есть ли незавершённое испытание
-                var existingTests = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={selected.ID}");
-                if (existingTests.Data?.Any(t => string.IsNullOrEmpty(t.Результат)) == true)
-                {
-                    MessageBox.Show("Для этой партии уже есть незавершённое испытание.");
-                    return;
-                }
-                var dialog = new LabTestEditWindow(api, selected); // нужно добавить конструктор для ProductionBatch
-                if (dialog.ShowDialog() == true) await LoadBatches();
-            }
-            else MessageBox.Show("Выберите партию");
-        }
-
         private void BatchesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (batchesGrid.SelectedItem is ProductionBatch selected)
             {
-                var cardWindow = new ProductBatchCard(api, selected.ID);
-                cardWindow.Owner = Window.GetWindow(this);
-                cardWindow.ShowDialog();
+                var card = new ProductBatchCard(api, selected.ID, currentUser);
+                card.Owner = Window.GetWindow(this);
+                card.ShowDialog();
+                _ = LoadBatches(); // обновить после закрытия
             }
         }
 
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            var term = searchBox.Text.ToLower();
-            batchesGrid.ItemsSource = string.IsNullOrWhiteSpace(term) ? allBatches :
-                allBatches.Where(b => b.НомерПартии.ToLower().Contains(term) ||
-                                      (b.Статус?.ToLower().Contains(term) ?? false)).ToList();
-        }
-
-        private void ClearSearch_Click(object sender, RoutedEventArgs e)
+        private void ApplyFilters_Click(object sender, RoutedEventArgs e) => ApplyFilters();
+        private void ClearFilters_Click(object sender, RoutedEventArgs e)
         {
             searchBox.Clear();
-            batchesGrid.ItemsSource = allBatches;
+            statusFilter.SelectedIndex = 0;
+            labStatusFilter.SelectedIndex = 0;
+            ApplyFilters();
+        }
+
+        private void ApplyFilters()
+        {
+            var query = allBatches.AsEnumerable();
+            var search = searchBox.Text.Trim().ToLower();
+            if (!string.IsNullOrEmpty(search))
+                query = query.Where(b => b.НомерПартии.ToLower().Contains(search));
+
+            var status = (statusFilter.SelectedItem as ComboBoxItem)?.Content.ToString();
+            if (status != "Все" && !string.IsNullOrEmpty(status))
+                query = query.Where(b => b.Статус == status);
+
+            var labStatus = (labStatusFilter.SelectedItem as ComboBoxItem)?.Content.ToString();
+            if (labStatus != "Все" && !string.IsNullOrEmpty(labStatus))
+                query = query.Where(b => b.ЛабораторныйСтатус == labStatus);
+
+            batchesGrid.ItemsSource = query.ToList();
         }
     }
 }

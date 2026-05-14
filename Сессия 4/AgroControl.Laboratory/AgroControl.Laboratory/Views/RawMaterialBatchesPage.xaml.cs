@@ -12,11 +12,13 @@ namespace AgroControl.Laboratory.Views
     {
         private ApiService api;
         private List<RawMaterialBatch> allBatches = new();
+        private string currentUser;
 
-        public RawMaterialBatchesPage(ApiService api)
+        public RawMaterialBatchesPage(ApiService api, string user)
         {
             InitializeComponent();
             this.api = api;
+            currentUser = user;
             Loaded += async (s, e) => await LoadBatches();
         }
 
@@ -26,52 +28,76 @@ namespace AgroControl.Laboratory.Views
             {
                 var response = await api.GetAsync<ApiResponse<List<RawMaterialBatch>>>("api/RawMaterialBatches");
                 allBatches = response.Data ?? new List<RawMaterialBatch>();
-                batchesGrid.ItemsSource = null;
-                batchesGrid.ItemsSource = allBatches;
+                foreach (var batch in allBatches)
+                {
+                    try
+                    {
+                        var tests = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={batch.ID}");
+                        batch.HasTest = tests.Data?.Any() == true;
+                        batch.LastTestDate = tests.Data?.OrderByDescending(t => t.ДатаАнализа).FirstOrDefault()?.ДатаАнализа;
+                    }
+                    catch { /* игнорируем ошибки отдельных партий */ }
+                }
+                LoadSuppliers();
+                ApplyFilters();
             }
             catch (Exception ex) { MessageBox.Show("Ошибка загрузки: " + ex.Message); }
         }
 
-        private async void Refresh_Click(object sender, RoutedEventArgs e) => await LoadBatches();
-
-        private async void CreateTest_Click(object sender, RoutedEventArgs e)
+        private void LoadSuppliers()
         {
-            if (batchesGrid.SelectedItem is RawMaterialBatch selected)
-            {
-                var existingTests = await api.GetAsync<ApiResponse<List<LabTest>>>($"api/QualityControl?batchId={selected.ID}");
-                if (existingTests.Data?.Any(t => string.IsNullOrEmpty(t.Результат)) == true)
-                {
-                    MessageBox.Show("Для этой партии уже есть незавершённое испытание.");
-                    return;
-                }
-                var dialog = new LabTestEditWindow(api, selected);
-                if (dialog.ShowDialog() == true) await LoadBatches();
-            }
-            else MessageBox.Show("Выберите партию сырья");
+            var suppliers = allBatches.Select(b => b.Поставщик).Where(s => !string.IsNullOrEmpty(s)).Distinct().ToList();
+            var list = new List<string> { "Все" };
+            list.AddRange(suppliers);
+            supplierFilter.ItemsSource = list;
+            supplierFilter.SelectedIndex = 0;
         }
+
+        private async void Refresh_Click(object sender, RoutedEventArgs e) => await LoadBatches();
 
         private void BatchesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (batchesGrid.SelectedItem is RawMaterialBatch selected)
             {
-                var cardWindow = new RawMaterialBatchCard(api, selected.ID);
-                cardWindow.Owner = Window.GetWindow(this);
-                cardWindow.ShowDialog();
+                var card = new RawMaterialBatchCard(api, selected.ID, currentUser);
+                card.Owner = Window.GetWindow(this);
+                card.ShowDialog();
+                _ = LoadBatches();
             }
         }
 
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            var term = searchBox.Text.ToLower();
-            batchesGrid.ItemsSource = string.IsNullOrWhiteSpace(term) ? allBatches :
-                allBatches.Where(b => b.НомерПартии.ToLower().Contains(term) ||
-                                      (b.Поставщик?.ToLower().Contains(term) ?? false)).ToList();
-        }
-
-        private void ClearSearch_Click(object sender, RoutedEventArgs e)
+        private void ApplyFilters_Click(object sender, RoutedEventArgs e) => ApplyFilters();
+        private void ClearFilters_Click(object sender, RoutedEventArgs e)
         {
             searchBox.Clear();
-            batchesGrid.ItemsSource = allBatches;
+            statusFilter.SelectedIndex = 0;
+            supplierFilter.SelectedIndex = 0;
+            dateFrom.SelectedDate = null;
+            dateTo.SelectedDate = null;
+            hasTestFilter.IsChecked = false;
+            ApplyFilters();
+        }
+
+        private void ApplyFilters()
+        {
+            var query = allBatches.AsEnumerable();
+            var search = searchBox.Text.Trim().ToLower();
+            if (!string.IsNullOrEmpty(search))
+                query = query.Where(b => b.НомерПартии.ToLower().Contains(search) ||
+                                         (b.Сырье?.Наименование?.ToLower().Contains(search) ?? false));
+            var status = (statusFilter.SelectedItem as ComboBoxItem)?.Content.ToString();
+            if (status != "Все" && !string.IsNullOrEmpty(status))
+                query = query.Where(b => b.ЛабораторныйСтатус == status);
+            var supplier = supplierFilter.SelectedItem as string;
+            if (supplier != "Все" && !string.IsNullOrEmpty(supplier))
+                query = query.Where(b => b.Поставщик == supplier);
+            if (dateFrom.SelectedDate.HasValue)
+                query = query.Where(b => b.ДатаПоступления >= dateFrom.SelectedDate.Value);
+            if (dateTo.SelectedDate.HasValue)
+                query = query.Where(b => b.ДатаПоступления <= dateTo.SelectedDate.Value);
+            if (hasTestFilter.IsChecked == true)
+                query = query.Where(b => b.HasTest);
+            batchesGrid.ItemsSource = query.ToList();
         }
     }
 }
