@@ -68,7 +68,7 @@ namespace AgroControl.Technologist.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AgroControl.Technologist;V1.0.0.0;component/views/productspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AgroControl.Technologist;component/views/productspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ProductsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
