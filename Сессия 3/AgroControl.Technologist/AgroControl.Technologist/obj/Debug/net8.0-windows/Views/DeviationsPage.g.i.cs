@@ -68,7 +68,7 @@ namespace AgroControl.Technologist.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AgroControl.Technologist;component/views/deviationspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AgroControl.Technologist;V1.0.0.0;component/views/deviationspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\DeviationsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
