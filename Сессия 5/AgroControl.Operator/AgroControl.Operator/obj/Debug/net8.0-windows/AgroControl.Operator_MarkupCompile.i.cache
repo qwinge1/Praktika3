@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 5\AgroControl.Operator\AgroControl.Operator\App.xaml
-11407045341
+9-31910650
 1-1463091825
-81867769110
-199-1260300985
-MainWindow.xaml;
+16121559497
+3611627395140
+MainWindow.xaml;Views\ActiveBatchesPage.xaml;Views\CreateBatchWindow.xaml;Views\ExtruderPage.xaml;Views\IssuesPage.xaml;Views\JournalPage.xaml;Views\LoginWindow.xaml;Views\ProgramPage.xaml;Views\ReportPage.xaml;
 
-False
+True
 

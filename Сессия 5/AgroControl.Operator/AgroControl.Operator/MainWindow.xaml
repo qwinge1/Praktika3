@@ -1,12 +1,87 @@
 ﻿<Window x:Class="AgroControl.Operator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AgroControl.Operator"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Аппаратчик — АСУ ТП" Height="700" Width="1200">
+    <DockPanel>
+        <!-- Левая панель (тёмная) -->
+        <Border DockPanel.Dock="Left" Width="260" Background="#1E293B">
+            <StackPanel>
+                <StackPanel Margin="16,16,16,8" Orientation="Horizontal">
+                    <Image Source="/7f81ed43b3fd67f2533f71d17c6275d0.jpg" 
+                           Width="32" Height="32" Margin="0,0,12,0" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock Text="АСУ ТП" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="Аппаратчик" Foreground="#94A3B8" FontSize="13" Margin="16,0,16,20"/>
 
-    </Grid>
+                <ListBox x:Name="MenuList" SelectionChanged="MenuList_SelectionChanged"
+                         Background="Transparent" BorderThickness="0"
+                         FontSize="15" FontWeight="SemiBold">
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="16,12"/>
+                            <Setter Property="Margin" Value="8,2"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#334155"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#3B82F6"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBoxItem Content="📋 Активные партии" Tag="ActiveBatches"/>
+                    <ListBoxItem Content="⚙️ Программа партии" Tag="Program"/>
+                    <ListBoxItem Content="🔥 Экструдер LIVE" Tag="Extruder"/>
+                    <ListBoxItem Content="📜 Журнал партии" Tag="Journal"/>
+                    <ListBoxItem Content="⚠️ Сообщить о проблеме" Tag="Report"/>
+                    <ListBoxItem Content="⚠️ Все проблемы" Tag="Issues"/>
+                </ListBox>
+
+                <Border Background="#0F172A" Margin="8,30,8,16" Padding="12,8" CornerRadius="6">
+                    <StackPanel>
+                        <TextBlock Text="Текущая смена:" FontSize="12" Foreground="#94A3B8"/>
+                        <TextBlock x:Name="lblShift" Text="Смена 2" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
+                        <TextBlock Text="Линия:" FontSize="12" Foreground="#94A3B8" Margin="0,8,0,0"/>
+                        <TextBlock x:Name="lblLine" Text="L-01" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
+                        <TextBlock Text="Соединение:" FontSize="12" Foreground="#94A3B8" Margin="0,8,0,0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse x:Name="onlineIndicator" Width="10" Height="10" Fill="#2ECC71" Margin="0,0,6,0"/>
+                            <TextBlock Text="Online" Foreground="White" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                
+            </StackPanel>
+        </Border>
+
+        <!-- Правая область (без изменений) -->
+        <DockPanel Background="#F9FAFB">
+            <Border DockPanel.Dock="Top" Background="White" Padding="16,10" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Grid Width="40" Height="40" Margin="0,0,12,0">
+                            <Image x:Name="userPhoto" Stretch="UniformToFill" Visibility="Collapsed"/>
+                            <Border x:Name="userPhotoPlaceholder" Width="40" Height="40" CornerRadius="20" Background="#2563EB" Visibility="Visible">
+                                <TextBlock x:Name="userPhotoPlaceholderText" Text="??" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <StackPanel>
+                            <TextBlock x:Name="userFullName" Text="Оператор" FontWeight="SemiBold" Foreground="#1F2937"/>
+                            <TextBlock x:Name="userRole" Text="operator" FontSize="12" Foreground="#6B7280"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Content="Выход" HorizontalAlignment="Right" Click="Logout_Click" Style="{StaticResource PrimaryButton}" Background="#EF4444" Width="80"/>
+                </Grid>
+            </Border>
+
+            <ContentControl x:Name="MainContent" Margin="24"/>
+        </DockPanel>
+    </DockPanel>
 </Window>

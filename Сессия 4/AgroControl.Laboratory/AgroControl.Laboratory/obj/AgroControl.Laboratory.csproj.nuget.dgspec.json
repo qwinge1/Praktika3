@@ -53,11 +53,7 @@
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[4.0.3, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[8.0.11, )"
+              "version": "[4.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -76,10 +72,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.9.1, )"
             }
           },
           "imports": [

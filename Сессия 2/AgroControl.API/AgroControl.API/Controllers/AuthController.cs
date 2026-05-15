@@ -14,7 +14,7 @@ namespace AgroControl.API.Controllers
         {
             _context = context;
         }
-
+        
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
@@ -23,6 +23,7 @@ namespace AgroControl.API.Controllers
                 return Unauthorized(new { success = false, message = "Неверный логин или пароль" });
             return Ok(new { success = true, message = "Вход выполнен" });
         }
+
     }
 
     public class LoginDto

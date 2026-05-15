@@ -1,20 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>icons8-завод-100.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-    <ApplicationIcon>icons8-завод-100.ico</ApplicationIcon>
-  </PropertyGroup>
+	<ItemGroup>
+		<None Remove="7f81ed43b3fd67f2533f71d17c6275d0.jpg" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="icons8-завод-100.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="icons8-завод-100.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Сессия 2\AgroControl.API\AgroControl.API\AgroControl.API.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="7f81ed43b3fd67f2533f71d17c6275d0.jpg">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
 </Project>

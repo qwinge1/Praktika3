@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using AgroControl.API.Models;
+﻿using AgroControl.API.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgroControl.API.Services
 {
@@ -137,14 +138,17 @@ namespace AgroControl.API.Services
                 .FirstOrDefaultAsync(o => o.ID == batch.ЗаказID);
             if (order == null)
                 throw new ArgumentException($"Заказ с ID {batch.ЗаказID} не найден");
-
             if (order.ТехКарта == null)
                 throw new ArgumentException("К заказу не привязана технологическая карта");
+
+            var steps = order.ТехКарта.Шаги.OrderBy(s => s.НомерШага).ToList();
+            if (steps.Count == 0)
+                throw new ArgumentException("У технологической карты нет шагов");
 
             _context.ProductionBatches.Add(batch);
             await _context.SaveChangesAsync();
 
-            var steps = order.ТехКарта.Шаги.OrderBy(s => s.НомерШага).ToList();
+            // Создаём записи выполнения шагов
             foreach (var step in steps)
             {
                 var execution = new BatchStepExecution
@@ -158,11 +162,8 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
 
             // Устанавливаем первый шаг как текущий
-            if (steps.Any())
-            {
-                batch.ТекущийШагID = steps.First().ID;
-                await _context.SaveChangesAsync();
-            }
+            batch.ТекущийШагID = steps.First().ID;
+            await _context.SaveChangesAsync();
 
             return batch;
         }
@@ -233,11 +234,24 @@ namespace AgroControl.API.Services
             await _context.SaveChangesAsync();
             return true;
         }
-
+        // AgroControl.API/Services/BatchService.cs
+        public async Task<List<EventLog>> GetAllIssuesAsync()
+        {
+            return await _context.EventLogs
+                .Where(e => e.ТипСобытия == "проблема" || e.Важность == "критическое")
+                .Include(e => e.Создал)
+                .OrderByDescending(e => e.ВремяСобытия)
+                .ToListAsync();
+        }
         public async Task<bool> DeleteAsync(int id)
         {
-            var batch = await _context.ProductionBatches.FindAsync(id);
+            var batch = await _context.ProductionBatches
+                .Include(b => b.ВыполнениеШагов)
+                .FirstOrDefaultAsync(b => b.ID == id);
             if (batch == null) return false;
+
+            // Сначала удаляем все выполнения шагов
+            _context.BatchStepExecutions.RemoveRange(batch.ВыполнениеШагов);
             _context.ProductionBatches.Remove(batch);
             await _context.SaveChangesAsync();
             return true;

@@ -1,14 +1,10 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 
 namespace AgroControl.Operator
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public static string? CurrentUser { get; set; }
+        public static int CurrentUserId { get; set; } = 14; // test.user по умолчанию
     }
-
 }

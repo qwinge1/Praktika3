@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AgroControl.API.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgroControl.API.Controllers
 {
@@ -11,7 +12,7 @@ namespace AgroControl.API.Controllers
         [HttpGet("live")]
         public IActionResult GetLiveData()
         {
-            var data = new
+            var data = new ExtruderLiveData
             {
                 ТемператураЗоны1 = _random.Next(75, 85),
                 ТемператураЗоны2 = _random.Next(80, 90),

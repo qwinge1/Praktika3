@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="AgroControl.Operator.Views.JournalPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F9FAFB">
+    <Grid Margin="10">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgEvents" AutoGenerateColumns="False" IsReadOnly="True" MinWidth="600" CanUserResizeColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Время" Binding="{Binding ВремяСобытия, StringFormat=dd.MM.yyyy HH:mm:ss}" Width="150" MinWidth="120"/>
+                    <DataGridTextColumn Header="Тип" Binding="{Binding ТипСобытия}" Width="120" MinWidth="100"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Описание}" Width="*" MinWidth="200">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Важность" Binding="{Binding Важность}" Width="100" MinWidth="80">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="{Binding Важность, Converter={StaticResource StatusToColorConverter}}"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

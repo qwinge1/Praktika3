@@ -87,14 +87,34 @@ namespace AgroControl.API.Controllers
             if (!result) return NotFound(new { success = false, message = "Партия не найдена" });
             return Ok(new { success = true, message = "Проблема зарегистрирована" });
         }
-
+        [HttpPut("{id}/complete")]
+        public async Task<IActionResult> CompleteBatch(int id, [FromBody] CompleteBatchDto dto)
+        {
+            var batch = await _context.ProductionBatches.FindAsync(id);
+            if (batch == null) return NotFound();
+            batch.Статус = dto.Status;
+            batch.ФактКоличество_кг = dto.FactQuantity;
+            batch.ВремяОкончания = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return Ok(new { success = true });
+        }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductionBatch batch)
         {
             var created = await _batchService.CreateAsync(batch);
             return Ok(new { success = true, data = created });
         }
-
+        // В Controllers/BatchesController.cs добавить:
+        [HttpGet("issues")]
+        public async Task<IActionResult> GetAllIssues()
+        {
+            var events = await _context.EventLogs
+                .Where(e => e.ТипСобытия == "проблема")
+                .Include(e => e.Создал)
+                .OrderByDescending(e => e.ВремяСобытия)
+                .ToListAsync();
+            return Ok(new { success = true, data = events });
+        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -103,7 +123,11 @@ namespace AgroControl.API.Controllers
             return Ok(new { success = true, message = "Партия удалена" });
         }
     }
-
+    public class CompleteBatchDto
+    {
+        public decimal FactQuantity { get; set; }
+        public string Status { get; set; }
+    }
     public class BatchStepActualsDto
     {
         public decimal? ActualTemp { get; set; }

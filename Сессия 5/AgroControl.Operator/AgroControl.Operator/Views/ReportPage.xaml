@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="AgroControl.Operator.Views.ReportPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F9FAFB">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Опишите проблему" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBox x:Name="txtMessage" Grid.Row="1" Height="150" TextWrapping="Wrap" AcceptsReturn="True" 
+                 VerticalScrollBarVisibility="Auto" MinWidth="400" Margin="0,0,0,10"/>
+        <Button Grid.Row="2" Content="Отправить сообщение" Width="180" Height="35" Click="Send_Click" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>
