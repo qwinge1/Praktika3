@@ -3,15 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B65D77AC-8DD2-4D2B-8904-2820E15E51F0}|AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist.tests\\tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B65D77AC-8DD2-4D2B-8904-2820E15E51F0}|AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj|solutionrelative:agrocontrol.technologist.tests\\tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B65D77AC-8DD2-4D2B-8904-2820E15E51F0}|AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist.tests\\agrocontrol.technologist.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B65D77AC-8DD2-4D2B-8904-2820E15E51F0}|AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj|solutionrelative:agrocontrol.technologist.tests\\agrocontrol.technologist.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|solutionrelative:agrocontrol.technologist\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|solutionrelative:agrocontrol.technologist\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|solutionrelative:agrocontrol.technologist\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ABD2068B-D79B-46E4-B825-865F34416124}|AgroControl.Technologist\\AgroControl.Technologist.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 3\\agrocontrol.technologist\\agrocontrol.technologist\\agrocontrol.technologist.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -197,8 +205,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tests.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist.Tests\\Tests.cs",
+              "RelativeDocumentMoniker": "AgroControl.Technologist.Tests\\Tests.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist.Tests\\Tests.cs",
+              "RelativeToolTip": "AgroControl.Technologist.Tests\\Tests.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAA8wHgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T06:28:21.515Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -206,6 +227,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AgroControl.Technologist.Tests",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj",
+              "RelativeDocumentMoniker": "AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj",
+              "RelativeToolTip": "AgroControl.Technologist.Tests\\AgroControl.Technologist.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-16T06:28:17.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -213,18 +247,17 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AgIAAEwbAAAAAAAAAAAuwHYbAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-05-15T13:17:42.729Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T13:17:42.729Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\AssemblyInfo.cs",
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\AssemblyInfo.cs",
               "RelativeToolTip": "AgroControl.Technologist\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-08T07:36:32.045Z",
               "EditorCaption": ""
@@ -237,14 +270,14 @@
               "RelativeDocumentMoniker": "AgroControl.Technologist\\TestHelpers.cs",
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\TestHelpers.cs",
               "RelativeToolTip": "AgroControl.Technologist\\TestHelpers.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAUwD0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwD0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-16T05:31:29.74Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AgroControl.Technologist.csproj",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\AgroControl.Technologist.csproj",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\AgroControl.Technologist.csproj",
@@ -257,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\appsettings.json",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\appsettings.json",
@@ -269,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\MainWindow.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\MainWindow.xaml",
@@ -280,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\MainWindow.xaml.cs",
@@ -292,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\App.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\App.xaml.cs",
@@ -304,7 +337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\App.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\App.xaml",
@@ -315,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "AgroControl.Technologist.csproj.Backup.tmp",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\AgroControl.Technologist.csproj.Backup.tmp",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\AgroControl.Technologist.csproj.Backup.tmp",
@@ -327,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "TechCardsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\TechCardsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\TechCardsPage.xaml",
@@ -338,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "TechCardEditDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\TechCardEditDialog.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\TechCardEditDialog.xaml.cs",
@@ -350,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TechCardsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\TechCardsPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\TechCardsPage.xaml.cs",
@@ -362,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "TechCardEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\TechCardEditDialog.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\TechCardEditDialog.xaml",
@@ -373,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "StepsWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\StepsWindow.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\StepsWindow.xaml.cs",
@@ -385,7 +418,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "StepsWindow.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\StepsWindow.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\StepsWindow.xaml",
@@ -396,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ReportsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ReportsPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ReportsPage.xaml.cs",
@@ -408,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "ReportsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ReportsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ReportsPage.xaml",
@@ -419,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "RecipesPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\RecipesPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\RecipesPage.xaml.cs",
@@ -431,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "RecipesPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\RecipesPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\RecipesPage.xaml",
@@ -442,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "RecipeEditDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\RecipeEditDialog.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\RecipeEditDialog.xaml.cs",
@@ -454,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "RecipeEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\RecipeEditDialog.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\RecipeEditDialog.xaml",
@@ -465,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "ProductsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ProductsPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ProductsPage.xaml.cs",
@@ -477,7 +510,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "ProductsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ProductsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ProductsPage.xaml",
@@ -488,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "ProductEditDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ProductEditDialog.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ProductEditDialog.xaml.cs",
@@ -500,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "ProductEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ProductEditDialog.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ProductEditDialog.xaml",
@@ -511,7 +544,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "OrdersPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\OrdersPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\OrdersPage.xaml.cs",
@@ -523,7 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "OrdersPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\OrdersPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\OrdersPage.xaml",
@@ -534,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "OrderEditDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\OrderEditDialog.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\OrderEditDialog.xaml.cs",
@@ -546,7 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "OrderEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\OrderEditDialog.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\OrderEditDialog.xaml",
@@ -557,7 +590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "LoginWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\LoginWindow.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\LoginWindow.xaml.cs",
@@ -569,7 +602,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\LoginWindow.xaml",
@@ -580,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "ExtruderProgramsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ExtruderProgramsPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ExtruderProgramsPage.xaml.cs",
@@ -592,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "ExtruderProgramsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ExtruderProgramsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ExtruderProgramsPage.xaml",
@@ -603,7 +636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "DeviationsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\DeviationsPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\DeviationsPage.xaml.cs",
@@ -615,7 +648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "DeviationsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\DeviationsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\DeviationsPage.xaml",
@@ -626,7 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "DashboardPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\DashboardPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\DashboardPage.xaml.cs",
@@ -638,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "DashboardPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\DashboardPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\DashboardPage.xaml",
@@ -649,7 +682,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "ComponentsWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ComponentsWindow.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ComponentsWindow.xaml.cs",
@@ -661,7 +694,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "ComponentsWindow.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\ComponentsWindow.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\ComponentsWindow.xaml",
@@ -672,7 +705,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "BatchesPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\BatchesPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\BatchesPage.xaml",
@@ -683,7 +716,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "BatchesPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\BatchesPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\BatchesPage.xaml.cs",
@@ -695,7 +728,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "BatchEditDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\BatchEditDialog.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\BatchEditDialog.xaml.cs",
@@ -707,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "BatchEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Views\\BatchEditDialog.xaml",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Views\\BatchEditDialog.xaml",
@@ -718,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "ApiService.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Services\\ApiService.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Services\\ApiService.cs",
@@ -730,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "CaptchaGenerator.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\Helpers\\CaptchaGenerator.cs",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\Helpers\\CaptchaGenerator.cs",
@@ -742,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "AgroControl.Technologist",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 3\\AgroControl.Technologist\\AgroControl.Technologist\\AgroControl.Technologist.csproj",
               "RelativeDocumentMoniker": "AgroControl.Technologist\\AgroControl.Technologist.csproj",

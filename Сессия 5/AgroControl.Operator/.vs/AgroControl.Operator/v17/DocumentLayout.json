@@ -15,12 +15,12 @@
       "RelativeMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|solutionrelative:agrocontrol.operator\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 5\\agrocontrol.operator\\agrocontrol.operator\\agrocontrol.operator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|solutionrelative:agrocontrol.operator\\agrocontrol.operator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 5\\agrocontrol.operator\\agrocontrol.operator\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|solutionrelative:agrocontrol.operator\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 5\\agrocontrol.operator\\agrocontrol.operator\\agrocontrol.operator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|solutionrelative:agrocontrol.operator\\agrocontrol.operator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{793C73C3-C8C9-4E6B-8C85-F4BA6AA40431}|AgroControl.Operator\\AgroControl.Operator.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 5\\agrocontrol.operator\\agrocontrol.operator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -145,7 +145,7 @@
               "RelativeDocumentMoniker": "AgroControl.Operator\\TestHelpers.cs",
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator\\TestHelpers.cs",
               "RelativeToolTip": "AgroControl.Operator\\TestHelpers.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAswFAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAzwFAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-16T05:46:02.259Z",
               "EditorCaption": ""
@@ -153,7 +153,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AgroControl.Operator.Tests",
+              "Title": "AgroControl.Operator.Tests.csproj",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator.Tests\\AgroControl.Operator.Tests.csproj",
               "RelativeDocumentMoniker": "AgroControl.Operator.Tests\\AgroControl.Operator.Tests.csproj",
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator.Tests\\AgroControl.Operator.Tests.csproj",
@@ -172,8 +172,7 @@
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator\\MainWindow.xaml",
               "RelativeToolTip": "AgroControl.Operator\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-14T10:08:23.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T10:08:23.003Z"
             },
             {
               "$type": "Document",
@@ -189,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AgroControl.Operator\\AssemblyInfo.cs",
@@ -202,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AgroControl.Operator.csproj",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator\\AgroControl.Operator.csproj",
               "RelativeDocumentMoniker": "AgroControl.Operator\\AgroControl.Operator.csproj",
@@ -347,8 +346,7 @@
               "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 5\\AgroControl.Operator\\AgroControl.Operator\\App.xaml",
               "RelativeToolTip": "AgroControl.Operator\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-15T06:55:22.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T06:55:22.738Z"
             },
             {
               "$type": "Document",
