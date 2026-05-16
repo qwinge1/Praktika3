@@ -11,8 +11,6 @@ C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laborat
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\AgroControl.Laboratory.pdb
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Azure.Core.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Azure.Identity.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.dll
@@ -40,7 +38,6 @@ C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laborat
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\System.ClientModel.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\System.Memory.Data.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\System.Runtime.Caching.dll
@@ -50,11 +47,6 @@ C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laborat
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
-C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\AgroControl.API.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\AgroControl.API.pdb
@@ -101,3 +93,4 @@ C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laborat
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\obj\Debug\net8.0-windows\Views\TestsPage.baml
 C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\obj\Debug\net8.0-windows\Views\TestsPage.g.cs
+C:\Users\Дима\Desktop\Praktika3\Praktika3\Сессия 4\AgroControl.Laboratory\AgroControl.Laboratory\bin\Debug\net8.0-windows\BCrypt-Net-Next.dll
