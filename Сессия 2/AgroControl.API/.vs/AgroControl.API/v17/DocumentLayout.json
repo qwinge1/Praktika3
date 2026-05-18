@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api.integrationtests\\agrocontrol.api.integrationtests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|solutionrelative:agrocontrol.api.integrationtests\\agrocontrol.api.integrationtests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api\\agrocontrol.postman_collection||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|solutionrelative:agrocontrol.api\\agrocontrol.postman_collection||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api.integrationtests\\teststartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|solutionrelative:agrocontrol.api.integrationtests\\teststartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api.integrationtests\\apiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|solutionrelative:agrocontrol.api.integrationtests\\apiintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api.integrationtests\\agrocontrol.api.integrationtests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{8395F118-F547-4B8B-8861-528D5B4861A3}|AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj|solutionrelative:agrocontrol.api.integrationtests\\agrocontrol.api.integrationtests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,10 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|solutionrelative:agrocontrol.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api\\agrocontrol.postman_collection||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|solutionrelative:agrocontrol.api\\agrocontrol.postman_collection||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ACEB75FA-3763-4099-8404-2E580236071B}|AgroControl.API\\AgroControl.API.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 2\\agrocontrol.api\\agrocontrol.api\\agrocontrol.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -229,46 +229,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApiIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
-              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
-              "RelativeToolTip": "AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAYwKUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T05:52:05.973Z",
+              "DocumentIndex": 1,
+              "Title": "AgroControl.postman_collection",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\AgroControl.postman_collection",
+              "RelativeDocumentMoniker": "AgroControl.API\\AgroControl.postman_collection",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\AgroControl.postman_collection",
+              "RelativeToolTip": "AgroControl.API\\AgroControl.postman_collection",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAkwLsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-08T06:44:39.932Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TestStartup.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\TestStartup.cs",
-              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\TestStartup.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\TestStartup.cs",
-              "RelativeToolTip": "AgroControl.API.IntegrationTests\\TestStartup.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAwCcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T05:51:25.703Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CustomWebApplicationFactory.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "RelativeToolTip": "AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAkwIIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T05:51:03.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "AgroControl.API.IntegrationTests.csproj",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj",
               "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\AgroControl.API.IntegrationTests.csproj",
@@ -281,7 +255,44 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomWebApplicationFactory.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
+              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
+              "RelativeToolTip": "AgroControl.API.IntegrationTests\\CustomWebApplicationFactory.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAkwIIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T05:51:03.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestStartup.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\TestStartup.cs",
+              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\TestStartup.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\TestStartup.cs",
+              "RelativeToolTip": "AgroControl.API.IntegrationTests\\TestStartup.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAmwCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T05:51:25.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ApiIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
+              "RelativeDocumentMoniker": "AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
+              "RelativeToolTip": "AgroControl.API.IntegrationTests\\ApiIntegrationTests.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAYwKUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T05:52:05.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\User.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\User.cs",
@@ -293,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "BatchService.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Services\\BatchService.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Services\\BatchService.cs",
@@ -305,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ExtruderController.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Controllers\\ExtruderController.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Controllers\\ExtruderController.cs",
@@ -317,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "BatchesController.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Controllers\\BatchesController.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Controllers\\BatchesController.cs",
@@ -329,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "EventLog.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\EventLog.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\EventLog.cs",
@@ -341,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AgroControl.API.csproj",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\AgroControl.API.csproj",
               "RelativeDocumentMoniker": "AgroControl.API\\AgroControl.API.csproj",
@@ -354,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Controllers\\AuthController.cs",
@@ -366,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ExtruderLiveData.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\ExtruderLiveData.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\ExtruderLiveData.cs",
@@ -378,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ProductionBatch.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\ProductionBatch.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\ProductionBatch.cs",
@@ -390,7 +401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\appsettings.Development.json",
               "RelativeDocumentMoniker": "AgroControl.API\\appsettings.Development.json",
@@ -402,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\appsettings.json",
               "RelativeDocumentMoniker": "AgroControl.API\\appsettings.json",
@@ -414,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ActiveBatchDto.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\ActiveBatchDto.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\ActiveBatchDto.cs",
@@ -426,7 +437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "ProductionOrder.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Models\\ProductionOrder.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Models\\ProductionOrder.cs",
@@ -438,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\WeatherForecast.cs",
@@ -450,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Program.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Program.cs",
@@ -462,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "EquipmentController.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\Controllers\\EquipmentController.cs",
               "RelativeDocumentMoniker": "AgroControl.API\\Controllers\\EquipmentController.cs",
@@ -471,18 +482,6 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAIwCYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-07T11:55:01.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AgroControl.postman_collection",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\AgroControl.postman_collection",
-              "RelativeDocumentMoniker": "AgroControl.API\\AgroControl.postman_collection",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 2\\AgroControl.API\\AgroControl.API\\AgroControl.postman_collection",
-              "RelativeToolTip": "AgroControl.API\\AgroControl.postman_collection",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAkwLsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-05-08T06:44:39.932Z"
             },
             {
               "$type": "Document",

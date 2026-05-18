@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38145BF3-3C99-4CD9-875C-DF04A6DA3972}|AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory.tests\\laboratorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38145BF3-3C99-4CD9-875C-DF04A6DA3972}|AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj|solutionrelative:agrocontrol.laboratory.tests\\laboratorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{38145BF3-3C99-4CD9-875C-DF04A6DA3972}|AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory.tests\\agrocontrol.laboratory.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -15,12 +19,20 @@
       "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\testhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\agrocontrol.laboratory.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\agrocontrol.laboratory.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\rawmaterialbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\rawmaterialbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38145BF3-3C99-4CD9-875C-DF04A6DA3972}|AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory.tests\\laboratorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38145BF3-3C99-4CD9-875C-DF04A6DA3972}|AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj|solutionrelative:agrocontrol.laboratory.tests\\laboratorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\agrocontrol.laboratory.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\agrocontrol.laboratory.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,10 +71,6 @@
       "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\rawmaterialbatchcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\rawmaterialbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\rawmaterialbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\productbatchespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\productbatchespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -77,14 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\productbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\productbatchcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|solutionrelative:agrocontrol.laboratory\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0215CF0D-D80E-4610-BFD3-3F1605185D32}|AgroControl.Laboratory\\AgroControl.Laboratory.csproj|c:\\users\\\u0434\u0438\u043C\u0430\\desktop\\praktika3\\praktika3\\\u0441\u0435\u0441\u0441\u0438\u044F 4\\agrocontrol.laboratory\\agrocontrol.laboratory\\views\\labtesteditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -121,7 +121,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -129,7 +129,153 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T10:33:03.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\App.xaml",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml",
+              "RelativeToolTip": "AgroControl.Laboratory\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-13T10:32:45.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TestsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAswGgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T06:59:18.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml",
+              "RelativeToolTip": "AgroControl.Laboratory\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-13T10:17:45.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RawMaterialBatchCard.xaml",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
+              "RelativeToolTip": "AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-13T10:19:34.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AgroControl.Laboratory.Tests.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
+              "RelativeToolTip": "AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-16T05:42:16.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\TestHelpers.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\TestHelpers.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\TestHelpers.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\TestHelpers.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAcwEQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T05:42:51.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "AgroControl.Laboratory\\Views\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-13T10:32:00.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswBgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T10:32:11.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AgroControl.Laboratory.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
+              "RelativeToolTip": "AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-13T10:19:00.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAIwGwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T10:17:43.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AgroControl.Laboratory\\AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AssemblyInfo.cs",
+              "RelativeToolTip": "AgroControl.Laboratory\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T10:50:07.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "LaboratoryTests.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory.Tests\\LaboratoryTests.cs",
               "RelativeDocumentMoniker": "AgroControl.Laboratory.Tests\\LaboratoryTests.cs",
@@ -142,118 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TestHelpers.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\TestHelpers.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\TestHelpers.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\TestHelpers.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\TestHelpers.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAswEQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T05:42:51.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AgroControl.Laboratory.Tests",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
-              "RelativeToolTip": "AgroControl.Laboratory.Tests\\AgroControl.Laboratory.Tests.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-16T05:42:16.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\AssemblyInfo.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AssemblyInfo.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T10:50:07.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAIwGwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T10:17:43.742Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AgroControl.Laboratory.csproj",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
-              "RelativeToolTip": "AgroControl.Laboratory\\AgroControl.Laboratory.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-13T10:19:00.866Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T10:33:03.858Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\App.xaml",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\App.xaml",
-              "RelativeToolTip": "AgroControl.Laboratory\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-13T10:32:45.991Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TestsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\Views\\TestsPage.xaml.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAswGgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T06:59:18.449Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\MainWindow.xaml",
-              "RelativeToolTip": "AgroControl.Laboratory\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-13T10:17:45.681Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "TestsPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\TestsPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\TestsPage.xaml",
@@ -264,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "RawMaterialBatchesPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchesPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\RawMaterialBatchesPage.xaml.cs",
@@ -276,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "RawMaterialBatchesPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchesPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\RawMaterialBatchesPage.xaml",
@@ -287,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "RawMaterialBatchCard.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml.cs",
@@ -299,18 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RawMaterialBatchCard.xaml",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
-              "RelativeToolTip": "AgroControl.Laboratory\\Views\\RawMaterialBatchCard.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-13T10:19:34.93Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "ProductBatchesPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\ProductBatchesPage.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\ProductBatchesPage.xaml.cs",
@@ -322,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ProductBatchesPage.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\ProductBatchesPage.xaml",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\ProductBatchesPage.xaml",
@@ -333,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "ProductBatchCard.xaml.cs",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\ProductBatchCard.xaml.cs",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\ProductBatchCard.xaml.cs",
@@ -345,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "ProductBatchCard.xaml",
               "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\ProductBatchCard.xaml",
               "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\ProductBatchCard.xaml",
@@ -353,29 +377,6 @@
               "RelativeToolTip": "AgroControl.Laboratory\\Views\\ProductBatchCard.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-05-13T11:29:05.01Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "AgroControl.Laboratory\\Views\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAswCwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T10:32:11.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml",
-              "RelativeDocumentMoniker": "AgroControl.Laboratory\\Views\\LoginWindow.xaml",
-              "ToolTip": "C:\\Users\\\u0414\u0438\u043C\u0430\\Desktop\\Praktika3\\Praktika3\\\u0421\u0435\u0441\u0441\u0438\u044F 4\\AgroControl.Laboratory\\AgroControl.Laboratory\\Views\\LoginWindow.xaml",
-              "RelativeToolTip": "AgroControl.Laboratory\\Views\\LoginWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-13T10:32:00.66Z"
             },
             {
               "$type": "Document",

@@ -1,0 +1,1177 @@
+USE [master]
+GO
+/****** Object:  Database [AgroControlDB]    Script Date: 18.05.2026 10:58:59 ******/
+CREATE DATABASE [AgroControlDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'AgroControlDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\AgroControlDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'AgroControlDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\AgroControlDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [AgroControlDB] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [AgroControlDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [AgroControlDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [AgroControlDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [AgroControlDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [AgroControlDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [AgroControlDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [AgroControlDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [AgroControlDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [AgroControlDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [AgroControlDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [AgroControlDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [AgroControlDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [AgroControlDB] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [AgroControlDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [AgroControlDB]
+GO
+/****** Object:  Table [dbo].[ВыполнениеШаговПартии]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ВыполнениеШаговПартии](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NOT NULL,
+	[ШагТехКартыID] [int] NOT NULL,
+	[ВремяСтарта] [datetime] NULL,
+	[ВремяОкончания] [datetime] NULL,
+	[ФактТемпература] [decimal](10, 2) NULL,
+	[ФактДлительностьМинут] [int] NULL,
+	[ФактДавление] [decimal](10, 2) NULL,
+	[Отклонение] [bit] NULL,
+	[КомментарийОператора] [nvarchar](max) NULL,
+	[ОператорID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ЖурналСобытий]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ЖурналСобытий](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NULL,
+	[ТипСобытия] [nvarchar](50) NULL,
+	[ВремяСобытия] [datetime] NULL,
+	[Описание] [nvarchar](max) NULL,
+	[Важность] [nvarchar](20) NULL,
+	[СоздалID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ЛабораторныеИспытания]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ЛабораторныеИспытания](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПартияПроизводстваID] [int] NULL,
+	[ПартияСырьяID] [int] NULL,
+	[ДатаАнализа] [datetime] NULL,
+	[ТипОбразца] [nvarchar](50) NULL,
+	[НаименованиеПараметра] [nvarchar](100) NULL,
+	[ИзмеренноеЗначение] [nvarchar](50) NULL,
+	[НормативноеЗначение] [nvarchar](50) NULL,
+	[ЕдиницаИзмерения] [nvarchar](20) NULL,
+	[Результат] [nvarchar](20) NULL,
+	[Решение] [nvarchar](20) NULL,
+	[КомментарийАналитика] [nvarchar](max) NULL,
+	[АналитикID] [int] NULL,
+	[ДатаНазначения] [datetime] NULL,
+	[ИсполнительID] [int] NULL,
+	[Приоритет] [nvarchar](20) NULL,
+	[КомментарийЛаборанта] [nvarchar](max) NULL,
+	[Статус] [nvarchar](30) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Оборудование]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Оборудование](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[НомерЛинии] [nvarchar](20) NULL,
+	[Тип] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПартииСырья]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПартииСырья](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерПартии] [nvarchar](50) NOT NULL,
+	[СырьеID] [int] NOT NULL,
+	[Поставщик] [nvarchar](100) NULL,
+	[ДатаПоступления] [date] NULL,
+	[Количество_кг] [decimal](12, 2) NULL,
+	[ЛабораторныйСтатус] [nvarchar](30) NULL,
+	[НомерПартииПоставщика] [nvarchar](50) NULL,
+	[Склад] [nvarchar](100) NULL,
+	[КомментарийРешения] [nvarchar](max) NULL,
+	[РешениеПринял] [nvarchar](100) NULL,
+	[ДатаРешения] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Пользователи]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Пользователи](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ИмяПользователя] [nvarchar](50) NOT NULL,
+	[ХэшПароля] [nvarchar](255) NOT NULL,
+	[ПолноеИмя] [nvarchar](100) NOT NULL,
+	[Роль] [nvarchar](30) NOT NULL,
+	[Email] [nvarchar](100) NULL,
+	[Телефон] [nvarchar](20) NULL,
+	[Активен] [bit] NULL,
+	[ПоследнийВход] [datetime] NULL,
+	[ДатаСоздания] [datetime] NULL,
+	[Отдел] [nvarchar](100) NULL,
+	[Фото] [varbinary](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Продукция]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Продукция](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Код] [nvarchar](20) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[Тип] [nvarchar](50) NULL,
+	[ФормаВыпуска] [nvarchar](50) NULL,
+	[Статус] [nvarchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПроизводственныеЗаказы]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПроизводственныеЗаказы](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерЗаказа] [nvarchar](50) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[РецептID] [int] NOT NULL,
+	[ТехКартаID] [int] NOT NULL,
+	[ПланКоличество_кг] [decimal](12, 2) NOT NULL,
+	[Статус] [nvarchar](30) NULL,
+	[ПланДатаСтарта] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ПроизводственныеПартии]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ПроизводственныеПартии](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[НомерПартии] [nvarchar](50) NOT NULL,
+	[ЗаказID] [int] NOT NULL,
+	[ВремяСтарта] [datetime] NULL,
+	[ВремяОкончания] [datetime] NULL,
+	[Статус] [nvarchar](30) NULL,
+	[ФактКоличество_кг] [decimal](12, 2) NULL,
+	[ТекущийШагID] [int] NULL,
+	[ПланДатаСтарта] [date] NULL,
+	[ЛабораторныйСтатус] [nvarchar](30) NULL,
+	[КомментарийРешения] [nvarchar](max) NULL,
+	[РешениеПринял] [nvarchar](100) NULL,
+	[ДатаРешения] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Рецептуры]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Рецептуры](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[Версия] [int] NOT NULL,
+	[Статус] [nvarchar](20) NULL,
+	[ДатаСоздания] [datetime] NULL,
+	[СоздалID] [int] NULL,
+	[ДатаУтверждения] [datetime] NULL,
+	[УтвердилID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[СоставРецептуры]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[СоставРецептуры](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[РецептID] [int] NOT NULL,
+	[СырьеID] [int] NOT NULL,
+	[Процент] [decimal](10, 4) NOT NULL,
+	[ПорядокЗагрузки] [int] NOT NULL,
+	[ДопускОт] [decimal](10, 4) NULL,
+	[ДопускДо] [decimal](10, 4) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Сырье]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Сырье](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Код] [nvarchar](20) NOT NULL,
+	[Наименование] [nvarchar](100) NOT NULL,
+	[ЕдиницаИзмерения] [nvarchar](10) NULL,
+	[Категория] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ТехКарты]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ТехКарты](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ПродуктID] [int] NOT NULL,
+	[Версия] [int] NOT NULL,
+	[Статус] [nvarchar](20) NULL,
+	[ДатаСоздания] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ШагиТехКарты]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ШагиТехКарты](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ТехКартаID] [int] NOT NULL,
+	[НомерШага] [int] NOT NULL,
+	[НаименованиеШага] [nvarchar](100) NOT NULL,
+	[ПланТемпература] [decimal](10, 2) NULL,
+	[ПланДлительностьМинут] [int] NULL,
+	[ПланДавление] [decimal](10, 2) NULL,
+	[Обязательный] [bit] NULL,
+	[Инструкция] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[ВыполнениеШаговПартии] ON 
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (1, 1, 1, CAST(N'2026-05-13T09:15:17.507' AS DateTime), CAST(N'2026-05-13T09:15:19.830' AS DateTime), CAST(44.80 AS Decimal(10, 2)), 32, CAST(1.50 AS Decimal(10, 2)), 0, N'авы', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (2, 1, 2, CAST(N'2025-03-01T08:32:00.000' AS DateTime), CAST(N'2025-03-01T10:30:00.000' AS DateTime), CAST(59.50 AS Decimal(10, 2)), 118, CAST(1.90 AS Decimal(10, 2)), 0, N'OK', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (3, 1, 3, CAST(N'2025-03-01T10:30:00.000' AS DateTime), CAST(N'2025-03-01T11:17:00.000' AS DateTime), CAST(78.20 AS Decimal(10, 2)), 47, CAST(2.80 AS Decimal(10, 2)), 1, N'Температура ниже нормы', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (4, 1, 4, CAST(N'2025-03-01T11:17:00.000' AS DateTime), CAST(N'2025-03-01T12:15:00.000' AS DateTime), CAST(24.50 AS Decimal(10, 2)), 58, CAST(1.00 AS Decimal(10, 2)), 0, N'', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (5, 2, 1, CAST(N'2025-03-02T08:15:00.000' AS DateTime), CAST(N'2025-03-02T08:45:00.000' AS DateTime), CAST(46.10 AS Decimal(10, 2)), 30, CAST(1.60 AS Decimal(10, 2)), 1, N'ваы', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (7, 4, 7, CAST(N'2025-03-04T10:00:00.000' AS DateTime), CAST(N'2025-03-04T10:35:00.000' AS DateTime), CAST(47.50 AS Decimal(10, 2)), 35, CAST(1.60 AS Decimal(10, 2)), 0, N'fds', 5)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (9, 6, 8, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (10, 6, 1, CAST(N'2026-05-15T15:13:28.967' AS DateTime), CAST(N'2026-05-15T15:13:31.930' AS DateTime), CAST(12.00 AS Decimal(10, 2)), 23, CAST(32.00 AS Decimal(10, 2)), 1, N'авы', NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (11, 6, 2, CAST(N'2026-05-15T14:56:36.500' AS DateTime), CAST(N'2026-05-15T14:56:41.377' AS DateTime), CAST(123.00 AS Decimal(10, 2)), 123, CAST(23.00 AS Decimal(10, 2)), 1, N'авыа', NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (12, 6, 3, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (13, 6, 4, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (14, 7, 8, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (15, 7, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (16, 7, 2, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (17, 7, 3, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (18, 7, 4, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (19, 8, 8, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (20, 8, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (21, 8, 2, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (22, 8, 3, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+INSERT [dbo].[ВыполнениеШаговПартии] ([ID], [ПартияПроизводстваID], [ШагТехКартыID], [ВремяСтарта], [ВремяОкончания], [ФактТемпература], [ФактДлительностьМинут], [ФактДавление], [Отклонение], [КомментарийОператора], [ОператорID]) VALUES (23, 8, 4, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ВыполнениеШаговПартии] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ЖурналСобытий] ON 
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (1, 1, N'запуск партии', CAST(N'2025-03-01T08:00:00.000' AS DateTime), N'Партия B-2401-01 запущена', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (2, 1, N'завершение партии', CAST(N'2025-03-01T14:30:00.000' AS DateTime), N'Партия B-2401-01 завершена', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (3, 2, N'запуск партии', CAST(N'2025-03-02T08:15:00.000' AS DateTime), N'Партия B-2401-02 запущена', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (4, 1, N'запуск партии', CAST(N'2026-05-14T15:33:52.550' AS DateTime), N'Партия B-2401-01 запущена оператором', N'инфо', 5)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (5, 1, N'проблема', CAST(N'2026-05-15T13:16:40.120' AS DateTime), N'авыа', N'критическое', 14)
+GO
+INSERT [dbo].[ЖурналСобытий] ([ID], [ПартияПроизводстваID], [ТипСобытия], [ВремяСобытия], [Описание], [Важность], [СоздалID]) VALUES (6, 2, N'проблема', CAST(N'2026-05-15T13:58:16.007' AS DateTime), N'ваыа', N'критическое', 14)
+GO
+SET IDENTITY_INSERT [dbo].[ЖурналСобытий] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ЛабораторныеИспытания] ON 
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (1, 1, NULL, CAST(N'2025-03-01T15:00:00.000' AS DateTime), N'контроль поставщика', N'концентрация', N'98.2', N'97', N'%', N'pass', N'approved', N'Соответствует', 10, CAST(N'2026-05-14T12:36:51.753' AS DateTime), 10, N'обычный', N'fdsf', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (2, 2, NULL, CAST(N'2025-03-02T15:30:00.000' AS DateTime), N'входной контроль', N'концентрация', N'96.5', N'97', N'%', N'pass', N'blocked', N'Низкая концентрация', 10, CAST(N'2026-05-14T12:10:30.347' AS DateTime), 10, N'обычный', N'ваы', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (3, 5, NULL, CAST(N'2025-03-10T17:00:00.000' AS DateTime), N'повторный анализ', N'концентрация', N'97.8', N'97', N'%', N'pass', N'approved', N'OK', 10, CAST(N'2026-05-14T12:38:38.213' AS DateTime), 10, N'обычный', N'ваыа', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (5, 1, NULL, NULL, N'входной контроль', N'концентрация', N'98.5', N'97', N'%', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T12:36:42.307' AS DateTime), 10, N'обычный', N'fdsf', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (6, NULL, 2, CAST(N'2026-05-14T10:59:48.300' AS DateTime), N'входной контроль', N'2', N'2', N'2', N'20', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'обычный', N'fdsf', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (10, NULL, 1, CAST(N'2026-05-14T12:20:14.723' AS DateTime), N'входной контроль', N'павп', N'пвап', N'пав', N'вап', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'обычный', N'вап', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (11, NULL, 3, CAST(N'2026-05-14T13:20:08.690' AS DateTime), N'входной контроль', N'fds', N'fds', N'fds', N'fs', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'высокий', N'fds', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (12, NULL, 3, CAST(N'2026-05-14T13:20:14.693' AS DateTime), N'входной контроль', N'fdsf', N'fs', N'sdfs', N'dfsf', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'обычный', N'sdf', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (13, NULL, 3, CAST(N'2026-05-14T13:20:40.663' AS DateTime), N'входной контроль', N'fdsf', N'f', N'dsfs', N'sdf', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'обычный', N'fds', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (14, 5, NULL, CAST(N'2026-05-14T13:21:25.983' AS DateTime), N'входной контроль', N'gfdg', N'd', N'fdg', N'gdg', N'pass', NULL, NULL, NULL, CAST(N'2026-05-14T00:00:00.000' AS DateTime), 10, N'обычный', N'gfd', N'завершено')
+GO
+INSERT [dbo].[ЛабораторныеИспытания] ([ID], [ПартияПроизводстваID], [ПартияСырьяID], [ДатаАнализа], [ТипОбразца], [НаименованиеПараметра], [ИзмеренноеЗначение], [НормативноеЗначение], [ЕдиницаИзмерения], [Результат], [Решение], [КомментарийАналитика], [АналитикID], [ДатаНазначения], [ИсполнительID], [Приоритет], [КомментарийЛаборанта], [Статус]) VALUES (15, NULL, 3, CAST(N'2026-05-14T14:59:52.280' AS DateTime), N'входной контроль', N'fds', N'fsd', N'fds', N'fdsf', N'pass', NULL, NULL, NULL, CAST(N'2026-05-15T00:00:00.000' AS DateTime), 10, N'обычный', N'sdf', N'завершено')
+GO
+SET IDENTITY_INSERT [dbo].[ЛабораторныеИспытания] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Оборудование] ON 
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (1, N'Экструдер Э-1', N'Линия 1', N'экструдер')
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (2, N'Смеситель С-2', N'Линия 1', N'смеситель')
+GO
+INSERT [dbo].[Оборудование] ([ID], [Наименование], [НомерЛинии], [Тип]) VALUES (3, N'Дозатор Д-3', N'Линия 2', N'дозатор')
+GO
+SET IDENTITY_INSERT [dbo].[Оборудование] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПартииСырья] ON 
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус], [НомерПартииПоставщика], [Склад], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (1, N'RAW-BATCH-001', 1, N'Поставщик А', CAST(N'2025-02-20' AS Date), CAST(5000.00 AS Decimal(12, 2)), N'одобрена', N'SUP-1', NULL, N'fdsf', N'test.user', CAST(N'2026-05-14T12:37:12.350' AS DateTime))
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус], [НомерПартииПоставщика], [Склад], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (2, N'RAW-BATCH-002', 2, N'Поставщик Б', CAST(N'2025-02-25' AS Date), CAST(3000.00 AS Decimal(12, 2)), N'одобрена', N'SUP-2', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПартииСырья] ([ID], [НомерПартии], [СырьеID], [Поставщик], [ДатаПоступления], [Количество_кг], [ЛабораторныйСтатус], [НомерПартииПоставщика], [Склад], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (3, N'RAW-BATCH-003', 3, N'Поставщик В', CAST(N'2025-03-01' AS Date), CAST(10000.00 AS Decimal(12, 2)), N'заблокирована', N'SUP-3', NULL, N'fds', N'test.user', CAST(N'2026-05-14T14:59:39.343' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[ПартииСырья] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Пользователи] ON 
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (1, N'tech.ivanov', N'$2a$11$jlcfERzvoW4NbReW71IQQ.7pNejg9YMbg3miYEPWAB6ktfq7Xg3am', N'Иванов Иван Петрович', N'technologist', N'ivan.ivanov@agrocontrol.ru', N'+7 (495) 123-45-01', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (2, N'tech.petrova', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Петрова Мария Сергеевна', N'technologist', N'maria.petrova@agrocontrol.ru', N'+7 (495) 123-45-02', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (3, N'tech.smirnov', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Смирнов Алексей Викторович', N'technologist', N'alexey.smirnov@agrocontrol.ru', N'+7 (495) 123-45-03', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Технологический отдел', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (5, N'operator.zavodov', N'$2a$10$YbR8W5zM9Rj6p9t7Fb8Ee.dUeBkZM/N8sGLDMAwqWp2Y2Y9A1sL4y', N'Заводов Сергей Николаевич', N'operator', N'sergey.zavodov@agrocontrol.ru', N'+7 (495) 123-45-11', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Цех №1', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (10, N'lab.vasilieva', N'$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr7wqY6j5JkZ3vP6q4L8x9Y5Q2wE7Ku', N'Васильева Елена Андреевна', N'laboratory', N'elena.vasilieva@agrocontrol.ru', N'+7 (495) 123-45-21', 1, NULL, CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'Лаборатория контроля качества', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (13, N'admin.sidorov', N'$2a$11$jlcfERzvoW4NbReW71IQQ.7pNejg9YMbg3miYEPWAB6ktfq7Xg3am', N'Сидоров Константин Петрович', N'admin', N'admin@agrocontrol.ru', N'+7 (495) 123-45-00', 1, CAST(N'2026-05-12T11:30:10.923' AS DateTime), CAST(N'2026-05-06T13:59:00.833' AS DateTime), N'IT-отдел', 0xFFD8FFE000104A46494600010100000100010000FFE1011645786966000049492A0008000000040031010200070000003E0000003201020014000000450000003B01020007000000590000006987040001000000600000000000000050696361736100323031393A30353A32362032313A31343A3233005069636173610006000090070004000000303232300390020014000000AE00000002A0040001000000C200000003A0040001000000B900000005A0040001000000E400000020A4020021000000C200000000000000323031393A30353A32362032313A31343A3031003937646130303264653731356234623265623662663264366131323038366538000003000200070004000000303130300110040001000000C80000000210040001000000C800000000000000FFE102D7687474703A2F2F6E732E61646F62652E636F6D2F7861702F312E302F003C3F787061636B657420626567696E3D22EFBBBF222069643D2257354D304D7043656869487A7265537A4E54637A6B633964223F3E203C783A786D706D65746120786D6C6E733A783D2261646F62653A6E733A6D6574612F2220783A786D70746B3D22584D5020436F726520352E312E32223E203C7264663A52444620786D6C6E733A7264663D22687474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D73796E7461782D6E7323223E203C7264663A4465736372697074696F6E207264663A61626F75743D222220786D6C6E733A786D703D22687474703A2F2F6E732E61646F62652E636F6D2F7861702F312E302F2220786D6C6E733A657869663D22687474703A2F2F6E732E61646F62652E636F6D2F657869662F312E302F2220786D6C6E733A64633D22687474703A2F2F7075726C2E6F72672F64632F656C656D656E74732F312E312F2220786D703A4D6F64696679446174653D22323031392D30352D32365432313A31343A32332B30353A30302220657869663A4461746554696D654F726967696E616C3D22323031392D30352D32365432313A31343A30312B30353A3030223E203C64633A63726561746F723E203C7264663A5365713E203C7264663A6C693E5069636173613C2F7264663A6C693E203C2F7264663A5365713E203C2F64633A63726561746F723E203C2F7264663A4465736372697074696F6E3E203C2F7264663A5244463E203C2F783A786D706D6574613E2020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203C3F787061636B657420656E643D2277223F3EFFED007650686F746F73686F7020332E30003842494D040400000000003E1C0100000200041C015A00031B25471C0200000200041C0237000832303139303532361C023C000B3231313430312B303530301C025000065069636173613842494D042500000000001038C5E4914E41A5CE0923D21591557948FFDB00430007050606060507060606080807090B120C0B0A0A0B1710110D121B171C1C1A171A191D212A241D1F2820191A253225282C2D2F302F1D233438342E372A2E2F2EFFDB0043010808080B0A0B160C0C162E1E1A1E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2EFFC000110800B900C203012200021101031101FFC4001C0001000105010100000000000000000000000701040506080203FFC4003E10000103030302040305060504030100000102030400051106122131410713516122718114324291A10852B1C1D1F015162333E1244362F117537282FFC40017010101010100000000000000000000000000010203FFC4001C1101010101010101010100000000000000000111022131124151FFDA000C03010002110311003F00E8FA52940A562B51DEA0E9FB448BB5C9C5A22B00295B13B944E70001DC9240FAD56CF778B7586CCA8CB25B79B4B89CE390467A678F91E6A6AE3294AA0E79C839F4AAD54294A50294A502A87E7F3AAD793F90F5A0C34EBCA5BB99B6B612829683AE3EE9C211927000FC4AE0F1915AFBDAD4B115C99704C4B3C542880F5C9FD8A58F54B63E222A2EFDA0AEF0957D5E9E92A0C05414CA65F49390F82BDA9207650CA727A71E95CE721E75E57C6A52B1D371C91F5AC4F6B5E63ADFFF009BF4837284444C9B39C528243CCC50DB59FF00FB5671F4A90ED97A44DFB138890C38DCB0AF2F60C9C81939ED9C1AE0643896FF000718E879E6A5FF000F753DD5AB43CB80C36ECBB61125941E8538295823D31E9E94EBC335D6A93DFF004AF75CF562F1DA6A2416B52D8141A2BDA5F82ACED03193B55C9C0E700E6A75B2DD60DE6D91EE76D90991124277B6E27B8FE47DAAF3752CC64294A5690A52940A52940A5294185B8EA4B35AD979F9F39B623B1C2DC715819F41EA7D8569EE78C5A2FCC5A199925F4A39F319615B7F5FE95BB3D63B33ABDEFDB633CBC923CC692BE4F53C8AF95C2D715BB3CA8B023458854D2928219484A0918CE063DAB3655D405AD7C53957E79B569E62622D915485C979D48527767E1DC8C60278E4FF0031CEF16699AC246A8B6B65976E368712172262D84C42D2882490400558E38239A8DE05AEE1A49D95679D6D75BB525D43BF6B90D60BEB4A47C00EEE525595631F3EB5B6E9EF14DE8B1971A5451F082A6C151CAB278CFEA78AE5FACAE99E2720F212E860AB2B29DC3B123B9AFB0E839CD6AB649B1AF91A14D83706A4C98DF1294D8C24EF1C8C56C8D3A7EEB8304D7595CECCAFBD294AD214A5281804E39AB29D294CA5498C8F3E46DF81A071B8FB9ED578AC8E474EF50D7897E22B7A4E0BD1A0282EF5294A3BD69C86539E3F218E3D6B36AC42DE3F22E3FE784BB715EE79D8685ED1D1B1950DA3F2A8D10E28A8024E3D0564EFF72997396E4DB8CB764CA77E2538EAB2A3FD07B56252B50EE455E7E1572E349560A02C2BD0F39A987C019AEBF7872C70ACADBCDC8483326EF214DB40F39F6EDB7BE6A17DE5581BBBF7E6A64F0EFC47B5E93B3A2D56CB019B7090B1E6B99C79CAEDC9E80566C589DE27879A60BF24396C4AD9736E12B592124E4E41CF5F7ACF582D16EB1AD702CD1CB10D0956F4EF3B0384823AF7EB9FA5469E1EEB3D57AB358F9131B6E159998EE2D6CB69C6564E129DDDCFB7CEA69652DA5B09460247DDC7A539C3AD7B4F407B1AAD5063B1CD56B6C94A52814A52814A52815E4819CE06739E95EA941AFDCB4B5BAE0E256EF9A848392D820A7AE7A115A9EB2D00DCA80B4DBC873F129A7700E003C2081C1A932A98E463EB59BCCAB3AB1CF3A1AE4FE91BD2DA794151252437E5A127B703803A8C63353DC5713263B6EEC524A920E143A7B569FAFAC31E44271E4C56CA9295389525032481929CF6C8191F2A8CF45789336DFF0068832D2E38DA386D9490548CABDFAF18AE72DE7CAE973A4FAEBEA8A0ADD4E5903257FBB5728525490A49CA4F439AD174BEB689A9274EB630097638F8CA80C6D23BFBE71C74AC86987A45AAD8D41BD3A961D42D610B5ABE1524A89480A3DC03822B73A73B2C6D94AF936E05202D0B0A49E841DC0FD6BCB8F21015B96901292A249C607AFF001AD6A58FB1EDC022A36F10BC2DB46AE784A2EAA3CF03087900123AF51DFAD6EED5DA0488FE7C696D3ECA867CC42C1481EA4E78AD3F5278996AB0CD61329974C05AF6096949521471DBFAD4F166A0FBBF8097B84E92DDE60ADA2BDA54E020849FC47AE06481ED9A8B2F1637AD6F25B79614A3C04FE2CFA63AFB7D2BB3356CB5CED2C2621B61982FC725D764BA46D6D69C71B475C1C8F7AE6290D1752652AF1FEB20794E14AF2B1B0E371E3B81C73DEB3FABFC6B235B569E95153184B88E36E3C3782AEC0F1D2B208B7B760BBC69C2525C48752B6FC927394AC05057A0EB5E256A05A590CF321608214EFC4A18EE4FAFF2C562573A44B94A5CD5F0B4EC38C6D4F048000E9C9CD36D5C89E7C53D36E5A5E7351DB264B8F0A4A02946313B587782856D1F84F424743834B4F8D716DD6C61853D79BD4C48F8C4888DA140F7054857207CAA4BD36F46D41A12D1F692874C8B7212FB4792700A49C77C904572AEAAB53DA6354BAD450A4861C3E5A873947E1C7F0C7B5485F52EA3F680B8BF746A3B1606511DC504EE53849049C738E9DAA7F8AFCB7037E6B007C00AD5B87DEC038C7D7F4AE74F0BDED2BABDD6A05EDBFB1DE810B6D6D2C36DCB00E71B7A6EC8E9F5ACEDF3C621A7B56DD223507EDD19C2D29054F6CF29406D5E700F3B81E3DAACBEB389EC7F7CD56B4CD27ACD5A960B72E0D92704AFF1BA3637D3B2B2735B40765149CB4D255B4900385433F956F531774AC3D9EEC67392E2C88CEC59911610EB4A39183F756957707FAD662AA14A52814A52814A5283E4FB4871B295A729247D0FAD42FE236825AE43B74B1B47ED6AC95A41EA7B11D803D0F606A6CC0C838E45595D20C79D1FCB7908CA4EE4923A28743FA563AE7579B95C6F1F525C2C4AB80438A339F6FCB71D41C0001CED4E3E5927BE2A61D07E2658757D9D562D4E96A3B8DB03CC79F70250EF6DC95754A875AD57C6BD1ED426C5DA24171085F0E848DDB0E4E7E7FF001506A50E36B5B8D7C291D0F627D3FBF4A92375D35A0EF7695E9790EDD6FEB42E1ADD6DC7233EA4A54DB6E2B69C0C0C14949E0024735B07898CD86F3A01539254F865B6DE8EE32B285202B8DC3FF13E9ED5CF3A6897AC8CDBC2945A972C38FB613925294E37FC864D4CADDC61BDA063C62B2869E8B1D80B5F705DDC9E3B647F1ACDA48832E973BA4165A61879480CA8EF0CBCA085F39E53D01F97AD6DF70D64C6B7D0CBB65D186D9B95BD49721167E0DCAC609FA8CE47B0AC55E25DA23EA4BB5AE5B398D21CDA7CA48C32AD83A7D7AD6840AE33AB69D49C2560280EA0F7E6ACF449D1B5CEA3B8E8B66D3689AFB12A38DB214D92496F6903E9FC3E951694BE1B7961C52424ED242880A39FD6B63D193E0DAAF126E321454DC561C710C93C3ABE8949F5E542AC1D991D711500B0953EB702D6E048E144E558F4EC2B5F1135783D6EB25EEC888379B2C4988083BFCC6B0B4AB3F094AB39E83B55FF008ADA074D5AF463CFD8ACE233D11E43DE76E2A2A0A3B4A56A39F870723D31573E0B42532CB729952371483B794E5BFF00EC4FBE41047E7D6B6FD4376898976D951BCE8F210A6D4C83F03E950E52957E157A03C64718AC6AE21067599D312B4B38CB85DFB030B43CDB6480E256E28A93F51DEA64D47E1ED8B5CDBA35EADD28A0C8692E0528050208F4EC6B9F6F3A36E9124B521A1F6AB5ADD2866667950C642543AA5407183DEA62F0CF58A2CEE22C135EF31B0E129513D3763F9E69B3571A5DE7C3A1A12FB0AE97190FB9A750E857DB630DCA8AE01F09527AFDEC7CFA673588D4173976FD5ADDEA7418732DCFBC1D61E48F363389528FFA8303857723B1ED5D5D3936E9B6E9099CD34EC17DAFF592EA414147439A85ECF0F48F8526422FDAA132D8B82D463436DA2FA194824E4A79CE4103247AD6B19D4C1A6AF76FBADAA23D0A432A0E3636A1B712A238E78078FAE2B36392335CEB68D79A56D3A990E6928CEC58131644A2EA084127046119E076CE335D0905F4CA8A8948494A5D1B80575C56B9BA96088CD36FB8F8C05BB80A23AF1D07EA7F3AFB8E9EF5672E42061B4281593DAAF119DA09EA455655A52954294A50294A50298071C74A528343F17972A1E8E937486104C375B79F41682FCD642805A71F239CFB76AE4FD5696A75D92CDAD98EDC794F9FB2B71864BA49C051CF20F3D3A024FA5772CC8EC4B8CEC594D0763BE8536E36464292460823BF15A05A7C29D2DA7EE0F5D6C307170D850C7DA9D538DB04F703AE473DEB367BAB2B98B3362CA734E45E6629C305AD8784E4E1678EF8EA6B6DF12EE28B3D9EC9668476A94E21DCF4F81BF853F4CE7F2A929CF0EE1D82F33354DEEEAB732D2D596217C2D9279C2812727A0F9F5A8375AAAE774BACEBF4FB44A8CCBE0B50192D2806DA1C0574E80027DD4A35893D6B5A82A4AE45C5F796B2AF314A5024E7AE6ADA4CA538E28F50AC649F957865410B2B38C849205795A484648C13CD6FE335E0A959CEE3F9D6C9A22D0EDE6EE96C02A008CA8F627B9FA026B5C009206339A97BC2561A88C3AF2810E859C9C70AF41FCEA77722F1ED4CB0DDB7596C70511CB91D6C1D887529C96164F3BC0E4A49E0F5FD2AEB51BB6FB8C6316F31936FB83A768581B9991EE957E21EDC28556DD1512DEF3D4849DC801D68F21C4E083F5EFEFCD5DEA70205ABFC3E445448B6AD0128279F2F006139F4FDD575AE3FC75FEA2DD4A2E36A2E5BDF717220C9C8748CE769EE55D7E47AF0454677445C2D92C32D38A486CEE4A93D1638C1CFA54AB392B64FD9CBFE64650010E2CE56D8FDD55681A91A931421521A0B0851DA5278C7602A73F56FC6D5A2BC49D457B5C7D1A8F2597A6B9E4992EAB7043641DDC1EF807DF3815E7C51B6234F68D5A2C11E0C3B3CA792CAA43E774EB9ABAEF048E1BE01EDF91151E68EFB2B9AC2D6AB8A94CC76A525C92B412086C654A1EF90027EA7DAB6AF18E439A81A81A865A9F8AEC95966D56BC64222A782EABD0A95D3E55DA4C72BEB58F0DE2ADED43116CB68F3A392E254AEB91C0C0C1248CFA5752C59F7679B6D86A5BA84A404ED434849571D4F07151EF841E1E484478379716E33BD949524A0A02D27D0F5A9CEDF6D8301B0DC38E86D39CE40E7F3A996D5B648B4B6407014BD215957A1ACC9A52BA48E74A52954294A50294A50294A500807834A5283C9483CE056B5AEE54587605B93824C753CD36BDC011B54A09279F626B663C724F0066A0EFDA3EF81BB7DBAC0C2897A4BA9716807B020FF002ACD5881E5E9E8C8D573622A5B6A8EC483B09C61C4EEE07E55AA5C72253C3000DE7091D8678159280EB8F5D14E2BAA545783F3381FAD63A5237CB752B50210A20AC77348B571678E979DF316AC04F0818CEF57603F8FD2A76D19A6A6C58CC38860AA221414A71233C91D4FB9FD2A1CD05158B8EA8836D7CE5A79D20249C027078CD762E9B6988B698F0DA69222A1940291CED24727DEB9F7ED6B9F8A468EA851197D09DCBF43EBFF0002AC2FF21B83114D5C4AD76C7CF0A4F56D47AA7FFC93C8F4CD6CD1D971B294800B44E52B1FA52E31614FB7C8852186D7B9B292D93C74ED533C5D73A6AEB74DB5C88E88EE9936D512A69E4F2520F650EC47AFCABE3A88B0FDA5A7C80BF2D39183C669A8E45CEC17266DBE707ADE9594B41472A4A4FE13EA057C352B61BB337E591E5B892B3C7A5739F5BDF185F0DAD68BEEAE326584B56E88DAE43C56709C2474CF6EC7FB15BECED3E8D57E2B426A5FDA18841B402D2DA294A1A40052D27D320A49F524D6A9E132D527555B74F327FE99F7C3D295FBE86F2AD9F22AC67D702BA957162317117079C4B7BF6B7827092E64E3EB5DB18DC651869B69A4B6DA4042000903A000638AFAD51382320556BAB914A52814A52814A52814A52814A5531CE4501471D3AD6B978D576BB5DEA2D9DC782A6BE85381ACF2948C75F724F1F2AB4F107595BF48595D9D21D429FE8DB59E547E55CD3609F73D43A89ED4F35EDAB6D7F68538E2B818FB8819F5AC75D635CF3AEB49774851595BB25F4A50D9C2893DC8CD727F89DA9517FD4CF5D18C283416C30339C1E067F8FD4FB5575D78872DE86BB64296A2B70953EFA49E547D3E5D2A2C6D6B4A92F64A36F09238FEFBD49B56F8BD71D5C44380253BD60F3DC7A7E958725401495123E75F590FA9D56493C0C75AB7ADC98CEB68F0E1F4C6D7163794484A65A3241C7078FE75D956E79961988DA0A54B4EF42B8EE0F15C22CAD6DA82DB5142D2A04281C107A8C7E55D9FA52749BA586CF779000725C56DD51038048C1FAE4567B9EB5CFC6E4D28C6507124A9850C2C0FC3F4AC65FB6A10A7985671D5293EDD457D997960E411B718233806ADAE6C15B487231C2919F83B11E83D2B1D7C6A39EF5ABE5D9895ACA54A0783EF9AB7BC153DA51A70A48094940CFB8CFF001CD35E065BBEB891F024BC094FA018E3F8D642E686D5A494ACE529C9C1ED8CFF005AE6D6355F09AEB1ED1AE62C994F794D9414051E993FFBAE8BF18EE0E46D012AE2CE12E4390CBA920E464118FE35C78FB85B70A5BE17F09DD9F4FF009C574C6BC6A65B7F67F791737D72A74A6A3296B73B294B41C0CFA0FE15DDCED4C3A62EF1EF960B7DDA2AC29A94CA5C18EC71C8FA1CD65EA17FD9A6E0F3FA31C80B56F6A3BA4B67F74294AF87F4CFD6A6715A8CAB4A52AA14A52814A52814A550F6F7A0A1CEE1E983CFA5699E236BAB668BB4A9F92E79935C1862320FC4B3EBEC2AFB58EA98B6084A48525C9CE021861237A96AEDC7A572BEBA376B8DD9EB8DF5E2564E5654721BFF00C123D7E5F5AC5EBF8D4E583D4DA82F7ACAE8F5CEEABC369384B28FF6D907A019EA4D594FBC3DF6516F864351D240DA8EAB3EA4F73FD2ACA44D2E831A2361B883A64E493EA4D59297E49F814771FC79E6AE2BEEA4B6D7C4FE16E1FF00B40FDD3EE6B1EFB8A528EE567D8741459700CABBD78293C6E040ED5719B5E09CD3B53143551E9040183D09EB5D31E10DDEF7FE4F8F05515D5AE302592A6C905B24E13FDFAD733A0E3BD49BA1FC57BBE9C69A8721A12627DD5AC13E76DE9F093C6476CD67A9AD7371D0D0614C2A548BC4E4EC39DB11036FE66AEE64A90E474356E4B2CB3824FA91DF03BF4EA6B5EB5DC2D77D8699567B936EF9C3784C8594A81FA0E48EF5956528810A43A5F2EBAA490F3F9E73D9291D873F5CD70AE91026B769726E2A793F794E14A40E493F2FEFAD6535533FE17A5D882E4A0E487D1BD653C6DC804835E6E423CCD41206F1E4C2DCB92B49C00A3C25B07B9F5F7AC3F8857032CC3663A42096CA40F4040FE9FAD27D5BF1ABE8984DCED530D4FA10B8ECBE971C0B048290A1D715D1DFB493896FC3561B0AFF007A6B39501D40493FD2A08D311D71E5C6B747702254A50CAC1C14A49191F954E9E2FA6DF70D1F12DB2E72A3888C898A504EFCA8A486D3D477EA3D2BAEB9E2CBF6597E32F4ADD63A3CCFB4B7302DC513C6D29C240FA857E62A771D2B9ABF6756635BE739258BCC47953105B799F31495378C6D05071C9E79E4735D288C1048E79EBEB5A959B1EA94A5690A52940A52A8681C75278F4AC2DDEEA5A1E5441BDD3DC7E1AC9488EB7C8CBAA4B78E40EA6A823C68ED9F2DB483F9926A5F8B2E22EBDC02D3122EF789022B2DA14A2AC8F30FB64FDD06B9C7515C1ED4775531052BFB3A9586984640F9E3BFCCD4B5E345E0DFB5033A4633C7CA694172169574511C0F43D3A9AF36ED2AE69EB6F9F12DAE3B21400DE40DEE28F619FBA9E95C6F9EBA4F511BD6016D6CB974754DAC746109F88FB7FCD6B525D2F3C5B6190D8EC949C9FCEB79D48997719EB89092A9B3324487109250D9FDD4FAE3DBBD6E3A13C1ABADC1A44B9C8FB2B2B19DCF0DAE287CB1902B7CDB8CD88699B7BE5494861C79E57DD6D20A89FCAB6CB57867AAAF18288C1B591F0A1C3823E82BA8B4E786763B320651E6ABBF1807E67A9ADDE2428D0D0111D86DB48E9B5205596D4F1CC967FD9EE73CC05DD2ECA69D23FDB61ACEDF99245586A7F0325DB612DFB65D04C79AE571D48014A1DF045758E07A0AF2E210B012A4A0FB2867E756CA9AE09D35A65DBBDE536E4EF2413B8A073C7A0F9D65B5F6869BA5171D4429C61F4024F9782D923EE9FEFBD74EE97D1D6DD39AE6F371650E666277B5BC7C0DE795A471F2FA56B3AE1A9B7D5CC6A049812D92B5612A524A923E4AE55F4AC5EAC6A4D72FDB6ED70B53DF6881216C3A0F3CE42BE60F15BF37E27DDA5C16AD6EA63B654AE2405ED09CF04F3F5EB587D51A4E4DAA76C9D10C74398DAF0C96F3D8671C76EB5ADCCB4BF19585A7008C829E5247CF357CA7B1234D5477D102D1025C453655E63CE332D1FEA11DC9E2B05316DDD75698911216C309D9B828655B47C473D3FF0055A7186EA46F0A49CF5F6AF71C496F7A52F3812B1B1410AC6E4FBFB54FCC9EADEAE2F25DCE431747E44374B6B49DA95A15829F97AD4B9A56C378F11F42BA87A7A5A9C1F086A43C8FF7025236A4E3D7D793F3A8F2C3A6A3DC5A5C99976870E3B49CAF72FE318F44FE9D7E55D17A1664372C6CDBF4AB662DADA40122E6E0E012064209FBCB3D38E00EBCF056911C5B3C13D69090C488532DED496D792144F27D7A7238F4CD4D7A12EFA8D0C7F856AF82234F6FE14480A05A7C0E01047F0EB5B6C043288E966380594612939CE781570F32D3C82D3A84AD0AEA950CE6B53C62D7D53C8EFF005AAD5825D109D4B2F2C9655C36A2738F626BD3D39A6DE6DBDC3FD450475E87B56B4917B4A7C5FBA3F3A554294A5050F1585D59724DA34FDC2E8B194C58EE3BB4719501C7EA6B3445695E30A1D5F867A8C35F7845DDC7A05027F41528883C0DD3D27525D25EB0B9A77053EA0C83D0AFBABE49CE3FF5537DE6CC6E205BD841663251B1D70AC8C83D863BFBFBD61FC17B7B707C3AB1842000E47F349C752A51567F5ADF520704002A7E757583B1698B4599B4A61C2650503095048E3FBEBF5ACE01ED55A5593114C0CE71CFAD5694AA15438C104678AAD50D046DE2E6A891A7AC8B4B0DAD4B9092807909C1E08DC3F1735CDF37523B2A2C865A60A8ECC272EFC48E3AE3FBE95367ED28DCCFF2F5B96C2D5F652F10FB69F6190AC572C38E2C2F70DD9EA0D73FCED6E5C8C827515D4B6B8EE4E794CB830E2547215F9F4AB553AE2C6D44B70363A052B3F4AB2515A89514FCCD5E5BED736E2A222305600CA95C04A47B93D2B79244DAC8C5816C79A0A91A912C93F791E4ACE2BEEB8D608ACACB777726BB8C36CA19280A3EE4D635FB6064A51E7A5F39E4303760FA67BD7B6D8911C85B71D0CF3C38F28271F99A832ACDB9532630FDCDC891221FFB7E66D09F620739E3A77AE82F0F240BF44B5DB62B2B16F8780D9236EF4851DCAE38E4F03D8573F59AD4BB94F693326A3C9046F701F8473D3B0E7FB35D09A77545AB4F588310592620C9FB42F00ACF40918FC3C0E39AE7D35130C879319B08404A54AFC3D302BED19EF386EDA31D8D43FA77505FB525E12120FF00A87007E16D3DD5EC00ED52F30D8663A1B0544246377A9F5ADF3759B31A878A778FF08D25709297034E3680B428FA8231F3CD45DA0358DD35BDEA0B0EA7CA4C5D8FBBE59201C118CFCCE2B1DE3C6A356A0BE35A52CCA765794A4B6FF949DDB9CCFDC481D4F4FEC548DE0C787CBD276A7655D129172984153439F2903A249EE73C9C7CBB54B369BE24FCA0704F3F2A57D02860648CF7A56B19294A5682AC6F36F62ED6B996C9232CCA616CAF1D70A0467F5ABEA506BBA1A20B6E9C876756EDF013F66567BEDE33F5EB5B08F957909485150480A3D4E3935EE93C0A52940A52940AF2B213CA8E057AAA100F500D0421E366A9B2FD99DB7E647F88B21484028CA179C646DEA78C73C541106C175BBAD4F47B614248F854BC251F4E6BB6255A6D92DF4BF26DF1DE753F756B6C123F3AF2FD96D521D0EBD0195AC0C0CA3F9563F37F8DCEA39774B7868998E15DD9E6D2509DC1246539EC309EBF535B0CDD0B7694DB6B45A5A5B48F87FEA5C01B40EC7CA41DBF99AE8810A234D94B3119471C61B181EF5A16A9D29789CBF36396E4EEFC2A51481F426B379AB3A95046ABB2C2B5B5B2EB7843CF8184C7B7E1096FE78E3151E1910D85A951E3A94AFBA9715C9CFB66BA12E5A0351A59C220465289C63605607E75F5B5783E9756997A88F9EB4FC49811006C138E8B70703E9525AB7107E94B1EA6D5530C5B444724253FEEBCA561B68772A59E00F967E46A65D2BE1FC2C36CC99EFDF5FC805A84A2D446B1C7DF209563D80ADA6E363931622234F970ACF676920B56CB77008E99574DDCE393C648EF5B56976E6444A63FD98B28535B9A0E1212120F3C7DE52B9077103DB0056B36A6E45E5A2D76ED3104869A2A7167E2D837157FE23D87A562EF8DEA6D44855BA0F9B6784E0C3D297C39B7D123DEB6B115C2F21E7E43AB524E4242B6A01F90EBF239ABB481D71CFBF5AD67F8C6B52D21A12C1A5CA5D8717CD9A13B552DEF897EE0764FD2B6E48C0E807CA981C71D3A556AC88A6D4FEE8FCA955A550A52940A52940A52940A52940A52940A52940A52940A1E7AD2940C550E00E9C556A8AE9418D7AD8D39716E5B8DB64A3E34FC3D57D028FAE074F4C93DAB20128242B682467048E47AD1EEA8F9D7BEE69869DB14A52814A52814A5283FFFD9)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (14, N'test.user', N'$2a$10$xP5FYKcP0Ftu0mTm7/45qu2KSPKFSr3iBDoLEQ5fRA3//DMq3fI0q', N'Тестовый Пользователь', N'operator', N'test@agro.ru', NULL, 1, CAST(N'2026-05-13T05:48:50.213' AS DateTime), CAST(N'2026-05-07T09:43:02.333' AS DateTime), N'Цех №1', 0xFFD8FFE000104A46494600010100000100010000FFE1011645786966000049492A0008000000040031010200070000003E0000003201020014000000450000003B01020007000000590000006987040001000000600000000000000050696361736100323031393A30353A32362032313A31343A3233005069636173610006000090070004000000303232300390020014000000AE00000002A0040001000000C200000003A0040001000000B900000005A0040001000000E400000020A4020021000000C200000000000000323031393A30353A32362032313A31343A3031003937646130303264653731356234623265623662663264366131323038366538000003000200070004000000303130300110040001000000C80000000210040001000000C800000000000000FFE102D7687474703A2F2F6E732E61646F62652E636F6D2F7861702F312E302F003C3F787061636B657420626567696E3D22EFBBBF222069643D2257354D304D7043656869487A7265537A4E54637A6B633964223F3E203C783A786D706D65746120786D6C6E733A783D2261646F62653A6E733A6D6574612F2220783A786D70746B3D22584D5020436F726520352E312E32223E203C7264663A52444620786D6C6E733A7264663D22687474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D73796E7461782D6E7323223E203C7264663A4465736372697074696F6E207264663A61626F75743D222220786D6C6E733A786D703D22687474703A2F2F6E732E61646F62652E636F6D2F7861702F312E302F2220786D6C6E733A657869663D22687474703A2F2F6E732E61646F62652E636F6D2F657869662F312E302F2220786D6C6E733A64633D22687474703A2F2F7075726C2E6F72672F64632F656C656D656E74732F312E312F2220786D703A4D6F64696679446174653D22323031392D30352D32365432313A31343A32332B30353A30302220657869663A4461746554696D654F726967696E616C3D22323031392D30352D32365432313A31343A30312B30353A3030223E203C64633A63726561746F723E203C7264663A5365713E203C7264663A6C693E5069636173613C2F7264663A6C693E203C2F7264663A5365713E203C2F64633A63726561746F723E203C2F7264663A4465736372697074696F6E3E203C2F7264663A5244463E203C2F783A786D706D6574613E2020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203C3F787061636B657420656E643D2277223F3EFFED007650686F746F73686F7020332E30003842494D040400000000003E1C0100000200041C015A00031B25471C0200000200041C0237000832303139303532361C023C000B3231313430312B303530301C025000065069636173613842494D042500000000001038C5E4914E41A5CE0923D21591557948FFDB00430007050606060507060606080807090B120C0B0A0A0B1710110D121B171C1C1A171A191D212A241D1F2820191A253225282C2D2F302F1D233438342E372A2E2F2EFFDB0043010808080B0A0B160C0C162E1E1A1E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2E2EFFC000110800B900C203012200021101031101FFC4001C0001000105010100000000000000000000000701040506080203FFC4003E10000103030302040305060504030100000102030400051106122131410713516122718114324291A10852B1C1D1F015162333E1244362F117537282FFC40017010101010100000000000000000000000000010203FFC4001C1101010101010101010100000000000000000111022131124151FFDA000C03010002110311003F00E8FA52940A562B51DEA0E9FB448BB5C9C5A22B00295B13B944E70001DC9240FAD56CF778B7586CCA8CB25B79B4B89CE390467A678F91E6A6AE3294AA0E79C839F4AAD54294A50294A502A87E7F3AAD793F90F5A0C34EBCA5BB99B6B612829683AE3EE9C211927000FC4AE0F1915AFBDAD4B115C99704C4B3C542880F5C9FD8A58F54B63E222A2EFDA0AEF0957D5E9E92A0C05414CA65F49390F82BDA9207650CA727A71E95CE721E75E57C6A52B1D371C91F5AC4F6B5E63ADFFF009BF4837284444C9B39C528243CCC50DB59FF00FB5671F4A90ED97A44DFB138890C38DCB0AF2F60C9C81939ED9C1AE0643896FF000718E879E6A5FF000F753DD5AB43CB80C36ECBB61125941E8538295823D31E9E94EBC335D6A93DFF004AF75CF562F1DA6A2416B52D8141A2BDA5F82ACED03193B55C9C0E700E6A75B2DD60DE6D91EE76D90991124277B6E27B8FE47DAAF3752CC64294A5690A52940A52940A5294185B8EA4B35AD979F9F39B623B1C2DC715819F41EA7D8569EE78C5A2FCC5A199925F4A39F319615B7F5FE95BB3D63B33ABDEFDB633CBC923CC692BE4F53C8AF95C2D715BB3CA8B023458854D2928219484A0918CE063DAB3655D405AD7C53957E79B569E62622D915485C979D48527767E1DC8C60278E4FF0031CEF16699AC246A8B6B65976E368712172262D84C42D2882490400558E38239A8DE05AEE1A49D95679D6D75BB525D43BF6B90D60BEB4A47C00EEE525595631F3EB5B6E9EF14DE8B1971A5451F082A6C151CAB278CFEA78AE5FACAE99E2720F212E860AB2B29DC3B123B9AFB0E839CD6AB649B1AF91A14D83706A4C98DF1294D8C24EF1C8C56C8D3A7EEB8304D7595CECCAFBD294AD214A5281804E39AB29D294CA5498C8F3E46DF81A071B8FB9ED578AC8E474EF50D7897E22B7A4E0BD1A0282EF5294A3BD69C86539E3F218E3D6B36AC42DE3F22E3FE784BB715EE79D8685ED1D1B1950DA3F2A8D10E28A8024E3D0564EFF72997396E4DB8CB764CA77E2538EAB2A3FD07B56252B50EE455E7E1572E349560A02C2BD0F39A987C019AEBF7872C70ACADBCDC8483326EF214DB40F39F6EDB7BE6A17DE5581BBBF7E6A64F0EFC47B5E93B3A2D56CB019B7090B1E6B99C79CAEDC9E80566C589DE27879A60BF24396C4AD9736E12B592124E4E41CF5F7ACF582D16EB1AD702CD1CB10D0956F4EF3B0384823AF7EB9FA5469E1EEB3D57AB358F9131B6E159998EE2D6CB69C6564E129DDDCFB7CEA69652DA5B09460247DDC7A539C3AD7B4F407B1AAD5063B1CD56B6C94A52814A52814A52815E4819CE06739E95EA941AFDCB4B5BAE0E256EF9A848392D820A7AE7A115A9EB2D00DCA80B4DBC873F129A7700E003C2081C1A932A98E463EB59BCCAB3AB1CF3A1AE4FE91BD2DA794151252437E5A127B703803A8C63353DC5713263B6EEC524A920E143A7B569FAFAC31E44271E4C56CA9295389525032481929CF6C8191F2A8CF45789336DFF0068832D2E38DA386D9490548CABDFAF18AE72DE7CAE973A4FAEBEA8A0ADD4E5903257FBB5728525490A49CA4F439AD174BEB689A9274EB630097638F8CA80C6D23BFBE71C74AC86987A45AAD8D41BD3A961D42D610B5ABE1524A89480A3DC03822B73A73B2C6D94AF936E05202D0B0A49E841DC0FD6BCB8F21015B96901292A249C607AFF001AD6A58FB1EDC022A36F10BC2DB46AE784A2EAA3CF03087900123AF51DFAD6EED5DA0488FE7C696D3ECA867CC42C1481EA4E78AD3F5278996AB0CD61329974C05AF6096949521471DBFAD4F166A0FBBF8097B84E92DDE60ADA2BDA54E020849FC47AE06481ED9A8B2F1637AD6F25B79614A3C04FE2CFA63AFB7D2BB3356CB5CED2C2621B61982FC725D764BA46D6D69C71B475C1C8F7AE6290D1752652AF1FEB20794E14AF2B1B0E371E3B81C73DEB3FABFC6B235B569E95153184B88E36E3C3782AEC0F1D2B208B7B760BBC69C2525C48752B6FC927394AC05057A0EB5E256A05A590CF321608214EFC4A18EE4FAFF2C562573A44B94A5CD5F0B4EC38C6D4F048000E9C9CD36D5C89E7C53D36E5A5E7351DB264B8F0A4A02946313B587782856D1F84F424743834B4F8D716DD6C61853D79BD4C48F8C4888DA140F7054857207CAA4BD36F46D41A12D1F692874C8B7212FB4792700A49C77C904572AEAAB53DA6354BAD450A4861C3E5A873947E1C7F0C7B5485F52EA3F680B8BF746A3B1606511DC504EE53849049C738E9DAA7F8AFCB7037E6B007C00AD5B87DEC038C7D7F4AE74F0BDED2BABDD6A05EDBFB1DE810B6D6D2C36DCB00E71B7A6EC8E9F5ACEDF3C621A7B56DD223507EDD19C2D29054F6CF29406D5E700F3B81E3DAACBEB389EC7F7CD56B4CD27ACD5A960B72E0D92704AFF1BA3637D3B2B2735B40765149CB4D255B4900385433F956F531774AC3D9EEC67392E2C88CEC59911610EB4A39183F756957707FAD662AA14A52814A52814A5283E4FB4871B295A729247D0FAD42FE236825AE43B74B1B47ED6AC95A41EA7B11D803D0F606A6CC0C838E45595D20C79D1FCB7908CA4EE4923A28743FA563AE7579B95C6F1F525C2C4AB80438A339F6FCB71D41C0001CED4E3E5927BE2A61D07E2658757D9D562D4E96A3B8DB03CC79F70250EF6DC95754A875AD57C6BD1ED426C5DA24171085F0E848DDB0E4E7E7FF001506A50E36B5B8D7C291D0F627D3FBF4A92375D35A0EF7695E9790EDD6FEB42E1ADD6DC7233EA4A54DB6E2B69C0C0C14949E0024735B07898CD86F3A01539254F865B6DE8EE32B285202B8DC3FF13E9ED5CF3A6897AC8CDBC2945A972C38FB613925294E37FC864D4CADDC61BDA063C62B2869E8B1D80B5F705DDC9E3B647F1ACDA48832E973BA4165A61879480CA8EF0CBCA085F39E53D01F97AD6DF70D64C6B7D0CBB65D186D9B95BD49721167E0DCAC609FA8CE47B0AC55E25DA23EA4BB5AE5B398D21CDA7CA48C32AD83A7D7AD6840AE33AB69D49C2560280EA0F7E6ACF449D1B5CEA3B8E8B66D3689AFB12A38DB214D92496F6903E9FC3E951694BE1B7961C52424ED242880A39FD6B63D193E0DAAF126E321454DC561C710C93C3ABE8949F5E542AC1D991D711500B0953EB702D6E048E144E558F4EC2B5F1135783D6EB25EEC888379B2C4988083BFCC6B0B4AB3F094AB39E83B55FF008ADA074D5AF463CFD8ACE233D11E43DE76E2A2A0A3B4A56A39F870723D31573E0B42532CB729952371483B794E5BFF00EC4FBE41047E7D6B6FD4376898976D951BCE8F210A6D4C83F03E950E52957E157A03C64718AC6AE21067599D312B4B38CB85DFB030B43CDB6480E256E28A93F51DEA64D47E1ED8B5CDBA35EADD28A0C8692E0528050208F4EC6B9F6F3A36E9124B521A1F6AB5ADD2866667950C642543AA5407183DEA62F0CF58A2CEE22C135EF31B0E129513D3763F9E69B3571A5DE7C3A1A12FB0AE97190FB9A750E857DB630DCA8AE01F09527AFDEC7CFA673588D4173976FD5ADDEA7418732DCFBC1D61E48F363389528FFA8303857723B1ED5D5D3936E9B6E9099CD34EC17DAFF592EA414147439A85ECF0F48F8526422FDAA132D8B82D463436DA2FA194824E4A79CE4103247AD6B19D4C1A6AF76FBADAA23D0A432A0E3636A1B712A238E78078FAE2B36392335CEB68D79A56D3A990E6928CEC58131644A2EA084127046119E076CE335D0905F4CA8A8948494A5D1B80575C56B9BA96088CD36FB8F8C05BB80A23AF1D07EA7F3AFB8E9EF5672E42061B4281593DAAF119DA09EA455655A52954294A50294A50298071C74A528343F17972A1E8E937486104C375B79F41682FCD642805A71F239CFB76AE4FD5696A75D92CDAD98EDC794F9FB2B71864BA49C051CF20F3D3A024FA5772CC8EC4B8CEC594D0763BE8536E36464292460823BF15A05A7C29D2DA7EE0F5D6C307170D850C7DA9D538DB04F703AE473DEB367BAB2B98B3362CA734E45E6629C305AD8784E4E1678EF8EA6B6DF12EE28B3D9EC9668476A94E21DCF4F81BF853F4CE7F2A929CF0EE1D82F33354DEEEAB732D2D596217C2D9279C2812727A0F9F5A8375AAAE774BACEBF4FB44A8CCBE0B50192D2806DA1C0574E80027DD4A35893D6B5A82A4AE45C5F796B2AF314A5024E7AE6ADA4CA538E28F50AC649F957865410B2B38C849205795A484648C13CD6FE335E0A959CEE3F9D6C9A22D0EDE6EE96C02A008CA8F627B9FA026B5C009206339A97BC2561A88C3AF2810E859C9C70AF41FCEA77722F1ED4CB0DDB7596C70511CB91D6C1D887529C96164F3BC0E4A49E0F5FD2AEB51BB6FB8C6316F31936FB83A768581B9991EE957E21EDC28556DD1512DEF3D4849DC801D68F21C4E083F5EFEFCD5DEA70205ABFC3E445448B6AD0128279F2F006139F4FDD575AE3FC75FEA2DD4A2E36A2E5BDF717220C9C8748CE769EE55D7E47AF0454677445C2D92C32D38A486CEE4A93D1638C1CFA54AB392B64FD9CBFE64650010E2CE56D8FDD55681A91A931421521A0B0851DA5278C7602A73F56FC6D5A2BC49D457B5C7D1A8F2597A6B9E4992EAB7043641DDC1EF807DF3815E7C51B6234F68D5A2C11E0C3B3CA792CAA43E774EB9ABAEF048E1BE01EDF91151E68EFB2B9AC2D6AB8A94CC76A525C92B412086C654A1EF90027EA7DAB6AF18E439A81A81A865A9F8AEC95966D56BC64222A782EABD0A95D3E55DA4C72BEB58F0DE2ADED43116CB68F3A392E254AEB91C0C0C1248CFA5752C59F7679B6D86A5BA84A404ED434849571D4F07151EF841E1E484478379716E33BD949524A0A02D27D0F5A9CEDF6D8301B0DC38E86D39CE40E7F3A996D5B648B4B6407014BD215957A1ACC9A52BA48E74A52954294A50294A50294A500807834A5283C9483CE056B5AEE54587605B93824C753CD36BDC011B54A09279F626B663C724F0066A0EFDA3EF81BB7DBAC0C2897A4BA9716807B020FF002ACD5881E5E9E8C8D573622A5B6A8EC483B09C61C4EEE07E55AA5C72253C3000DE7091D8678159280EB8F5D14E2BAA545783F3381FAD63A5237CB752B50210A20AC77348B571678E979DF316AC04F0818CEF57603F8FD2A76D19A6A6C58CC38860AA221414A71233C91D4FB9FD2A1CD05158B8EA8836D7CE5A79D20249C027078CD762E9B6988B698F0DA69222A1940291CED24727DEB9F7ED6B9F8A468EA851197D09DCBF43EBFF0002AC2FF21B83114D5C4AD76C7CF0A4F56D47AA7FFC93C8F4CD6CD1D971B294800B44E52B1FA52E31614FB7C8852186D7B9B292D93C74ED533C5D73A6AEB74DB5C88E88EE9936D512A69E4F2520F650EC47AFCABE3A88B0FDA5A7C80BF2D39183C669A8E45CEC17266DBE707ADE9594B41472A4A4FE13EA057C352B61BB337E591E5B892B3C7A5739F5BDF185F0DAD68BEEAE326584B56E88DAE43C56709C2474CF6EC7FB15BECED3E8D57E2B426A5FDA18841B402D2DA294A1A40052D27D320A49F524D6A9E132D527555B74F327FE99F7C3D295FBE86F2AD9F22AC67D702BA957162317117079C4B7BF6B7827092E64E3EB5DB18DC651869B69A4B6DA4042000903A000638AFAD51382320556BAB914A52814A52814A52814A52814A5531CE4501471D3AD6B978D576BB5DEA2D9DC782A6BE85381ACF2948C75F724F1F2AB4F107595BF48595D9D21D429FE8DB59E547E55CD3609F73D43A89ED4F35EDAB6D7F68538E2B818FB8819F5AC75D635CF3AEB49774851595BB25F4A50D9C2893DC8CD727F89DA9517FD4CF5D18C283416C30339C1E067F8FD4FB5575D78872DE86BB64296A2B70953EFA49E547D3E5D2A2C6D6B4A92F64A36F09238FEFBD49B56F8BD71D5C44380253BD60F3DC7A7E958725401495123E75F590FA9D56493C0C75AB7ADC98CEB68F0E1F4C6D7163794484A65A3241C7078FE75D956E79961988DA0A54B4EF42B8EE0F15C22CAD6DA82DB5142D2A04281C107A8C7E55D9FA52749BA586CF779000725C56DD51038048C1FAE4567B9EB5CFC6E4D28C6507124A9850C2C0FC3F4AC65FB6A10A7985671D5293EDD457D997960E411B718233806ADAE6C15B487231C2919F83B11E83D2B1D7C6A39EF5ABE5D9895ACA54A0783EF9AB7BC153DA51A70A48094940CFB8CFF001CD35E065BBEB891F024BC094FA018E3F8D642E686D5A494ACE529C9C1ED8CFF005AE6D6355F09AEB1ED1AE62C994F794D9414051E993FFBAE8BF18EE0E46D012AE2CE12E4390CBA920E464118FE35C78FB85B70A5BE17F09DD9F4FF009C574C6BC6A65B7F67F791737D72A74A6A3296B73B294B41C0CFA0FE15DDCED4C3A62EF1EF960B7DDA2AC29A94CA5C18EC71C8FA1CD65EA17FD9A6E0F3FA31C80B56F6A3BA4B67F74294AF87F4CFD6A6715A8CAB4A52AA14A52814A52814A550F6F7A0A1CEE1E983CFA5699E236BAB668BB4A9F92E79935C1862320FC4B3EBEC2AFB58EA98B6084A48525C9CE021861237A96AEDC7A572BEBA376B8DD9EB8DF5E2564E5654721BFF00C123D7E5F5AC5EBF8D4E583D4DA82F7ACAE8F5CEEABC369384B28FF6D907A019EA4D594FBC3DF6516F864351D240DA8EAB3EA4F73FD2ACA44D2E831A2361B883A64E493EA4D59297E49F814771FC79E6AE2BEEA4B6D7C4FE16E1FF00B40FDD3EE6B1EFB8A528EE567D8741459700CABBD78293C6E040ED5719B5E09CD3B53143551E9040183D09EB5D31E10DDEF7FE4F8F05515D5AE302592A6C905B24E13FDFAD733A0E3BD49BA1FC57BBE9C69A8721A12627DD5AC13E76DE9F093C6476CD67A9AD7371D0D0614C2A548BC4E4EC39DB11036FE66AEE64A90E474356E4B2CB3824FA91DF03BF4EA6B5EB5DC2D77D8699567B936EF9C3784C8594A81FA0E48EF5956528810A43A5F2EBAA490F3F9E73D9291D873F5CD70AE91026B769726E2A793F794E14A40E493F2FEFAD6535533FE17A5D882E4A0E487D1BD653C6DC804835E6E423CCD41206F1E4C2DCB92B49C00A3C25B07B9F5F7AC3F8857032CC3663A42096CA40F4040FE9FAD27D5BF1ABE8984DCED530D4FA10B8ECBE971C0B048290A1D715D1DFB493896FC3561B0AFF007A6B39501D40493FD2A08D311D71E5C6B747702254A50CAC1C14A49191F954E9E2FA6DF70D1F12DB2E72A3888C898A504EFCA8A486D3D477EA3D2BAEB9E2CBF6597E32F4ADD63A3CCFB4B7302DC513C6D29C240FA857E62A771D2B9ABF6756635BE739258BCC47953105B799F31495378C6D05071C9E79E4735D288C1048E79EBEB5A959B1EA94A5690A52940A52A8681C75278F4AC2DDEEA5A1E5441BDD3DC7E1AC9488EB7C8CBAA4B78E40EA6A823C68ED9F2DB483F9926A5F8B2E22EBDC02D3122EF789022B2DA14A2AC8F30FB64FDD06B9C7515C1ED4775531052BFB3A9586984640F9E3BFCCD4B5E345E0DFB5033A4633C7CA694172169574511C0F43D3A9AF36ED2AE69EB6F9F12DAE3B21400DE40DEE28F619FBA9E95C6F9EBA4F511BD6016D6CB974754DAC746109F88FB7FCD6B525D2F3C5B6190D8EC949C9FCEB79D48997719EB89092A9B3324487109250D9FDD4FAE3DBBD6E3A13C1ABADC1A44B9C8FB2B2B19DCF0DAE287CB1902B7CDB8CD88699B7BE5494861C79E57DD6D20A89FCAB6CB57867AAAF18288C1B591F0A1C3823E82BA8B4E786763B320651E6ABBF1807E67A9ADDE2428D0D0111D86DB48E9B5205596D4F1CC967FD9EE73CC05DD2ECA69D23FDB61ACEDF99245586A7F0325DB612DFB65D04C79AE571D48014A1DF045758E07A0AF2E210B012A4A0FB2867E756CA9AE09D35A65DBBDE536E4EF2413B8A073C7A0F9D65B5F6869BA5171D4429C61F4024F9782D923EE9FEFBD74EE97D1D6DD39AE6F371650E666277B5BC7C0DE795A471F2FA56B3AE1A9B7D5CC6A049812D92B5612A524A923E4AE55F4AC5EAC6A4D72FDB6ED70B53DF6881216C3A0F3CE42BE60F15BF37E27DDA5C16AD6EA63B654AE2405ED09CF04F3F5EB587D51A4E4DAA76C9D10C74398DAF0C96F3D8671C76EB5ADCCB4BF19585A7008C829E5247CF357CA7B1234D5477D102D1025C453655E63CE332D1FEA11DC9E2B05316DDD75698911216C309D9B828655B47C473D3FF0055A7186EA46F0A49CF5F6AF71C496F7A52F3812B1B1410AC6E4FBFB54FCC9EADEAE2F25DCE431747E44374B6B49DA95A15829F97AD4B9A56C378F11F42BA87A7A5A9C1F086A43C8FF7025236A4E3D7D793F3A8F2C3A6A3DC5A5C99976870E3B49CAF72FE318F44FE9D7E55D17A1664372C6CDBF4AB662DADA40122E6E0E012064209FBCB3D38E00EBCF056911C5B3C13D69090C488532DED496D792144F27D7A7238F4CD4D7A12EFA8D0C7F856AF82234F6FE14480A05A7C0E01047F0EB5B6C043288E966380594612939CE781570F32D3C82D3A84AD0AEA950CE6B53C62D7D53C8EFF005AAD5825D109D4B2F2C9655C36A2738F626BD3D39A6DE6DBDC3FD450475E87B56B4917B4A7C5FBA3F3A554294A5050F1585D59724DA34FDC2E8B194C58EE3BB4719501C7EA6B3445695E30A1D5F867A8C35F7845DDC7A05027F41528883C0DD3D27525D25EB0B9A77053EA0C83D0AFBABE49CE3FF5537DE6CC6E205BD841663251B1D70AC8C83D863BFBFBD61FC17B7B707C3AB1842000E47F349C752A51567F5ADF520704002A7E757583B1698B4599B4A61C2650503095048E3FBEBF5ACE01ED55A5593114C0CE71CFAD5694AA15438C104678AAD50D046DE2E6A891A7AC8B4B0DAD4B9092807909C1E08DC3F1735CDF37523B2A2C865A60A8ECC272EFC48E3AE3FBE95367ED28DCCFF2F5B96C2D5F652F10FB69F6190AC572C38E2C2F70DD9EA0D73FCED6E5C8C827515D4B6B8EE4E794CB830E2547215F9F4AB553AE2C6D44B70363A052B3F4AB2515A89514FCCD5E5BED736E2A222305600CA95C04A47B93D2B79244DAC8C5816C79A0A91A912C93F791E4ACE2BEEB8D608ACACB777726BB8C36CA19280A3EE4D635FB6064A51E7A5F39E4303760FA67BD7B6D8911C85B71D0CF3C38F28271F99A832ACDB9532630FDCDC891221FFB7E66D09F620739E3A77AE82F0F240BF44B5DB62B2B16F8780D9236EF4851DCAE38E4F03D8573F59AD4BB94F693326A3C9046F701F8473D3B0E7FB35D09A77545AB4F588310592620C9FB42F00ACF40918FC3C0E39AE7D35130C879319B08404A54AFC3D302BED19EF386EDA31D8D43FA77505FB525E12120FF00A87007E16D3DD5EC00ED52F30D8663A1B0544246377A9F5ADF3759B31A878A778FF08D25709297034E3680B428FA8231F3CD45DA0358DD35BDEA0B0EA7CA4C5D8FBBE59201C118CFCCE2B1DE3C6A356A0BE35A52CCA765794A4B6FF949DDB9CCFDC481D4F4FEC548DE0C787CBD276A7655D129172984153439F2903A249EE73C9C7CBB54B369BE24FCA0704F3F2A57D02860648CF7A56B19294A5682AC6F36F62ED6B996C9232CCA616CAF1D70A0467F5ABEA506BBA1A20B6E9C876756EDF013F66567BEDE33F5EB5B08F957909485150480A3D4E3935EE93C0A52940A52940AF2B213CA8E057AAA100F500D0421E366A9B2FD99DB7E647F88B21484028CA179C646DEA78C73C541106C175BBAD4F47B614248F854BC251F4E6BB6255A6D92DF4BF26DF1DE753F756B6C123F3AF2FD96D521D0EBD0195AC0C0CA3F9563F37F8DCEA39774B7868998E15DD9E6D2509DC1246539EC309EBF535B0CDD0B7694DB6B45A5A5B48F87FEA5C01B40EC7CA41DBF99AE8810A234D94B3119471C61B181EF5A16A9D29789CBF36396E4EEFC2A51481F426B379AB3A95046ABB2C2B5B5B2EB7843CF8184C7B7E1096FE78E3151E1910D85A951E3A94AFBA9715C9CFB66BA12E5A0351A59C220465289C63605607E75F5B5783E9756997A88F9EB4FC49811006C138E8B70703E9525AB7107E94B1EA6D5530C5B444724253FEEBCA561B68772A59E00F967E46A65D2BE1FC2C36CC99EFDF5FC805A84A2D446B1C7DF209563D80ADA6E363931622234F970ACF676920B56CB77008E99574DDCE393C648EF5B56976E6444A63FD98B28535B9A0E1212120F3C7DE52B9077103DB0056B36A6E45E5A2D76ED3104869A2A7167E2D837157FE23D87A562EF8DEA6D44855BA0F9B6784E0C3D297C39B7D123DEB6B115C2F21E7E43AB524E4242B6A01F90EBF239ABB481D71CFBF5AD67F8C6B52D21A12C1A5CA5D8717CD9A13B552DEF897EE0764FD2B6E48C0E807CA981C71D3A556AC88A6D4FEE8FCA955A550A52940A52940A52940A52940A52940A52940A52940A1E7AD2940C550E00E9C556A8AE9418D7AD8D39716E5B8DB64A3E34FC3D57D028FAE074F4C93DAB20128242B682467048E47AD1EEA8F9D7BEE69869DB14A52814A52814A5283FFFD9)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (15, N'string', N'$2a$11$Es1Jo1eHBXLVmRhOiWCize7mjtnFFl6..SeFREqBsUAVH/.CZgdHu', N'string', N'string', N'string', NULL, 1, CAST(N'2026-05-12T12:18:07.770' AS DateTime), CAST(N'2026-05-07T09:48:48.257' AS DateTime), N'string', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (16, N'new.operator', N'$2a$11$E5P8ZQSz0yl14gX9/xZjAeqpuf2AfRJg6e8.QeEXyUIiT934F5szm', N'Новый Оператор', N'operator', N'newop@agrocontrol.ru', NULL, 1, NULL, CAST(N'2026-05-07T11:28:03.887' AS DateTime), N'Цех №2', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (18, N'new.user', N'$2a$10$YbR8W5zM9Rj6p9t7Fb8Ee.dUeBkZM/N8sGLDMAwqWp2Y2Y9A1sL4y', N'Новый Оператор', N'operator', N'new@agro.ru', N'+7(123)456-78-90', 1, NULL, CAST(N'2026-05-15T10:48:38.050' AS DateTime), N'Цех №1', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (19, N'apparat', N'$2a$10$YbR8W5zM9Rj6p9t7Fb8Ee.dUeBkZM/N8sGLDMAwqWp2Y2Y9A1sL4y', N'Аппаратчик', N'operator', NULL, NULL, 1, NULL, CAST(N'2026-05-15T12:47:02.050' AS DateTime), N'Цех №1', NULL)
+GO
+INSERT [dbo].[Пользователи] ([ID], [ИмяПользователя], [ХэшПароля], [ПолноеИмя], [Роль], [Email], [Телефон], [Активен], [ПоследнийВход], [ДатаСоздания], [Отдел], [Фото]) VALUES (20, N'apparat2', N'$2a$10$YbR8W5zM9Rj6p9t7Fb8Ee.dUeBkZM/N8sGLDMAwqWp2Y2Y9A1sL4y', N'Аппаратчик2', N'operator', NULL, NULL, 1, NULL, CAST(N'2026-05-15T12:57:05.070' AS DateTime), N'Цех №1', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Пользователи] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Продукция] ON 
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (1, N'HERB-A', N'Гербицид А', N'гербицид', N'жидкость', N'архив')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (2, N'INS-B', N'Инсектицид Б', N'инсектицид', N'гранулы', N'архив')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (3, N'FUNG-C', N'Фунгицид В', N'фунгицид', N'порошок', N'архив')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (4, N'HERB-A-V2', N'Гербицид А версия 2', N'гербицид', N'жидкость', N'активен')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (5, N'gfdg', N'dfg', N'gfdgfgdg', N'dfgfdsf', N'архив')
+GO
+INSERT [dbo].[Продукция] ([ID], [Код], [Наименование], [Тип], [ФормаВыпуска], [Статус]) VALUES (6, N'dfsfd', N'dsf', N'sfs', N'fsf', N'черновик')
+GO
+SET IDENTITY_INSERT [dbo].[Продукция] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеЗаказы] ON 
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (1, N'PO-2401', 1, 1, 1, CAST(1000.00 AS Decimal(12, 2)), N'выполняется', CAST(N'2025-03-01' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (2, N'PO-2402', 2, 2, 2, CAST(500.00 AS Decimal(12, 2)), N'выполняется', CAST(N'2025-03-03' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (3, N'PO-2403', 4, 4, 3, CAST(800.00 AS Decimal(12, 2)), N'выполняется', CAST(N'2025-03-04' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (4, N'PO-2404', 1, 1, 1, CAST(2000.00 AS Decimal(12, 2)), N'запланирован', CAST(N'2025-03-10' AS Date))
+GO
+INSERT [dbo].[ПроизводственныеЗаказы] ([ID], [НомерЗаказа], [ПродуктID], [РецептID], [ТехКартаID], [ПланКоличество_кг], [Статус], [ПланДатаСтарта]) VALUES (1010, N'fds', 3, 1, 2, CAST(23.00 AS Decimal(12, 2)), N'запланирован', CAST(N'2026-05-21' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеЗаказы] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеПартии] ON 
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (1, N'B-2401-01', 1, CAST(N'2026-05-13T09:15:14.887' AS DateTime), CAST(N'2025-03-01T14:30:00.000' AS DateTime), N'выполняется', CAST(998.00 AS Decimal(12, 2)), 1, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (2, N'B-2401-02', 1, CAST(N'2026-05-12T07:17:47.643' AS DateTime), CAST(N'2025-03-02T15:00:00.000' AS DateTime), N'выполняется', CAST(1002.00 AS Decimal(12, 2)), NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (4, N'B-2403-01', 3, CAST(N'2025-03-04T10:00:00.000' AS DateTime), NULL, N'выполняется', CAST(400.00 AS Decimal(12, 2)), NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (5, N'B-2404-01', 4, CAST(N'2025-03-10T12:00:00.000' AS DateTime), CAST(N'2025-03-10T16:45:00.000' AS DateTime), N'завершена', CAST(1995.00 AS Decimal(12, 2)), NULL, NULL, N'одобрена', N'gfd', N'test.user', CAST(N'2026-05-14T13:21:32.097' AS DateTime))
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (6, N'dsa', 1, NULL, NULL, N'запланирована', NULL, 8, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (7, N'авыа', 1, NULL, NULL, N'запланирована', NULL, 8, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[ПроизводственныеПартии] ([ID], [НомерПартии], [ЗаказID], [ВремяСтарта], [ВремяОкончания], [Статус], [ФактКоличество_кг], [ТекущийШагID], [ПланДатаСтарта], [ЛабораторныйСтатус], [КомментарийРешения], [РешениеПринял], [ДатаРешения]) VALUES (8, N'авы', 1, NULL, NULL, N'запланирована', NULL, 8, NULL, NULL, NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ПроизводственныеПартии] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Рецептуры] ON 
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (1, 1, 1, N'активна', CAST(N'2025-01-10T09:00:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (2, 2, 1, N'активна', CAST(N'2025-01-12T10:30:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (3, 3, 1, N'черновик', CAST(N'2025-01-15T14:00:00.000' AS DateTime), 2, NULL, NULL)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (4, 4, 1, N'активна', CAST(N'2025-01-18T11:15:00.000' AS DateTime), 1, CAST(N'2026-05-06T13:59:00.847' AS DateTime), 1)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (12, 1, 2, N'архив', CAST(N'2026-05-12T15:26:52.743' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[Рецептуры] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания], [СоздалID], [ДатаУтверждения], [УтвердилID]) VALUES (13, 2, 3, N'архив', CAST(N'2026-05-13T12:10:51.713' AS DateTime), NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Рецептуры] OFF
+GO
+SET IDENTITY_INSERT [dbo].[СоставРецептуры] ON 
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (1, 1, 1, CAST(60.5000 AS Decimal(10, 4)), 1, CAST(59.5000 AS Decimal(10, 4)), CAST(61.5000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (2, 1, 3, CAST(30.0000 AS Decimal(10, 4)), 2, CAST(29.0000 AS Decimal(10, 4)), CAST(31.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (3, 1, 4, CAST(9.5000 AS Decimal(10, 4)), 3, CAST(9.0000 AS Decimal(10, 4)), CAST(10.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (4, 2, 2, CAST(45.0000 AS Decimal(10, 4)), 1, CAST(44.0000 AS Decimal(10, 4)), CAST(46.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (5, 2, 3, CAST(45.0000 AS Decimal(10, 4)), 2, CAST(44.0000 AS Decimal(10, 4)), CAST(46.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (6, 2, 5, CAST(10.0000 AS Decimal(10, 4)), 3, CAST(9.5000 AS Decimal(10, 4)), CAST(10.5000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (7, 3, 1, CAST(50.0000 AS Decimal(10, 4)), 1, CAST(49.0000 AS Decimal(10, 4)), CAST(51.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (8, 3, 3, CAST(30.0000 AS Decimal(10, 4)), 2, CAST(29.0000 AS Decimal(10, 4)), CAST(31.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (9, 3, 6, CAST(20.0000 AS Decimal(10, 4)), 3, CAST(19.0000 AS Decimal(10, 4)), CAST(21.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (10, 4, 1, CAST(55.0000 AS Decimal(10, 4)), 1, CAST(54.0000 AS Decimal(10, 4)), CAST(56.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (11, 4, 3, CAST(35.0000 AS Decimal(10, 4)), 2, CAST(34.0000 AS Decimal(10, 4)), CAST(36.0000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (12, 4, 4, CAST(10.0000 AS Decimal(10, 4)), 3, CAST(9.5000 AS Decimal(10, 4)), CAST(10.5000 AS Decimal(10, 4)))
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (13, 1, 1, CAST(1.0000 AS Decimal(10, 4)), 3, NULL, NULL)
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (1013, 1, 4, CAST(12.0000 AS Decimal(10, 4)), 14, NULL, NULL)
+GO
+INSERT [dbo].[СоставРецептуры] ([ID], [РецептID], [СырьеID], [Процент], [ПорядокЗагрузки], [ДопускОт], [ДопускДо]) VALUES (1014, 13, 2, CAST(12.0000 AS Decimal(10, 4)), 321, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[СоставРецептуры] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Сырье] ON 
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (1, N'RAW-001', N'Активное вещество А', N'кг', N'активный компонент')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (2, N'RAW-002', N'Активное вещество Б', N'кг', N'активный компонент')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (3, N'RAW-003', N'Наполнитель', N'кг', N'вспомогательное')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (4, N'RAW-004', N'Эмульгатор', N'л', N'добавка')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (5, N'RAW-005', N'Стабилизатор', N'кг', N'добавка')
+GO
+INSERT [dbo].[Сырье] ([ID], [Код], [Наименование], [ЕдиницаИзмерения], [Категория]) VALUES (6, N'RAW-006', N'Растворитель', N'л', N'вспомогательное')
+GO
+SET IDENTITY_INSERT [dbo].[Сырье] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ТехКарты] ON 
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (1, 1, 1, N'архив', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (2, 2, 1, N'активна', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (3, 4, 1, N'активна', CAST(N'2026-05-06T13:59:00.850' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (6, 1, 13, N'черновик', CAST(N'2026-05-12T15:26:42.337' AS DateTime))
+GO
+INSERT [dbo].[ТехКарты] ([ID], [ПродуктID], [Версия], [Статус], [ДатаСоздания]) VALUES (7, 2, 2, N'черновик', CAST(N'2026-05-13T12:13:25.193' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[ТехКарты] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ШагиТехКарты] ON 
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (1, 1, 1, N'Смешивание', CAST(45.00 AS Decimal(10, 2)), 30, CAST(1.50 AS Decimal(10, 2)), 1, N'Смешать до однородности')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (2, 1, 2, N'Выдержка', CAST(60.00 AS Decimal(10, 2)), 120, CAST(2.00 AS Decimal(10, 2)), 1, N'Выдержать при температуре')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (3, 1, 3, N'Экструзия', CAST(80.00 AS Decimal(10, 2)), 45, CAST(3.00 AS Decimal(10, 2)), 1, N'Подать на экструдер')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (4, 1, 4, N'Охлаждение', CAST(25.00 AS Decimal(10, 2)), 60, CAST(1.00 AS Decimal(10, 2)), 1, N'Охладить до комнатной температуры')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (5, 2, 1, N'Смешивание', CAST(50.00 AS Decimal(10, 2)), 25, CAST(1.50 AS Decimal(10, 2)), 1, N'Смешать компоненты')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (6, 2, 2, N'Экструзия', CAST(85.00 AS Decimal(10, 2)), 40, CAST(3.50 AS Decimal(10, 2)), 1, N'Экструдировать смесь')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (7, 3, 1, N'Смешивание', CAST(48.00 AS Decimal(10, 2)), 35, CAST(1.60 AS Decimal(10, 2)), 1, N'Смешать по рецептуре')
+GO
+INSERT [dbo].[ШагиТехКарты] ([ID], [ТехКартаID], [НомерШага], [НаименованиеШага], [ПланТемпература], [ПланДлительностьМинут], [ПланДавление], [Обязательный], [Инструкция]) VALUES (8, 1, 0, N'fdsf', CAST(12.00 AS Decimal(10, 2)), 123, CAST(321.00 AS Decimal(10, 2)), 1, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ШагиТехКарты] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__ПартииСы__43AC6D0207753973]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[ПартииСырья] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерПартии] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Пользова__D1986CE7727621E5]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[Пользователи] ADD UNIQUE NONCLUSTERED 
+(
+	[ИмяПользователя] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Продукци__AE76132F87AC2457]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[Продукция] ADD UNIQUE NONCLUSTERED 
+(
+	[Код] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Производ__33C9BE620BA81F83]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерЗаказа] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Производ__43AC6D02FA3CC0DB]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[ПроизводственныеПартии] ADD UNIQUE NONCLUSTERED 
+(
+	[НомерПартии] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_Рецептура_ПродуктВерсия]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[Рецептуры] ADD  CONSTRAINT [UQ_Рецептура_ПродуктВерсия] UNIQUE NONCLUSTERED 
+(
+	[ПродуктID] ASC,
+	[Версия] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_Рецептура_Активная]    Script Date: 18.05.2026 10:58:59 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_Рецептура_Активная] ON [dbo].[Рецептуры]
+(
+	[ПродуктID] ASC
+)
+WHERE ([Статус]='активна')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Сырье__AE76132F05D28A85]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[Сырье] ADD UNIQUE NONCLUSTERED 
+(
+	[Код] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_ТехКарта_ПродуктВерсия]    Script Date: 18.05.2026 10:58:59 ******/
+ALTER TABLE [dbo].[ТехКарты] ADD  CONSTRAINT [UQ_ТехКарта_ПродуктВерсия] UNIQUE NONCLUSTERED 
+(
+	[ПродуктID] ASC,
+	[Версия] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [UQ_ТехКарта_Активная]    Script Date: 18.05.2026 10:58:59 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_ТехКарта_Активная] ON [dbo].[ТехКарты]
+(
+	[ПродуктID] ASC
+)
+WHERE ([Статус]='активна')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] ADD  DEFAULT ((0)) FOR [Отклонение]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] ADD  DEFAULT (getdate()) FOR [ВремяСобытия]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] ADD  DEFAULT ('инфо') FOR [Важность]
+GO
+ALTER TABLE [dbo].[ПартииСырья] ADD  DEFAULT ('ожидает') FOR [ЛабораторныйСтатус]
+GO
+ALTER TABLE [dbo].[Пользователи] ADD  DEFAULT ((1)) FOR [Активен]
+GO
+ALTER TABLE [dbo].[Пользователи] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[Продукция] ADD  DEFAULT ('активен') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] ADD  DEFAULT ('запланирован') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] ADD  DEFAULT ('запланирована') FOR [Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры] ADD  DEFAULT ('черновик') FOR [Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[ТехКарты] ADD  DEFAULT ('черновик') FOR [Статус]
+GO
+ALTER TABLE [dbo].[ТехКарты] ADD  DEFAULT (getdate()) FOR [ДатаСоздания]
+GO
+ALTER TABLE [dbo].[ШагиТехКарты] ADD  DEFAULT ((1)) FOR [Обязательный]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Оператор] FOREIGN KEY([ОператорID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Оператор]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Партия] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Партия]
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии]  WITH CHECK ADD  CONSTRAINT [FK_Выполнение_Шаг] FOREIGN KEY([ШагТехКартыID])
+REFERENCES [dbo].[ШагиТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ВыполнениеШаговПартии] CHECK CONSTRAINT [FK_Выполнение_Шаг]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий]  WITH CHECK ADD  CONSTRAINT [FK_Событие_Партия] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] CHECK CONSTRAINT [FK_Событие_Партия]
+GO
+ALTER TABLE [dbo].[ЖурналСобытий]  WITH CHECK ADD  CONSTRAINT [FK_Событие_Создал] FOREIGN KEY([СоздалID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ЖурналСобытий] CHECK CONSTRAINT [FK_Событие_Создал]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_Аналитик] FOREIGN KEY([АналитикID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_Аналитик]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_Исполнитель] FOREIGN KEY([ИсполнительID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_Исполнитель]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_ПартияПроизводства] FOREIGN KEY([ПартияПроизводстваID])
+REFERENCES [dbo].[ПроизводственныеПартии] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_ПартияПроизводства]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [FK_Испытание_ПартияСырья] FOREIGN KEY([ПартияСырьяID])
+REFERENCES [dbo].[ПартииСырья] ([ID])
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [FK_Испытание_ПартияСырья]
+GO
+ALTER TABLE [dbo].[ПартииСырья]  WITH CHECK ADD  CONSTRAINT [FK_ПартияСырья_Сырье] FOREIGN KEY([СырьеID])
+REFERENCES [dbo].[Сырье] ([ID])
+GO
+ALTER TABLE [dbo].[ПартииСырья] CHECK CONSTRAINT [FK_ПартияСырья_Сырье]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_Продукт]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_Рецепт] FOREIGN KEY([РецептID])
+REFERENCES [dbo].[Рецептуры] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_Рецепт]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [FK_Заказ_ТехКарта] FOREIGN KEY([ТехКартаID])
+REFERENCES [dbo].[ТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [FK_Заказ_ТехКарта]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [FK_Партия_Заказ] FOREIGN KEY([ЗаказID])
+REFERENCES [dbo].[ПроизводственныеЗаказы] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [FK_Партия_Заказ]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [FK_Партия_ТекущийШаг] FOREIGN KEY([ТекущийШагID])
+REFERENCES [dbo].[ШагиТехКарты] ([ID])
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [FK_Партия_ТекущийШаг]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Продукт]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Создал] FOREIGN KEY([СоздалID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Создал]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Рецептура_Утвердил] FOREIGN KEY([УтвердилID])
+REFERENCES [dbo].[Пользователи] ([ID])
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [FK_Рецептура_Утвердил]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Состав_Рецепт] FOREIGN KEY([РецептID])
+REFERENCES [dbo].[Рецептуры] ([ID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[СоставРецептуры] CHECK CONSTRAINT [FK_Состав_Рецепт]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD  CONSTRAINT [FK_Состав_Сырье] FOREIGN KEY([СырьеID])
+REFERENCES [dbo].[Сырье] ([ID])
+GO
+ALTER TABLE [dbo].[СоставРецептуры] CHECK CONSTRAINT [FK_Состав_Сырье]
+GO
+ALTER TABLE [dbo].[ТехКарты]  WITH CHECK ADD  CONSTRAINT [FK_ТехКарта_Продукт] FOREIGN KEY([ПродуктID])
+REFERENCES [dbo].[Продукция] ([ID])
+GO
+ALTER TABLE [dbo].[ТехКарты] CHECK CONSTRAINT [FK_ТехКарта_Продукт]
+GO
+ALTER TABLE [dbo].[ШагиТехКарты]  WITH CHECK ADD  CONSTRAINT [FK_Шаг_ТехКарта] FOREIGN KEY([ТехКартаID])
+REFERENCES [dbo].[ТехКарты] ([ID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ШагиТехКарты] CHECK CONSTRAINT [FK_Шаг_ТехКарта]
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания]  WITH CHECK ADD  CONSTRAINT [CHK_Либо_Партия_Либо_Сырье] CHECK  (([ПартияПроизводстваID] IS NOT NULL AND [ПартияСырьяID] IS NULL OR [ПартияПроизводстваID] IS NULL AND [ПартияСырьяID] IS NOT NULL))
+GO
+ALTER TABLE [dbo].[ЛабораторныеИспытания] CHECK CONSTRAINT [CHK_Либо_Партия_Либо_Сырье]
+GO
+ALTER TABLE [dbo].[ПартииСырья]  WITH CHECK ADD  CONSTRAINT [CHK_ЛабораторныйСтатус] CHECK  (([ЛабораторныйСтатус]='заблокирована' OR [ЛабораторныйСтатус]='одобрена' OR [ЛабораторныйСтатус]='в работе' OR [ЛабораторныйСтатус]='ожидает'))
+GO
+ALTER TABLE [dbo].[ПартииСырья] CHECK CONSTRAINT [CHK_ЛабораторныйСтатус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы]  WITH CHECK ADD  CONSTRAINT [CHK_Заказ_Статус] CHECK  (([Статус]='отменен' OR [Статус]='завершен' OR [Статус]='выполняется' OR [Статус]='запланирован'))
+GO
+ALTER TABLE [dbo].[ПроизводственныеЗаказы] CHECK CONSTRAINT [CHK_Заказ_Статус]
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии]  WITH CHECK ADD  CONSTRAINT [CHK_Партия_Статус] CHECK  (([Статус]='заблокирована' OR [Статус]='отменена' OR [Статус]='завершена' OR [Статус]='выполняется' OR [Статус]='запланирована'))
+GO
+ALTER TABLE [dbo].[ПроизводственныеПартии] CHECK CONSTRAINT [CHK_Партия_Статус]
+GO
+ALTER TABLE [dbo].[Рецептуры]  WITH CHECK ADD  CONSTRAINT [CHK_Рецептура_Статус] CHECK  (([Статус]='архив' OR [Статус]='активна' OR [Статус]='черновик'))
+GO
+ALTER TABLE [dbo].[Рецептуры] CHECK CONSTRAINT [CHK_Рецептура_Статус]
+GO
+ALTER TABLE [dbo].[СоставРецептуры]  WITH CHECK ADD CHECK  (([Процент]>(0)))
+GO
+ALTER TABLE [dbo].[ТехКарты]  WITH CHECK ADD  CONSTRAINT [CHK_ТехКарта_Статус] CHECK  (([Статус]='архив' OR [Статус]='активна' OR [Статус]='черновик'))
+GO
+ALTER TABLE [dbo].[ТехКарты] CHECK CONSTRAINT [CHK_ТехКарта_Статус]
+GO
+/****** Object:  StoredProcedure [dbo].[АктивныеПартии]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 3: Получение активных партий для аппаратчика
+-- =====================================================
+CREATE   PROCEDURE [dbo].[АктивныеПартии]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пп.ID,
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пз.НомерЗаказа,
+        пп.ВремяСтарта,
+        пп.Статус,
+        шт.НаименованиеШага AS ТекущийШаг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ВыполнениеШаговПартии] WHERE ПартияПроизводстваID = пп.ID AND Отклонение = 1)
+            THEN 1
+            ELSE 0
+        END AS ЕстьОтклонения
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[ШагиТехКарты] шт ON пп.ТекущийШагID = шт.ID
+    WHERE пп.Статус IN ('выполняется', 'запланирована')
+    ORDER BY пп.ВремяСтарта;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ИспользованиеРецептур]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 9: Отчет по использованию рецептур
+-- =====================================================
+CREATE   PROCEDURE [dbo].[Отчет_ИспользованиеРецептур]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        р.ID AS РецептID,
+        прод.Наименование AS Продукт,
+        р.Версия,
+        COUNT(пп.ID) AS КоличествоПартий,
+        SUM(ISNULL(пп.ФактКоличество_кг, 0)) AS ОбъемПроизводства_кг,
+        AVG(ISNULL(пп.ФактКоличество_кг, 0)) AS СреднийОбъем_кг
+    FROM [dbo].[Рецептуры] р
+    INNER JOIN [dbo].[Продукция] прод ON р.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[ПроизводственныеЗаказы] пз ON р.ID = пз.РецептID
+    LEFT JOIN [dbo].[ПроизводственныеПартии] пп ON пз.ID = пп.ЗаказID
+    WHERE (пп.ВремяСтарта IS NULL OR CAST(пп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания)
+    GROUP BY р.ID, прод.Наименование, р.Версия
+    ORDER BY ОбъемПроизводства_кг DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ЛабораторныеБлокировки]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 10: Отчет по лабораторным блокировкам
+-- =====================================================
+CREATE   PROCEDURE [dbo].[Отчет_ЛабораторныеБлокировки]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        ли.ID AS ИспытаниеID,
+        ISNULL(пп.НомерПартии, пс.НомерПартии) AS НомерПартии,
+        ISNULL(прод.Наименование, сырье.Наименование) AS Наименование,
+        ли.ДатаАнализа AS ДатаБлокировки,
+        ли.Решение,
+        ли.КомментарийАналитика AS Причина,
+        пол.ПолноеИмя AS Ответственный
+    FROM [dbo].[ЛабораторныеИспытания] ли
+    LEFT JOIN [dbo].[ПроизводственныеПартии] пп ON ли.ПартияПроизводстваID = пп.ID
+    LEFT JOIN [dbo].[ПартииСырья] пс ON ли.ПартияСырьяID = пс.ID
+    LEFT JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    LEFT JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    LEFT JOIN [dbo].[Сырье] ON пс.СырьеID = [dbo].[Сырье].ID
+    LEFT JOIN [dbo].[Пользователи] пол ON ли.АналитикID = пол.ID
+    WHERE ли.Решение = 'blocked'
+        AND CAST(ли.ДатаАнализа AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY ли.ДатаАнализа DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ОтклоненияЗаПериод]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Отчет по отклонениям
+CREATE   PROCEDURE [dbo].[Отчет_ОтклоненияЗаПериод]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SELECT 
+        пп.НомерПартии,
+        шт.НаименованиеШага,
+        вп.ВремяСтарта,
+        вп.ФактТемпература,
+        шт.ПланТемпература AS ПланТемпература,
+        вп.ФактДлительностьМинут,
+        шт.ПланДлительностьМинут AS ПланДлительность,
+        вп.КомментарийОператора
+    FROM [dbo].[ВыполнениеШаговПартии] вп
+    INNER JOIN [dbo].[ПроизводственныеПартии] пп ON вп.ПартияПроизводстваID = пп.ID
+    INNER JOIN [dbo].[ШагиТехКарты] шт ON вп.ШагТехКартыID = шт.ID
+    WHERE вп.Отклонение = 1
+        AND CAST(вп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY пп.НомерПартии, вп.ВремяСтарта;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[Отчет_ПартииЗаПериод]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ХРАНИМЫЕ ПРОЦЕДУРЫ ДЛЯ ОТЧЕТОВ
+-- =====================================================
+
+-- Отчет по партиям за период
+CREATE   PROCEDURE [dbo].[Отчет_ПартииЗаПериод]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SELECT 
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пп.ВремяСтарта AS ДатаСтарта,
+        пп.ВремяОкончания AS ДатаОкончания,
+        пп.Статус,
+        пп.ФактКоличество_кг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ЛабораторныеИспытания] ли 
+                         WHERE ли.ПартияПроизводстваID = пп.ID AND ли.Результат = 'fail')
+            THEN 'Есть отклонения'
+            ELSE 'Нет отклонений'
+        END AS НаличиеОтклонений,
+        ISNULL((
+            SELECT TOP 1 Решение 
+            FROM [dbo].[ЛабораторныеИспытания] 
+            WHERE ПартияПроизводстваID = пп.ID 
+            ORDER BY ДатаАнализа DESC
+        ), 'не проверено') AS ЛабораторноеРешение
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    WHERE CAST(пп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    ORDER BY пп.ВремяСтарта DESC;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ПартииОжидающиеКонтроля]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 11: Получение партий, ожидающих лабораторного контроля
+-- =====================================================
+CREATE   PROCEDURE [dbo].[ПартииОжидающиеКонтроля]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пп.ID,
+        пп.НомерПартии,
+        прод.Наименование AS Продукт,
+        пп.ВремяОкончания,
+        пп.ФактКоличество_кг,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM [dbo].[ЛабораторныеИспытания] WHERE ПартияПроизводстваID = пп.ID) 
+            THEN 'Испытание назначено'
+            ELSE 'Ожидает назначения'
+        END AS СтатусКонтроля
+    FROM [dbo].[ПроизводственныеПартии] пп
+    INNER JOIN [dbo].[ПроизводственныеЗаказы] пз ON пп.ЗаказID = пз.ID
+    INNER JOIN [dbo].[Продукция] прод ON пз.ПродуктID = прод.ID
+    WHERE пп.Статус = 'завершена'
+        AND NOT EXISTS (
+            SELECT 1 FROM [dbo].[ЛабораторныеИспытания] 
+            WHERE ПартияПроизводстваID = пп.ID AND Решение IS NOT NULL
+        )
+    ORDER BY пп.ВремяОкончания;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ПартииСырьяОжидающиеКонтроля]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 12: Получение партий сырья, ожидающих контроля
+-- =====================================================
+CREATE   PROCEDURE [dbo].[ПартииСырьяОжидающиеКонтроля]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        пс.ID,
+        пс.НомерПартии,
+        сырье.Наименование AS Материал,
+        пс.Поставщик,
+        пс.ДатаПоступления,
+        пс.Количество_кг,
+        пс.ЛабораторныйСтатус
+    FROM [dbo].[ПартииСырья] пс
+    INNER JOIN [dbo].[Сырье] ON пс.СырьеID = [dbo].[Сырье].ID
+    WHERE пс.ЛабораторныйСтатус IN ('ожидает', 'в работе')
+    ORDER BY пс.ДатаПоступления;
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[СтатистикаОтклонений]    Script Date: 18.05.2026 10:58:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =====================================================
+-- ПРОЦЕДУРА 13: Статистика по отклонениям
+-- =====================================================
+CREATE   PROCEDURE [dbo].[СтатистикаОтклонений]
+    @ДатаНачала DATE,
+    @ДатаОкончания DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        шт.НаименованиеШага,
+        COUNT(*) AS КоличествоОтклонений,
+        COUNT(DISTINCT пп.НомерПартии) AS КоличествоПартий,
+        AVG(ABS(ISNULL(вп.ФактТемпература - шт.ПланТемпература, 0))) AS СреднееОтклонениеТемпературы
+    FROM [dbo].[ВыполнениеШаговПартии] вп
+    INNER JOIN [dbo].[ПроизводственныеПартии] пп ON вп.ПартияПроизводстваID = пп.ID
+    INNER JOIN [dbo].[ШагиТехКарты] шт ON вп.ШагТехКартыID = шт.ID
+    WHERE вп.Отклонение = 1
+        AND CAST(вп.ВремяСтарта AS DATE) BETWEEN @ДатаНачала AND @ДатаОкончания
+    GROUP BY шт.НаименованиеШага
+    ORDER BY КоличествоОтклонений DESC;
+END;
+GO
+USE [master]
+GO
+ALTER DATABASE [AgroControlDB] SET  READ_WRITE 
+GO
